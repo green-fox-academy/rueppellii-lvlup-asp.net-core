@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using rueppellii_lvlup_asp.net_core.Structs;
 
 namespace rueppellii_lvlup_asp.net_core.Controllers
 {
@@ -14,11 +15,7 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
         [HttpPost("add")]
         public IActionResult Add()
         {
-            IDictionary<string, string> message = new Dictionary<string, string>
-            {
-                { "error", "Please provide all fields" }
-            };
-            return NotFound(message);
+            return NotFound(new ErrorMessage("Please provide all fields"));
         }
     }
 }
