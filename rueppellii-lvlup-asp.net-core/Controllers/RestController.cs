@@ -11,5 +11,10 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
     [ApiController]
     public class AdminController : ControllerBase
     {
+        [HttpPost("add")]
+        public IActionResult Add()
+        {
+            return NotFound();
+        }
     }
 }
