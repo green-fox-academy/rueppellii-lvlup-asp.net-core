@@ -7,8 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace rueppellii_lvlup_asp.net_core.Controllers
 {
+    [Route("admin")]
     [ApiController]
-    public class RestController : ControllerBase
+    public class AdminController : ControllerBase
     {
     }
 }
