@@ -14,7 +14,11 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
         [HttpPost("add")]
         public IActionResult Add()
         {
-            return NotFound();
+            IDictionary<string, string> message = new Dictionary<string, string>
+            {
+                { "error", "Please provide all fields" }
+            };
+            return NotFound(message);
         }
     }
 }
