@@ -5,7 +5,13 @@ using System.Threading.Tasks;
 
 namespace rueppellii_lvlup_asp.net_core.Structs
 {
-    public class ResponseMessage
+    public struct ResponseMessage
     {
+        private string message;
+
+        public ResponseMessage(string message)
+        {
+            this.message = message;
+        }
     }
 }

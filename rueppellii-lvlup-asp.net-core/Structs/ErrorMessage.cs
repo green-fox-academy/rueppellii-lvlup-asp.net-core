@@ -5,7 +5,13 @@ using System.Threading.Tasks;
 
 namespace rueppellii_lvlup_asp.net_core.Structs
 {
-    public class ErrorMessage
+    public struct ErrorMessage
     {
+        private string error;
+
+        public ErrorMessage(string error)
+        {
+            this.error = error;
+        }
     }
 }
