@@ -4,8 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using rueppellii_lvlup_asp.net_core.DTO;
-using rueppellii_lvlup_asp.net_core.Structs;
+using rueppellii_lvlup_asp.net_core.DTOs;
+using rueppellii_lvlup_asp.net_core.Utility;
 
 namespace rueppellii_lvlup_asp.net_core.Controllers
 {
@@ -14,16 +14,16 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
     public class AdminController : Controller
     {
         [HttpPost("add")]
+        [Consumes("application/json")]
         public IActionResult Add(AddAdminDTO addAdminDTO)
         {
-            if (Request.ContentType != "application/json")
+            if (string.IsNullOrEmpty(Request.Headers["usertokenauth"]))
             {
-                return StatusCode(415, new ErrorMessage("This server only supports json media type"));
+                return Unauthorized(new ErrorMessage("usertokenauth missing"));
             }
-            else if (string.IsNullOrEmpty(Request.Headers["usertokenauth"]) ||
-                ((int?)addAdminDTO.Version ?? 0) == 0 ||
-                String.IsNullOrEmpty(addAdminDTO.Name) ||
-                String.IsNullOrEmpty(addAdminDTO.Tag) ||
+            else if (((int?)addAdminDTO.Version ?? 0) == 0 ||
+                string.IsNullOrEmpty(addAdminDTO.Name) ||
+                string.IsNullOrEmpty(addAdminDTO.Tag) ||
                 addAdminDTO.Levels == null
                 )
             {

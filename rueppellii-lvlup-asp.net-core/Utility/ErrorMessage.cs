@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace rueppellii_lvlup_asp.net_core.Structs
+namespace rueppellii_lvlup_asp.net_core.Utility
 {
-    public struct ErrorMessage
+    public class ErrorMessage
     {
         public string error;
 

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace rueppellii_lvlup_asp.net_core.Structs
+namespace rueppellii_lvlup_asp.net_core.Utility
 {
-    public struct ResponseMessage
+    public class ResponseMessage
     {
         public string message;
 
