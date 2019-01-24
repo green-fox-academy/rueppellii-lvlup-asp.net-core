@@ -24,8 +24,7 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
             else if (((int?)addAdminDTO.Version ?? 0) == 0 ||
                 string.IsNullOrEmpty(addAdminDTO.Name) ||
                 string.IsNullOrEmpty(addAdminDTO.Tag) ||
-                addAdminDTO.Levels == null
-                )
+                string.IsNullOrEmpty(addAdminDTO.Levels))
             {
                 return NotFound(new ErrorMessage("Please provide all fields"));
             }
