@@ -7,7 +7,7 @@ namespace rueppellii_lvlup_asp.net_core.Structs
 {
     public struct ResponseMessage
     {
-        private string message;
+        public string message;
 
         public ResponseMessage(string message)
         {

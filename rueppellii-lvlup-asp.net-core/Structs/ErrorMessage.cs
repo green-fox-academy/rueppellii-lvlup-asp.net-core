@@ -7,7 +7,7 @@ namespace rueppellii_lvlup_asp.net_core.Structs
 {
     public struct ErrorMessage
     {
-        private string error;
+        public string error;
 
         public ErrorMessage(string error)
         {

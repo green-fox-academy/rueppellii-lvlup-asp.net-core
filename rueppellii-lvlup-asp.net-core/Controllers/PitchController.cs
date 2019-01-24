@@ -10,22 +10,16 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
     [ApiController]
     public class PitchController : Controller
     {
-        [HttpGet]
-        [Route("")]
-        public IActionResult Test()
-        {
-            return StatusCode(418, "Test");
-        }
-
         [HttpPost]
         [Route("pitch")]
+        [Consumes("application/json")]
         public IActionResult Post()
         {
             if (string.IsNullOrEmpty(Request.Headers["usertokenauth"]))
             {
-                return Unauthorized(new ErrorMessage("Unauthorized"));
+                return StatusCode(401, new ErrorMessage("Unauthorized"));
             }
-            return Ok(new ResponseMessage("Success"));
+            return StatusCode(201, new ResponseMessage("Success"));
         }
     }
 }
