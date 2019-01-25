@@ -14,7 +14,7 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
   public class BadgesController : Controller
   {
     [HttpGet]
-    public IActionResult Badges()
+    public IActionResult ListBadges()
     {
       var badges = "{ \"badges\": [ { \"name\": \"Process improver\", \"level\": \"2\"}, { \"name\": \"English speaker\", \"level\": \"1\"}, { \"name\": \"Feedback giver\", \"level\": \"1\"} ] }";
       if (Request.ContentType.Equals("application/json") &&
