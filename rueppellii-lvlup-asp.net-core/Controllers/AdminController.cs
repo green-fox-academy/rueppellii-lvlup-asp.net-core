@@ -26,7 +26,7 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
                 string.IsNullOrEmpty(addAdminDTO.Tag) ||
                 string.IsNullOrEmpty(addAdminDTO.Levels))
             {
-                return NotFound(new ErrorMessage("Please provide all fields"));
+                return BadRequest(new ErrorMessage("Please provide all fields"));
             }
             return StatusCode(201, new ResponseMessage("Success"));
         }
