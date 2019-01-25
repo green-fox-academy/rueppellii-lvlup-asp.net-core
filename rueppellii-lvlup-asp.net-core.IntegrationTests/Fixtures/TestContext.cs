@@ -8,7 +8,7 @@ using System.Net.Http;
 
 namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Fixtures
 {
-  class TestContext : IDisposable
+  public class TestContext : IDisposable
   {
     private TestServer server;
     public HttpClient Client { get; set; }

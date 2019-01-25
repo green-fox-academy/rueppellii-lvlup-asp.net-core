@@ -27,7 +27,7 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
                 string.IsNullOrEmpty(pitchDto.PitchMessage) ||
                 pitchDto.Holders == null)
             {
-                return StatusCode(406, new ErrorMessage("One or more fields are empty."));
+                return StatusCode(400, new ErrorMessage("One or more fields are empty."));
             }
 
             return StatusCode(201, new ResponseMessage("Success"));
