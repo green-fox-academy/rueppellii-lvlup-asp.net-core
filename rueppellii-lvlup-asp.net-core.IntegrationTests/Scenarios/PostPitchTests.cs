@@ -13,10 +13,21 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios
     public class PostPitchTests
     {
         private readonly TestContext testContext;
+        private readonly PitchDto emptyDto;
+        private readonly PitchDto validDto;
 
         public PostPitchTests(TestContext testContext)
         {
             this.testContext = testContext;
+            emptyDto = new PitchDto();
+            validDto = new PitchDto()
+            {
+                BadgeName = "English speaker",
+                OldLvl = 2,
+                PitchedLvl = 3,
+                PitchMessage = "Hello World! My English is bloody gorgeous.",
+                Holders = new[] { "balazs.jozsef", "benedek.vamosi", "balazs.barna" }
+            };
         }
 
         [Fact]
@@ -30,7 +41,6 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios
         [Fact]
         public async Task CreatePitch_Should_ReturnUnauthorized()
         {
-            var emptyDto = new PitchDto();
             var json = JsonConvert.SerializeObject(emptyDto);
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await testContext.Client.PostAsync("/pitch", httpContent);
@@ -40,7 +50,6 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios
         [Fact]
         public async Task CreatePitch_Should_ReturnBadRequest()
         {
-            var emptyDto = new PitchDto();
             var json = JsonConvert.SerializeObject(emptyDto);
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
             httpContent.Headers.Add("usertokenauth", "<generated UUID>");
@@ -51,15 +60,7 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios
         [Fact]
         public async Task CreatePitch_Should_ReturnCreated()
         {
-            var inputDto = new PitchDto()
-            {
-                BadgeName = "English speaker",
-                OldLvl = 2,
-                PitchedLvl = 3,
-                PitchMessage = "Hello World! My English is bloody gorgeous.",
-                Holders = new[] { "balazs.jozsef", "benedek.vamosi", "balazs.barna" }
-            };
-            var json = JsonConvert.SerializeObject(inputDto);
+            var json = JsonConvert.SerializeObject(validDto);
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
             httpContent.Headers.Add("usertokenauth", "<generated UUID>");
             var response = await testContext.Client.PostAsync("/pitch", httpContent);
