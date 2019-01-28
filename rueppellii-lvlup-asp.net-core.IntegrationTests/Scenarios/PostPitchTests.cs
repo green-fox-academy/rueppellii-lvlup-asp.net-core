@@ -38,6 +38,17 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios
         }
 
         [Fact]
+        public async Task CreatePitch_Should_ReturnBadRequest()
+        {
+            var emptyDto = new PitchDto();
+            var json = JsonConvert.SerializeObject(emptyDto);
+            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+            httpContent.Headers.Add("usertokenauth", "<generated UUID>");
+            var response = await testContext.Client.PostAsync("/pitch", httpContent);
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+        }
+
+        [Fact]
         public async Task CreatePitch_Should_ReturnCreated()
         {
             var inputDto = new PitchDto()
