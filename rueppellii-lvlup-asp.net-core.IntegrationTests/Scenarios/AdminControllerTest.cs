@@ -20,13 +20,25 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios
             this._testContext = testContext;
         }
         [Fact]
-        public async Task Add_Should_ReturnCreated()
+        public async Task Add_Should_Return_Created()
         {
             var request = new AddAdminDtoMockHeaders(new AddAdminDtoMockBody().GetCorrectBody());
             request.SetCorrectHeaders();
             var response = await _testContext.Client.PostAsync("/admin/add", request);
             Assert.Equal(HttpStatusCode.Created, response.StatusCode);
             Assert.Equal(JsonConvert.SerializeObject(new ResponseMessage("Success")), await response.Content.ReadAsStringAsync());
+        }
+        [Fact]
+        public async Task Incorrect_ContentType_Should_Return_UnsupportedMediaType()
+        {
+            var request = new AddAdminDtoMockHeaders(new AddAdminDtoMockBody().GetCorrectBody());
+            request.SetNoContentTypeHeader();
+            var response = await _testContext.Client.PostAsync("/admin/add", request);
+            Assert.Equal(HttpStatusCode.UnsupportedMediaType, response.StatusCode);
+
+            request.SetXmlContetnType();
+            response = await _testContext.Client.PostAsync("/admin/add", request);
+            Assert.Equal(HttpStatusCode.UnsupportedMediaType, response.StatusCode);
         }
     }
 }

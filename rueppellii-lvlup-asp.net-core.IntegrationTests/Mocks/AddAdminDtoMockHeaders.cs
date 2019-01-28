@@ -19,5 +19,14 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Mocks
             this.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             this.Headers.Add("usertokenauth", "<generated UUID>");
         }
+        public void SetNoContentTypeHeader()
+        {
+            this.Headers.Add("usertokenauth", "<generated UUID>");
+        }
+        public void SetXmlContetnType()
+        {
+            this.Headers.ContentType = new MediaTypeHeaderValue("application/xml");
+            this.Headers.Add("usertokenauth", "<generated UUID>");
+        }
     }
 }
