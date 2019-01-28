@@ -16,5 +16,17 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Mocks
             this.Levels = "[]";
             return JsonConvert.SerializeObject(this);
         }
+        public string GetMissingBody()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
+        public string GetEmptyStringsBody()
+        {
+            this.Version = 2.3;
+            this.Name = "";
+            this.Tag = "";
+            this.Levels = "[]";
+            return JsonConvert.SerializeObject(this);
+        }
     }
 }

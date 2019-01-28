@@ -14,28 +14,33 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Mocks
         public AddAdminDtoMockHeaders(string content) : base(content)
         {
         }
-        public void SetCorrectHeaders()
+        public AddAdminDtoMockHeaders SetCorrectHeaders()
         {
             this.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             this.Headers.Add("usertokenauth", "<generated UUID>");
+            return this;
         }
-        public void SetMissingContentTypeHeader()
+        public AddAdminDtoMockHeaders SetMissingContentTypeHeader()
         {
             this.Headers.Add("usertokenauth", "<generated UUID>");
+            return this;
         }
-        public void SetXmlContetnType()
+        public AddAdminDtoMockHeaders SetXmlContetnType()
         {
             this.Headers.ContentType = new MediaTypeHeaderValue("application/xml");
             this.Headers.Add("usertokenauth", "<generated UUID>");
+            return this;
         }
-        public void SetMissingUsertokenauth()
+        public AddAdminDtoMockHeaders SetMissingUsertokenauth()
         {
             this.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            return this;
         }
-        public void SetEmptyUsertokenauth()
+        public AddAdminDtoMockHeaders SetEmptyUsertokenauth()
         {
             this.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             this.Headers.Add("usertokenauth", "");
+            return this;
         }
     }
 }
