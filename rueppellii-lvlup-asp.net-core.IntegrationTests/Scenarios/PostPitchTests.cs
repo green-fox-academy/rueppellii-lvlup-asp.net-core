@@ -22,9 +22,19 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios
         [Fact]
         public async Task CreatePitch_Should_ReturnUnsupportedMediaType()
         {
-            var content = new StringContent("Random string text");
-            var response = await testContext.Client.PostAsync("/pitch", content);
+            var httpContent = new StringContent("Random string text");
+            var response = await testContext.Client.PostAsync("/pitch", httpContent);
             Assert.Equal(HttpStatusCode.UnsupportedMediaType, response.StatusCode);
+        }
+
+        [Fact]
+        public async Task CreatePitch_Should_ReturnUnauthorized()
+        {
+            var emptyDto = new PitchDto();
+            var json = JsonConvert.SerializeObject(emptyDto);
+            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await testContext.Client.PostAsync("/pitch", httpContent);
+            Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
         }
 
         [Fact]
