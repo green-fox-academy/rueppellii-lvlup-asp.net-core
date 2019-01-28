@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using rueppellii_lvlup_asp.net_core.DTOs;
 using rueppellii_lvlup_asp.net_core.Utility;
 
@@ -15,21 +18,20 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
     {
         [HttpPost("add")]
         [Consumes("application/json")]
-        public IActionResult Add(AddAdminDto addAdminDTO)
+        public IActionResult Add(AddAdminDto addAdminDto)
         {
             if (string.IsNullOrEmpty(Request.Headers["usertokenauth"]))
             {
                 return Unauthorized(new ErrorMessage("usertokenauth missing"));
             }
-            else if (((int?)addAdminDTO.Version ?? 0) == 0 ||
-                string.IsNullOrEmpty(addAdminDTO.Name) ||
-                string.IsNullOrEmpty(addAdminDTO.Tag) ||
-                string.IsNullOrEmpty(addAdminDTO.Levels))
+            if (((int?)addAdminDto.Version ?? 0) == 0 ||
+                string.IsNullOrEmpty(addAdminDto.Name) ||
+                string.IsNullOrEmpty(addAdminDto.Tag) ||
+                addAdminDto.Levels == null)
             {
                 return BadRequest(new ErrorMessage("Please provide all fields"));
             }
             return StatusCode(201, new ResponseMessage("Success"));
         }
-
     }
 }

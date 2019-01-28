@@ -13,7 +13,7 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Mocks
             this.Version = 2.3;
             this.Name = "Badge inserter";
             this.Tag = "general";
-            this.Levels = "[]";
+            this.Levels = new[]{ 2, 7, 89, 1515 };
             return JsonConvert.SerializeObject(this);
         }
         public string GetMissingBody()
@@ -25,7 +25,7 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Mocks
             this.Version = 2.3;
             this.Name = "";
             this.Tag = "";
-            this.Levels = "[]";
+            this.Levels = new int[0];
             return JsonConvert.SerializeObject(this);
         }
     }
