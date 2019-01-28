@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace rueppellii_lvlup_asp.net_core.DTOs
 {
-    public class AddAdminDTO
+    public class AddAdminDto
     {
         public double Version { get; set; }
         public string Name { get; set; }

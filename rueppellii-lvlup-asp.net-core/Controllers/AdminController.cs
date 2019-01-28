@@ -15,7 +15,7 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
     {
         [HttpPost("add")]
         [Consumes("application/json")]
-        public IActionResult Add(AddAdminDTO addAdminDTO)
+        public IActionResult Add(AddAdminDto addAdminDTO)
         {
             if (string.IsNullOrEmpty(Request.Headers["usertokenauth"]))
             {
