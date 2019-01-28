@@ -14,28 +14,19 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios
     public class AdminControllerTest
     {
         private readonly TestContext _testContext;
-        private string _requestBody { get; set; }
 
-    public AdminControllerTest(TestContext testContext)
+        public AdminControllerTest(TestContext testContext)
         {
             this._testContext = testContext;
-            this._requestBody = JsonConvert.SerializeObject(new AddAdminDto
-            {
-                Version = 2.3,
-                Name = "Badge inserter",
-                Tag = "general",
-                Levels = "[]"
-            });
         }
         [Fact]
         public async Task Add_Should_ReturnCreated()
         {
-            var content = new AddAdminDtoMockHeaders(_requestBody);
-            content.SetCorrectHeaders();
-            var response = await _testContext.Client.PostAsync("/admin/add", content);
+            var request = new AddAdminDtoMockHeaders(new AddAdminDtoMockBody().GetCorrectBody());
+            request.SetCorrectHeaders();
+            var response = await _testContext.Client.PostAsync("/admin/add", request);
             Assert.Equal(HttpStatusCode.Created, response.StatusCode);
             Assert.Equal(JsonConvert.SerializeObject(new ResponseMessage("Success")), await response.Content.ReadAsStringAsync());
-
         }
-}
+    }
 }
