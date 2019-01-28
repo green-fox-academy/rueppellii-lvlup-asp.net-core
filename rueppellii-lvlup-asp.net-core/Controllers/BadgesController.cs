@@ -17,7 +17,7 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
     public IActionResult ListBadges()
     {
       var badges = "{ \"badges\": [ { \"name\": \"Process improver\", \"level\": \"2\"}, { \"name\": \"English speaker\", \"level\": \"1\"}, { \"name\": \"Feedback giver\", \"level\": \"1\"} ] }";
-      if (/*Request.ContentType == "application/json" &&*/ Request.Headers["usertokenauth"] == "gen")
+      if (Request.Headers["usertokenauth"] == "gen")
       {
         return Ok(badges);
       }
