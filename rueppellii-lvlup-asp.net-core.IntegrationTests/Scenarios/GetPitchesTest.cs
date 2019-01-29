@@ -1,12 +1,8 @@
 ﻿using Newtonsoft.Json;
 using rueppellii_lvlup_asp.net_core.IntegrationTests.Fixtures;
-using rueppellii_lvlup_asp.net_core.Models;
 using rueppellii_lvlup_asp.net_core.Structs;
-using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -31,7 +27,6 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios
             var message = new ErrorMessage("Unauthorizied");
             Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
             Assert.Equal(JsonConvert.SerializeObject(message), await response.Content.ReadAsStringAsync());
-
         }
 
         [Fact]
