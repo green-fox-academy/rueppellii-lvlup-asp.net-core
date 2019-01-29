@@ -32,5 +32,18 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
 
             return StatusCode(201, new ResponseMessage("Success"));
         }
+
+        [HttpGet]
+        [Route("pitches")]
+        [Consumes("application/json")]
+        public IActionResult GetPitches()
+        {
+            if (string.IsNullOrEmpty(Request.Headers["usertokenauth"]))
+            {
+                return StatusCode(401, new ErrorMessage("Unauthorizied"));
+            }
+
+            return StatusCode(200, new ResponseMessage("test"));
+        }
     }
 }
