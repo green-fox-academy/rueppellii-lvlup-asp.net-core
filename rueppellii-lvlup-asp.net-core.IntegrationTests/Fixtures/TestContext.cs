@@ -12,8 +12,9 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Fixtures
   {
     private TestServer server;
     public HttpClient Client { get; set; }
+        public object Context { get; internal set; }
 
-    public TestContext()
+        public TestContext()
     {
       var builder = new WebHostBuilder()
       .UseEnvironment("Testing")

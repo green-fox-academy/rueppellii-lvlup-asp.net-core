@@ -35,25 +35,15 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
             return StatusCode(201, new ResponseMessage("Success"));
         }
 
-        [HttpGet]
-        [Route("pitches")]
-        [Consumes("application/json")]
+        [HttpGet("pitches")]
         public IActionResult GetPitches()
         {
-            string json = JsonConvert.SerializeObject(new
-            {
-                myPitches = new List<Pitch>()
-                { new Pitch {timeStamp = "2018-11-29 17:10:47", userName = "balazs.barna", badgeName = "Programming", oldLvl = 2, pitchedLvl = 3, pitchMessage = "I improved in React, Redux, basic JS, NodeJS, Express and in LowDB, pls give me more money", holders = null} },
-                pitchesToReview = new List<Pitch>()
-                { new Pitch {timeStamp = "2018-11-29 17:10:47", userName = "berei.daniel", badgeName = "English speaker", oldLvl = 2, pitchedLvl = 3, pitchMessage = "I was working abroad for six years, so I can speak english very well. Pls improve my badge level to 3.", holders = null} }
-            });
-
             if (string.IsNullOrEmpty(Request.Headers["usertokenauth"]))
             {
                 return StatusCode(401, new ErrorMessage("Unauthorizied"));
             }
 
-            return Ok(json);
+            return Ok("success");
         }
     }
 }
