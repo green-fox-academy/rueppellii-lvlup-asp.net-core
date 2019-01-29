@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using rueppellii_lvlup_asp.net_core.DTOs;
+using rueppellii_lvlup_asp.net_core.Extensions;
 using rueppellii_lvlup_asp.net_core.Utility;
 
 namespace rueppellii_lvlup_asp.net_core.Controllers
@@ -16,10 +17,7 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
             {
                 return Unauthorized(new ErrorMessage("usertokenauth missing"));
             }
-            if (((int?)addAdminDto.Version ?? 0) == 0 ||
-                string.IsNullOrEmpty(addAdminDto.Name) ||
-                string.IsNullOrEmpty(addAdminDto.Tag) ||
-                addAdminDto.Levels == null)
+            if(addAdminDto.IsAnyPropertyNull() || addAdminDto.IsAnyStringPropertyEmpty())
             {
                 return BadRequest(new ErrorMessage("Please provide all fields"));
             }
