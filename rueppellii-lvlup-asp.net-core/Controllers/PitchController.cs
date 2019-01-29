@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using rueppellii_lvlup_asp.net_core.Dtos;
 using rueppellii_lvlup_asp.net_core.Structs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace rueppellii_lvlup_asp.net_core.Controllers
 {
@@ -31,6 +27,17 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
             }
 
             return StatusCode(201, new ResponseMessage("Success"));
+        }
+
+        [HttpGet("pitches")]
+        public IActionResult GetPitches()
+        {
+            if (string.IsNullOrEmpty(Request.Headers["usertokenauth"]))
+            {
+                return StatusCode(401, new ErrorMessage("Unauthorizied"));
+            }
+
+            return Ok("success");
         }
     }
 }
