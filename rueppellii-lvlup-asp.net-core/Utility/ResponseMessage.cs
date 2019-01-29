@@ -7,13 +7,11 @@ namespace rueppellii_lvlup_asp.net_core.Utility
 {
     public class ResponseMessage
     {
-        public string message;
+        public readonly string message;
 
         public ResponseMessage(string message)
         {
             this.message = message;
         }
-
-    
     }
 }

@@ -24,7 +24,7 @@ namespace rueppellii_lvlup_asp.net_core.Extensions
             var properties = o.GetType().GetProperties();
             foreach(var property in properties)
             {
-                if(property.PropertyType.Name == "String" && property.GetValue(o) == string.Empty)
+                if(property.PropertyType.Name == "String" && (string)property.GetValue(o) == string.Empty)
                 {
                     return true;
                 }

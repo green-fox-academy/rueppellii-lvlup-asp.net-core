@@ -6,9 +6,9 @@ using System.Text;
 
 namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Mocks
 {
-    public class AddAdminDtoMockBody : AddAdminDto
+    public class AddAdminPostRequestMockBody : AddAdminDto
     {
-        public string GetCorrectBody()
+        public string SetCorrectBody()
         {
             this.Version = 2.3;
             this.Name = "Badge inserter";
@@ -16,11 +16,11 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Mocks
             this.Levels = new[]{ 2, 7, 89, 1515 };
             return JsonConvert.SerializeObject(this);
         }
-        public string GetMissingBody()
+        public string SetMissingBody()
         {
             return JsonConvert.SerializeObject(this);
         }
-        public string GetEmptyStringsBody()
+        public string SetEmptyStringsBody()
         {
             this.Version = 2.3;
             this.Name = "";

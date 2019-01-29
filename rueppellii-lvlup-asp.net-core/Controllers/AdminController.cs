@@ -15,11 +15,11 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
         {
             if (string.IsNullOrEmpty(Request.Headers["usertokenauth"]))
             {
-                return Unauthorized(new ErrorMessage("usertokenauth missing"));
+                return StatusCode(401, new ErrorMessage("usertokenauth missing"));
             }
             if(addAdminDto.IsAnyPropertyNull() || addAdminDto.IsAnyStringPropertyEmpty())
             {
-                return BadRequest(new ErrorMessage("Please provide all fields"));
+                return StatusCode(400, new ErrorMessage("Please provide all fields"));
             }
             return StatusCode(201, new ResponseMessage("Success"));
         }
