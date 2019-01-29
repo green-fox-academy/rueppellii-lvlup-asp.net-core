@@ -19,6 +19,7 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios
         {
             this._testContext = testContext;
         }
+
         [Fact]
         public async Task Add_Should_Return_Created()
         {
@@ -27,6 +28,7 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios
             Assert.Equal(HttpStatusCode.Created, response.StatusCode);
             Assert.Equal(JsonConvert.SerializeObject(new ResponseMessage("Success")), await response.Content.ReadAsStringAsync());
         }
+
         [Fact]
         public async Task Incorrect_ContentType_Should_Return_UnsupportedMediaType()
         {
@@ -37,6 +39,7 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios
             response = await _testContext.Client.PostAsync("/admin/add", request.SetXmlContentType());
             Assert.Equal(HttpStatusCode.UnsupportedMediaType, response.StatusCode);
         }
+
         [Fact]
         public async Task Missing_Or_Empty_Usertokenauth_Should_Return_Unauthorised()
         {
@@ -49,6 +52,7 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios
             Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
             Assert.Equal(JsonConvert.SerializeObject(new ErrorMessage("usertokenauth missing")), await response.Content.ReadAsStringAsync());
         }
+
         [Fact]
         public async Task Missing_Or_Empty_RequestBody_Fields_Should_Return_BadRequest()
         {
