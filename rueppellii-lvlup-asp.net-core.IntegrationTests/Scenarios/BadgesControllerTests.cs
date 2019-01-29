@@ -1,4 +1,8 @@
-﻿using rueppellii_lvlup_asp.net_core.IntegrationTests.Fixtures;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using rueppellii_lvlup_asp.net_core.Containers;
+using rueppellii_lvlup_asp.net_core.DTOs;
+using rueppellii_lvlup_asp.net_core.IntegrationTests.Fixtures;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -10,10 +14,16 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios
   public class BadgesControllerTests
   {
     private readonly TestContext testContext;
+    private readonly ObjectContainer objectContainer;
 
     public BadgesControllerTests(TestContext testContext)
     {
       this.testContext = testContext;
+
+      objectContainer = new ObjectContainer();
+      objectContainer.Badges[0] = new BadgeDto() { Name = "Process Improver", Level = 2 };
+      objectContainer.Badges[1] = new BadgeDto() { Name = "English Speaker", Level = 1 };
+      objectContainer.Badges[2] = new BadgeDto() { Name = "Feedback Giver", Level = 1 };
     }
 
     [Fact]
@@ -37,11 +47,14 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios
     [Fact]
     public async Task ListBadges_Should_ReturnBadges()
     {
-      string badges = "{ \"badges\": [ { \"name\": \"Process improver\", \"level\": \"2\"}, { \"name\": \"English speaker\", \"level\": \"1\"}, { \"name\": \"Feedback giver\", \"level\": \"1\"} ] }";
+      var serializerSettings = new JsonSerializerSettings();
+      serializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+
+      var json = JsonConvert.SerializeObject(objectContainer, serializerSettings);
       var request = new HttpRequestMessage(HttpMethod.Get, "/badges");
       request.Headers.Add("usertokenauth", "gen");
       var response = await testContext.Client.SendAsync(request);
-      Assert.Equal(badges, response.Content.ReadAsStringAsync().Result);
+      Assert.Equal(json, response.Content.ReadAsStringAsync().Result);
     }
 
     [Fact]
