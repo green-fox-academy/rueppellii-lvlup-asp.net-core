@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using rueppellii_lvlup_asp.net_core.DTOs;
+using rueppellii_lvlup_asp.net_core.Dtos;
 using rueppellii_lvlup_asp.net_core.Extensions;
 using rueppellii_lvlup_asp.net_core.Utility;
 
