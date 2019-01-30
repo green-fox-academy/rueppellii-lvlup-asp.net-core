@@ -7,8 +7,7 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
     [ApiController]
     public class PitchController : Controller
     {
-        [HttpPost]
-        [Route("pitch")]
+        [HttpPost("pitch")]
         [Consumes("application/json")]
         public IActionResult Post(PitchDto pitchDto)
         {

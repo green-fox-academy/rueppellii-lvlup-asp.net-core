@@ -18,8 +18,7 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
       objectContainer.Badges[2] = new BadgeDto() { Name = "Feedback Giver", Level = 1 };
     }
 
-    [HttpGet]
-    [Route("badges")]
+    [HttpGet("badges")]
     public IActionResult ListBadges()
     {
       if (Request.Headers["usertokenauth"] == "gen")
