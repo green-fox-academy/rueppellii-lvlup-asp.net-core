@@ -6,20 +6,20 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios
+namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.PitchesController
 {
     [Collection("TestCollection")]
-    public class GetPitchesTest
+    public class GetPitches
     {
         private readonly TestContext testContext;
 
-        public GetPitchesTest(TestContext testContext)
+        public GetPitches(TestContext testContext)
         {
             this.testContext = testContext;                
-         }
+        }
        
         [Fact]
-        public async Task GetPitches_Should_Return_UnAuthorized()
+        public async Task Should_ReturnUnauthorized()
         {
             var request = new HttpRequestMessage(HttpMethod.Get, "/pitches");
             request.Headers.Add("usertokenauth", string.Empty);
@@ -29,7 +29,7 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios
         }
 
         [Fact]
-        public async Task GetPitches_Should_Return_OK()
+        public async Task Should_ReturnOK()
         {
             var request = new HttpRequestMessage(HttpMethod.Get, "/pitches");
             request.Headers.Add("usertokenauth", "OK");
@@ -37,8 +37,5 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             Assert.Equal("success", response.Content.ReadAsStringAsync().Result);
         }
-
-
-
     }
 }

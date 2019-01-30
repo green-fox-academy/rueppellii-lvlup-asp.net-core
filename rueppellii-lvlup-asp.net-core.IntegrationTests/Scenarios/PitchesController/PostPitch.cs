@@ -7,16 +7,16 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios
+namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.PitchesController
 {
     [Collection("TestCollection")]
-    public class PostPitchTests
+    public class PostPitch
     {
         private readonly TestContext testContext;
         private readonly PitchDto emptyDto;
         private readonly PitchDto validDto;
 
-        public PostPitchTests(TestContext testContext)
+        public PostPitch(TestContext testContext)
         {
             this.testContext = testContext;
             emptyDto = new PitchDto();
@@ -31,7 +31,7 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios
         }
 
         [Fact]
-        public async Task CreatePitch_Should_ReturnUnsupportedMediaType()
+        public async Task Should_ReturnUnsupportedMediaType()
         {
             var httpContent = new StringContent("Random string text");
             var response = await testContext.Client.PostAsync("/pitch", httpContent);
@@ -40,7 +40,7 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios
         }
 
         [Fact]
-        public async Task CreatePitch_Should_ReturnUnauthorized()
+        public async Task Should_ReturnUnauthorized()
         {
             var json = JsonConvert.SerializeObject(emptyDto);
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
@@ -50,7 +50,7 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios
         }
 
         [Fact]
-        public async Task CreatePitch_Should_ReturnBadRequest()
+        public async Task Should_ReturnBadRequest()
         {
             var json = JsonConvert.SerializeObject(emptyDto);
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
@@ -61,7 +61,7 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios
         }
 
         [Fact]
-        public async Task CreatePitch_Should_ReturnCreated()
+        public async Task Should_ReturnCreated()
         {
             var json = JsonConvert.SerializeObject(validDto);
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
