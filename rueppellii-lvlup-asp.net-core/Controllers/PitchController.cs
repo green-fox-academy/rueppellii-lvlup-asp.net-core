@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using rueppellii_lvlup_asp.net_core.Dtos;
 using rueppellii_lvlup_asp.net_core.DTOs;
-using rueppellii_lvlup_asp.net_core.Models;
 using rueppellii_lvlup_asp.net_core.Structs;
-using System.Collections.Generic;
 
 namespace rueppellii_lvlup_asp.net_core.Controllers
 {
