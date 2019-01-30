@@ -1,6 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using rueppellii_lvlup_asp.net_core.Dtos;
+using rueppellii_lvlup_asp.net_core.DTOs;
+using rueppellii_lvlup_asp.net_core.Models;
 using rueppellii_lvlup_asp.net_core.Structs;
+using System.Collections.Generic;
 
 namespace rueppellii_lvlup_asp.net_core.Controllers
 {
@@ -32,12 +36,14 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
         [HttpGet("pitches")]
         public IActionResult GetPitches()
         {
+            var response = new DummyJsonResponseDTO();
+
             if (string.IsNullOrEmpty(Request.Headers["usertokenauth"]))
             {
                 return StatusCode(401, new ErrorMessage("Unauthorizied"));
             }
 
-            return Ok("success");
+            return Ok(response.json);
         }
     }
 }
