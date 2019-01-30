@@ -19,13 +19,13 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.PitchesContro
         }
        
         [Fact]
-        public async Task Should_ReturnUnauthorized()
+        public async Task Should_ReturnUnauthorised()
         {
             var request = new HttpRequestMessage(HttpMethod.Get, "/pitches");
             request.Headers.Add("usertokenauth", string.Empty);
             var response = await testContext.Client.SendAsync(request);
             Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
-            Assert.Equal("{\"error\":\"Unauthorized\"}", response.Content.ReadAsStringAsync().Result);
+            Assert.Equal("{\"error\":\"Unauthorised\"}", response.Content.ReadAsStringAsync().Result);
         }
 
         [Fact]

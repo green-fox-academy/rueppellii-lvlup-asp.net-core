@@ -42,11 +42,11 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.AdminControll
             var request = new AddAdminPostRequestMock(new AddAdminPostRequestMockBody().SetCorrectBody()).SetMissingUsertokenauth();
             var response = await _testContext.Client.PostAsync("/admin/add", request);
             Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
-            Assert.Equal("{\"error\":\"Unauthorized\"}", response.Content.ReadAsStringAsync().Result);
+            Assert.Equal("{\"error\":\"Unauthorised\"}", response.Content.ReadAsStringAsync().Result);
 
             response = await _testContext.Client.PostAsync("/admin/add", request.SetEmptyUsertokenauth());
             Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
-            Assert.Equal("{\"error\":\"Unauthorized\"}", response.Content.ReadAsStringAsync().Result);
+            Assert.Equal("{\"error\":\"Unauthorised\"}", response.Content.ReadAsStringAsync().Result);
         }
 
         [Fact]
