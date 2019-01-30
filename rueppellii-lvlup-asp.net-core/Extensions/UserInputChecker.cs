@@ -19,6 +19,7 @@ namespace rueppellii_lvlup_asp.net_core.Extensions
             }
             return false;
         }
+
         public static bool IsAnyStringPropertyEmpty(this Object o)
         {
             var properties = o.GetType().GetProperties();

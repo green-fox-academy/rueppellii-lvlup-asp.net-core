@@ -1,7 +1,5 @@
-﻿using Newtonsoft.Json;
-using rueppellii_lvlup_asp.net_core.IntegrationTests.Fixtures;
+﻿using rueppellii_lvlup_asp.net_core.IntegrationTests.Fixtures;
 using rueppellii_lvlup_asp.net_core.IntegrationTests.Mocks;
-using rueppellii_lvlup_asp.net_core.Utility;
 using System.Net;
 using System.Threading.Tasks;
 using Xunit;
@@ -24,7 +22,7 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios
             var request = new AddAdminPostRequestMock(new AddAdminPostRequestMockBody().SetCorrectBody()).SetCorrectHeaders();
             var response = await _testContext.Client.PostAsync("/admin/add", request);
             Assert.Equal(HttpStatusCode.Created, response.StatusCode);
-            Assert.Equal(JsonConvert.SerializeObject(new ResponseMessage("Success")), await response.Content.ReadAsStringAsync());
+            Assert.Equal("{\"message\":\"Success\"}", response.Content.ReadAsStringAsync().Result);
         }
 
         [Fact]
@@ -44,11 +42,11 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios
             var request = new AddAdminPostRequestMock(new AddAdminPostRequestMockBody().SetCorrectBody()).SetMissingUsertokenauth();
             var response = await _testContext.Client.PostAsync("/admin/add", request);
             Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
-            Assert.Equal(JsonConvert.SerializeObject(new ErrorMessage("usertokenauth missing")), await response.Content.ReadAsStringAsync());
+            Assert.Equal("{\"error\":\"Unauthorized\"}", response.Content.ReadAsStringAsync().Result);
 
             response = await _testContext.Client.PostAsync("/admin/add", request.SetEmptyUsertokenauth());
             Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
-            Assert.Equal(JsonConvert.SerializeObject(new ErrorMessage("usertokenauth missing")), await response.Content.ReadAsStringAsync());
+            Assert.Equal("{\"error\":\"Unauthorized\"}", response.Content.ReadAsStringAsync().Result);
         }
 
         [Fact]
@@ -57,12 +55,12 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios
             var request = new AddAdminPostRequestMock(new AddAdminPostRequestMockBody().SetMissingBody()).SetCorrectHeaders();
             var response = await _testContext.Client.PostAsync("/admin/add", request);
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
-            Assert.Equal(JsonConvert.SerializeObject(new ErrorMessage("Please provide all fields")), await response.Content.ReadAsStringAsync());
+            Assert.Equal("{\"error\":\"Please provide all fields\"}", response.Content.ReadAsStringAsync().Result);
 
             request = new AddAdminPostRequestMock(new AddAdminPostRequestMockBody().SetEmptyStringsBody()).SetCorrectHeaders();
             response = await _testContext.Client.PostAsync("/admin/add", request);
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
-            Assert.Equal(JsonConvert.SerializeObject(new ErrorMessage("Please provide all fields")), await response.Content.ReadAsStringAsync());
+            Assert.Equal("{\"error\":\"Please provide all fields\"}", response.Content.ReadAsStringAsync().Result);
         }
     }
 }

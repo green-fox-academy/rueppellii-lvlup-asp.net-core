@@ -24,9 +24,8 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios
             var request = new HttpRequestMessage(HttpMethod.Get, "/pitches");
             request.Headers.Add("usertokenauth", string.Empty);
             var response = await testContext.Client.SendAsync(request);
-            var message = new ErrorMessage("Unauthorizied");
             Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
-            Assert.Equal(JsonConvert.SerializeObject(message), await response.Content.ReadAsStringAsync());
+            Assert.Equal("{\"error\":\"Unauthorized\"}", response.Content.ReadAsStringAsync().Result);
         }
 
         [Fact]
