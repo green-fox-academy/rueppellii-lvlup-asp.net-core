@@ -17,7 +17,7 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
             {
                 return StatusCode(401, new ErrorMessage("Unauthorized"));
             }
-            if(addAdminDto.IsAnyPropertyNull() || addAdminDto.IsAnyStringPropertyEmpty())
+            if (addAdminDto.IsAnyPropertyNull() || addAdminDto.IsAnyStringPropertyEmpty())
             {
                 return StatusCode(400, new ErrorMessage("Please provide all fields"));
             }
