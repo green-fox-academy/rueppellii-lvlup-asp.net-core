@@ -6,7 +6,7 @@ using rueppellii_lvlup_asp.net_core.Utility;
 namespace rueppellii_lvlup_asp.net_core.Controllers
 {
     [ApiController]
-    public class PitchController : Controller
+    public class PitchesController : Controller
     {
         [HttpPost("pitch")]
         [Consumes("application/json")]

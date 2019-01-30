@@ -23,4 +23,8 @@
     <ProjectReference Include="..\rueppellii-lvlup-asp.net-core\rueppellii-lvlup-asp.net-core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Scenarios\PitchController\" />
+  </ItemGroup>
+
 </Project>
