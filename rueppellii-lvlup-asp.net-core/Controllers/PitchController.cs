@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using rueppellii_lvlup_asp.net_core.Dtos;
-using rueppellii_lvlup_asp.net_core.Structs;
+using rueppellii_lvlup_asp.net_core.Utility;
 
 namespace rueppellii_lvlup_asp.net_core.Controllers
 {
@@ -38,6 +38,12 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
             }
 
             return Ok("success");
+        }
+        [HttpPut("pitch")]
+        [Consumes("application/json")]
+        public IActionResult Put(PutPitchDto putPitchDto)
+        {
+            return StatusCode(201, new ResponseMessage("Success"));
         }
     }
 }
