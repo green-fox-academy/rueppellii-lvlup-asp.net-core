@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using rueppellii_lvlup_asp.net_core.Dtos;
-using rueppellii_lvlup_asp.net_core.Structs;
+using rueppellii_lvlup_asp.net_core.Utility;
 
 namespace rueppellii_lvlup_asp.net_core.Controllers
 {

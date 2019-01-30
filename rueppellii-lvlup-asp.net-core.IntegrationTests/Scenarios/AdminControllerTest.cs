@@ -1,10 +1,8 @@
 ﻿using Newtonsoft.Json;
-using rueppellii_lvlup_asp.net_core.Dtos;
 using rueppellii_lvlup_asp.net_core.IntegrationTests.Fixtures;
 using rueppellii_lvlup_asp.net_core.IntegrationTests.Mocks;
 using rueppellii_lvlup_asp.net_core.Utility;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using Xunit;
 
