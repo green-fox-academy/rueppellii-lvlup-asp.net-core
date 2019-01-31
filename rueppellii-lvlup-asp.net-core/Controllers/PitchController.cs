@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using rueppellii_lvlup_asp.net_core.Dtos;
+using rueppellii_lvlup_asp.net_core.DTOs;
 using rueppellii_lvlup_asp.net_core.Structs;
 
 namespace rueppellii_lvlup_asp.net_core.Controllers
@@ -37,7 +38,7 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
                 return StatusCode(401, new ErrorMessage("Unauthorizied"));
             }
 
-            return Ok("success");
+            return Ok(DummyJsonResponseDTO.json);
         }
     }
 }
