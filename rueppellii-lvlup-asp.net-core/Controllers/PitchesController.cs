@@ -14,7 +14,7 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
         {
             if (string.IsNullOrEmpty(Request.Headers["usertokenauth"]))
             {
-                return StatusCode(401, new ErrorMessage("Unauthorised"));
+                return StatusCode(401, new ErrorMessage("Unauthorized"));
             }
             if (pitchDto.IsAnyPropertyNull() || pitchDto.IsAnyStringPropertyEmpty())
             {
@@ -28,7 +28,7 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
         {
             if (string.IsNullOrEmpty(Request.Headers["usertokenauth"]))
             {
-                return StatusCode(401, new ErrorMessage("Unauthorised"));
+                return StatusCode(401, new ErrorMessage("Unauthorized"));
             }
             return Ok("success");
         }

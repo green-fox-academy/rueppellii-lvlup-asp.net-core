@@ -46,7 +46,7 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.PitchesContro
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await testContext.Client.PostAsync("/pitch", httpContent);
             Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
-            Assert.Equal("{\"error\":\"Unauthorised\"}", response.Content.ReadAsStringAsync().Result);
+            Assert.Equal("{\"error\":\"Unauthorized\"}", response.Content.ReadAsStringAsync().Result);
         }
 
         [Fact]

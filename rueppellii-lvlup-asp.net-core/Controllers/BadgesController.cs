@@ -25,7 +25,7 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
       {
         return Ok(objectContainer);
       }
-      return Unauthorized(new ErrorMessage("Unauthorised"));
+      return Unauthorized(new ErrorMessage("Unauthorized"));
     }
   }
 }
