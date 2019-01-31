@@ -60,7 +60,7 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.BadgesControl
     [Fact]
     public async Task Should_ReturnErrorMessage()
     {
-      string errorMessage = "{\"error\":\"Unauthorised\"}";
+      string errorMessage = "{\"error\":\"Unauthorized\"}";
       var request = new HttpRequestMessage(HttpMethod.Get, "/badges");
       request.Headers.Add("usertokenauth", "invalid");
       var response = await testContext.Client.SendAsync(request);
