@@ -33,14 +33,12 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
         [HttpGet("pitches")]
         public IActionResult GetPitches()
         {
-            var response = new DummyJsonResponseDTO();
-
             if (string.IsNullOrEmpty(Request.Headers["usertokenauth"]))
             {
                 return StatusCode(401, new ErrorMessage("Unauthorizied"));
             }
 
-            return Ok(response.json);
+            return Ok(DummyJsonResponseDTO.json);
         }
     }
 }
