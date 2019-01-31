@@ -44,14 +44,16 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
         [Consumes("application/json")]
         public IActionResult Put(PutPitchDto putPitchDto)
         {
-            if(string.IsNullOrEmpty(Request.Headers["usertokenauth"]))
+            if (string.IsNullOrEmpty(Request.Headers["usertokenauth"]))
             {
                 return StatusCode(401, new ErrorMessage("Unauthorized"));
             }
-            if(putPitchDto.IsAnyPropertyNull() || putPitchDto.IsAnyStringPropertyEmpty())
+
+            if (putPitchDto.IsAnyPropertyNull() || putPitchDto.IsAnyStringPropertyEmpty())
             {
                 return StatusCode(400, new ErrorMessage("Please provide all fields"));
             }
+
             return StatusCode(201, new ResponseMessage("Success"));
         }
     }
