@@ -18,7 +18,7 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
                 return StatusCode(401, new ErrorMessage("Unauthorizied"));
             }
 
-            return StatusCode(200, new ResponseMessage("OK"));
+            return Ok(new ResponseMessage("OK"));
         }
     }
 }
