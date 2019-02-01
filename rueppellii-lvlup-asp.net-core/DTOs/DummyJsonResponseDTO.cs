@@ -7,7 +7,7 @@ namespace rueppellii_lvlup_asp.net_core.Dtos
 {
     public static class DummyJsonResponseDTO
     {
-        public static string json = "{\"myPitches\":" +
+        public static string getPitches = "{\"myPitches\":" +
             "[{\"timeStamp\": \"2018-11-29 17:10:47\"," +
             "\"userName\": \"balazs.barna\"," +
             "\"badgeName\": \"Programming\"," +
