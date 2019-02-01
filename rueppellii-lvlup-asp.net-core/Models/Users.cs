@@ -4,25 +4,21 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace rueppellii_lvlup_asp.net_core.Models
 {
-    public class BadgesDataModel
+    public class Users
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-
-        [Required]
-        [MaxLength(15)]
-        public string Version { get; set; }
+        public int? Id { get; set; }
 
         [Required]
         [MaxLength(50)]
         public string Name { get; set; }
 
-        [Required]
-        [MaxLength(50)]
-        public string Tag { get; set; }
+        public string TokenAuth { get; set; }
 
-        [Required]
-        public List<Levels> Levels { get; set; }
+        public string Pic { get; set; }
+
+        public List<Badges> Badges { get; set; }
+
     }
 }
