@@ -35,7 +35,7 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.PitchesContro
             request.Headers.Add("usertokenauth", "OK");
             var response = await testContext.Client.SendAsync(request);
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-            Assert.Equal("success", response.Content.ReadAsStringAsync().Result);
+            Assert.Equal(Mocks.MockJsonResponse.json, response.Content.ReadAsStringAsync().Result);
         }
     }
 }

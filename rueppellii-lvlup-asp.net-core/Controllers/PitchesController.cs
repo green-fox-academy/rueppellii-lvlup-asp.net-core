@@ -30,7 +30,7 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
             {
                 return StatusCode(401, new ErrorMessage("Unauthorized"));
             }
-            return Ok("success");
+            return Ok(DummyJsonResponseDTO.json);
         }
     }
 }
