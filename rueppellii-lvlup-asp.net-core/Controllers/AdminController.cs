@@ -5,8 +5,8 @@ using rueppellii_lvlup_asp.net_core.Utility;
 
 namespace rueppellii_lvlup_asp.net_core.Controllers
 {
-    [Route("admin")]
     [ApiController]
+    [Route("admin")]
     public class AdminController : Controller
     {
         [HttpPost("add")]
@@ -17,7 +17,7 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
             {
                 return StatusCode(401, new ErrorMessage("Unauthorized"));
             }
-            if(addAdminDto.IsAnyPropertyNull() || addAdminDto.IsAnyStringPropertyEmpty())
+            if (addAdminDto.IsAnyPropertyNull() || addAdminDto.IsAnyStringPropertyEmpty())
             {
                 return StatusCode(400, new ErrorMessage("Please provide all fields"));
             }

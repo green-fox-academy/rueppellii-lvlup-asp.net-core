@@ -6,10 +6,9 @@ using rueppellii_lvlup_asp.net_core.Utility;
 namespace rueppellii_lvlup_asp.net_core.Controllers
 {
     [ApiController]
-    public class PitchController : Controller
+    public class PitchesController : Controller
     {
-        [HttpPost]
-        [Route("pitch")]
+        [HttpPost("pitch")]
         [Consumes("application/json")]
         public IActionResult Post(PitchDto pitchDto)
         {
@@ -17,16 +16,10 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
             {
                 return StatusCode(401, new ErrorMessage("Unauthorized"));
             }
-
-            if (string.IsNullOrEmpty(pitchDto.BadgeName) ||
-                pitchDto.OldLvl == null ||
-                pitchDto.PitchedLvl == null ||
-                string.IsNullOrEmpty(pitchDto.PitchMessage) ||
-                pitchDto.Holders == null)
+            if (pitchDto.IsAnyPropertyNull() || pitchDto.IsAnyStringPropertyEmpty())
             {
                 return StatusCode(400, new ErrorMessage("One or more fields are empty."));
             }
-
             return StatusCode(201, new ResponseMessage("Success"));
         }
 
@@ -37,8 +30,7 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
             {
                 return StatusCode(401, new ErrorMessage("Unauthorized"));
             }
-
-            return Ok("success");
+            return Ok(DummyJsonResponseDTO.json);
         }
         [HttpPut("pitch")]
         [Consumes("application/json")]
