@@ -13,12 +13,16 @@ namespace rueppellii_lvlup_asp.net_core.Models
         [Timestamp]
         public byte[] Timestamp { get; set; }
 
-        public List<Users> Users { get; set; }
+        public Users User { get; set; }
+        public Badges Badge { get; set; }
 
         public int OldLevel { get; set; }
+        public int PitchedLevel { get; set; }
 
         [MaxLength(200)]
         public string PitchMessage { get; set; }
+
+        public List<Reviews> Reviewers { get; set; }
 
     }
 }
