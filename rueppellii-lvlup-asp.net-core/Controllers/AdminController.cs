@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using rueppellii_lvlup_asp.net_core.DTOs;
+using rueppellii_lvlup_asp.net_core.Dtos;
 using rueppellii_lvlup_asp.net_core.Extensions;
 using rueppellii_lvlup_asp.net_core.Utility;
 
 namespace rueppellii_lvlup_asp.net_core.Controllers
 {
-    [Route("admin")]
     [ApiController]
+    [Route("admin")]
     public class AdminController : Controller
     {
         [HttpPost("add")]
@@ -15,9 +15,9 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
         {
             if (string.IsNullOrEmpty(Request.Headers["usertokenauth"]))
             {
-                return StatusCode(401, new ErrorMessage("usertokenauth missing"));
+                return StatusCode(401, new ErrorMessage("Unauthorized"));
             }
-            if(addAdminDto.IsAnyPropertyNull() || addAdminDto.IsAnyStringPropertyEmpty())
+            if (addAdminDto.IsAnyPropertyNull() || addAdminDto.IsAnyStringPropertyEmpty())
             {
                 return StatusCode(400, new ErrorMessage("Please provide all fields"));
             }

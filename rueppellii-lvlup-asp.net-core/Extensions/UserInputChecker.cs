@@ -7,7 +7,7 @@ namespace rueppellii_lvlup_asp.net_core.Extensions
 {
     public static class UserInputChecker
     {
-        public static bool IsAnyPropertyNull(this Object o)
+        public static bool IsAnyPropertyNull(this object o)
         {
             var properties = o.GetType().GetProperties();
             foreach(var property in properties)
@@ -19,7 +19,8 @@ namespace rueppellii_lvlup_asp.net_core.Extensions
             }
             return false;
         }
-        public static bool IsAnyStringPropertyEmpty(this Object o)
+
+        public static bool IsAnyStringPropertyEmpty(this object o)
         {
             var properties = o.GetType().GetProperties();
             foreach(var property in properties)

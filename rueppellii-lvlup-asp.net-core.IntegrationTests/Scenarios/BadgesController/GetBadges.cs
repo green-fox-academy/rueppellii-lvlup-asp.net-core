@@ -1,22 +1,22 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using rueppellii_lvlup_asp.net_core.Containers;
-using rueppellii_lvlup_asp.net_core.DTOs;
+using rueppellii_lvlup_asp.net_core.Dtos;
 using rueppellii_lvlup_asp.net_core.IntegrationTests.Fixtures;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios
+namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.BadgesController
 {
   [Collection("TestCollection")]
-  public class BadgesControllerTests
+  public class GetBadges
   {
     private readonly TestContext testContext;
     private readonly ObjectContainer objectContainer;
 
-    public BadgesControllerTests(TestContext testContext)
+    public GetBadges(TestContext testContext)
     {
       this.testContext = testContext;
 
@@ -27,7 +27,7 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios
     }
 
     [Fact]
-    public async Task ListBadges_Should_ReturnOK()
+    public async Task Should_ReturnOK()
     {
       var request = new HttpRequestMessage(HttpMethod.Get, "/badges");
       request.Headers.Add("usertokenauth", "gen");
@@ -36,7 +36,7 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios
     }
 
     [Fact]
-    public async Task ListBadges_Should_ReturnUnauthorized()
+    public async Task Should_ReturnUnauthorised()
     {
       var request = new HttpRequestMessage(HttpMethod.Get, "/badges");
       request.Headers.Add("usertokenauth", "invalid");
@@ -45,7 +45,7 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios
     }
 
     [Fact]
-    public async Task ListBadges_Should_ReturnBadges()
+    public async Task Should_ReturnBadges()
     {
       var serializerSettings = new JsonSerializerSettings();
       serializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
@@ -58,7 +58,7 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios
     }
 
     [Fact]
-    public async Task ListBadges_Should_ReturnErrorMessage()
+    public async Task Should_ReturnErrorMessage()
     {
       string errorMessage = "{\"error\":\"Unauthorized\"}";
       var request = new HttpRequestMessage(HttpMethod.Get, "/badges");

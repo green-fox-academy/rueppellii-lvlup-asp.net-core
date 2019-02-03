@@ -7,11 +7,11 @@ namespace rueppellii_lvlup_asp.net_core.Utility
 {
     public class ErrorMessage
     {
-        public readonly string error;
+        public string Error { get; }
 
         public ErrorMessage(string error)
         {
-            this.error = error;
+            this.Error = error;
         }
     }
 }

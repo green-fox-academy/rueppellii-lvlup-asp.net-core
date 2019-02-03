@@ -1,45 +1,41 @@
 ﻿using Newtonsoft.Json;
 using rueppellii_lvlup_asp.net_core.IntegrationTests.Fixtures;
-using rueppellii_lvlup_asp.net_core.Structs;
+using rueppellii_lvlup_asp.net_core.Utility;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios
+namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.PitchesController
 {
     [Collection("TestCollection")]
-    public class GetPitchesTest
+    public class GetPitches
     {
         private readonly TestContext testContext;
 
-        public GetPitchesTest(TestContext testContext)
+        public GetPitches(TestContext testContext)
         {
             this.testContext = testContext;                
-         }
+        }
        
         [Fact]
-        public async Task GetPitches_Should_Return_UnAuthorized()
+        public async Task Should_ReturnUnauthorised()
         {
             var request = new HttpRequestMessage(HttpMethod.Get, "/pitches");
             request.Headers.Add("usertokenauth", string.Empty);
             var response = await testContext.Client.SendAsync(request);
-            var message = new ErrorMessage("Unauthorizied");
             Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
-            Assert.Equal(JsonConvert.SerializeObject(message), await response.Content.ReadAsStringAsync());
+            Assert.Equal("{\"error\":\"Unauthorized\"}", response.Content.ReadAsStringAsync().Result);
         }
 
         [Fact]
-        public async Task GetPitches_Should_Return_OK()
+        public async Task Should_ReturnOK()
         {
             var request = new HttpRequestMessage(HttpMethod.Get, "/pitches");
             request.Headers.Add("usertokenauth", "OK");
             var response = await testContext.Client.SendAsync(request);
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-            Assert.Equal("success", response.Content.ReadAsStringAsync().Result);
+            Assert.Equal(Mocks.MockJsonResponse.json, response.Content.ReadAsStringAsync().Result);
         }
-
-
-
     }
 }
