@@ -7,10 +7,15 @@ using System.Threading.Tasks;
 
 namespace rueppellii_lvlup_asp.net_core.Models
 {
-    public class Review
+    public class Reviews
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+
+        public Users user { get; set; }
+
+        [MaxLength(500)]
+        public string Message { get; set; }
     }
 }
