@@ -13,9 +13,11 @@ namespace rueppellii_lvlup_asp.net_core.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public Users user { get; set; }
+        public Users User { get; set; }
 
         [MaxLength(500)]
         public string Message { get; set; }
+
+        public bool PitchStatus { get; set; }
     }
 }

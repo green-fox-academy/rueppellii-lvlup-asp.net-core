@@ -2,23 +2,21 @@
 
 namespace rueppellii_lvlup_asp.net_core.Migrations
 {
-    public partial class removeNewColumn : Migration
+    public partial class addTokenAuth2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "testColumn",
-                table: "Badges");
+                name: "TokenAuth",
+                table: "Users");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "testColumn",
-                table: "Badges",
-                maxLength: 3,
-                nullable: false,
-                defaultValue: "");
+                name: "TokenAuth",
+                table: "Users",
+                nullable: true);
         }
     }
 }

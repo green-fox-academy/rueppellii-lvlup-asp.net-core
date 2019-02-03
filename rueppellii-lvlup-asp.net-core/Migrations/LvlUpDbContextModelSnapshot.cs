@@ -21,11 +21,11 @@ namespace rueppellii_lvlup_asp.net_core.Migrations
 
             modelBuilder.Entity("rueppellii_lvlup_asp.net_core.Models.Archetypes", b =>
                 {
-                    b.Property<int?>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ArchetypeName")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50);
 
@@ -73,9 +73,11 @@ namespace rueppellii_lvlup_asp.net_core.Migrations
 
                     b.Property<int?>("BadgesId");
 
-                    b.Property<string>("Description");
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(500);
 
-                    b.Property<int?>("Level");
+                    b.Property<int>("Level");
 
                     b.HasKey("Id");
 
@@ -86,24 +88,69 @@ namespace rueppellii_lvlup_asp.net_core.Migrations
 
             modelBuilder.Entity("rueppellii_lvlup_asp.net_core.Models.Pitches", b =>
                 {
-                    b.Property<int?>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<byte[]>("Timetamp")
+                    b.Property<string>("BadgeName");
+
+                    b.Property<int?>("BadgesId");
+
+                    b.Property<int>("OldLevel");
+
+                    b.Property<string>("PitchMessage")
+                        .HasMaxLength(200);
+
+                    b.Property<int>("PitchedLevel");
+
+                    b.Property<byte[]>("Timestamp")
                         .IsConcurrencyToken()
                         .ValueGeneratedOnAddOrUpdate();
 
+                    b.Property<int?>("UserId");
+
+                    b.Property<string>("Username");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("BadgesId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Pitches");
                 });
 
-            modelBuilder.Entity("rueppellii_lvlup_asp.net_core.Models.Users", b =>
+            modelBuilder.Entity("rueppellii_lvlup_asp.net_core.Models.Reviews", b =>
                 {
-                    b.Property<int?>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Message")
+                        .HasMaxLength(500);
+
+                    b.Property<bool>("PitchStatus");
+
+                    b.Property<int?>("PitchesId");
+
+                    b.Property<int?>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PitchesId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Reviews");
+                });
+
+            modelBuilder.Entity("rueppellii_lvlup_asp.net_core.Models.Users", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("LevelsId");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -111,9 +158,9 @@ namespace rueppellii_lvlup_asp.net_core.Migrations
 
                     b.Property<string>("Pic");
 
-                    b.Property<string>("TokenAuth");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("LevelsId");
 
                     b.ToTable("Users");
                 });
@@ -134,6 +181,35 @@ namespace rueppellii_lvlup_asp.net_core.Migrations
                     b.HasOne("rueppellii_lvlup_asp.net_core.Models.Badges")
                         .WithMany("Levels")
                         .HasForeignKey("BadgesId");
+                });
+
+            modelBuilder.Entity("rueppellii_lvlup_asp.net_core.Models.Pitches", b =>
+                {
+                    b.HasOne("rueppellii_lvlup_asp.net_core.Models.Badges", "Badges")
+                        .WithMany()
+                        .HasForeignKey("BadgesId");
+
+                    b.HasOne("rueppellii_lvlup_asp.net_core.Models.Users", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("rueppellii_lvlup_asp.net_core.Models.Reviews", b =>
+                {
+                    b.HasOne("rueppellii_lvlup_asp.net_core.Models.Pitches")
+                        .WithMany("Reviewers")
+                        .HasForeignKey("PitchesId");
+
+                    b.HasOne("rueppellii_lvlup_asp.net_core.Models.Users", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("rueppellii_lvlup_asp.net_core.Models.Users", b =>
+                {
+                    b.HasOne("rueppellii_lvlup_asp.net_core.Models.Levels")
+                        .WithMany("Holders")
+                        .HasForeignKey("LevelsId");
                 });
 #pragma warning restore 612, 618
         }

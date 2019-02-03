@@ -10,8 +10,10 @@ namespace rueppellii_lvlup_asp.net_core.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public int? Level { get; set; }
+        [Required]
+        public int Level { get; set; }
 
+        [Required]
         [MaxLength(500)]
         public string Description { get; set; }
 

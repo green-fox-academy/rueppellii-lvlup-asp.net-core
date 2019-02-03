@@ -22,7 +22,6 @@ namespace rueppellii_lvlup_asp.net_core.Models
         [MaxLength(50)]
         public string Tag { get; set; }
 
-        [Required]
         public List<Levels> Levels { get; set; }
     }
 }

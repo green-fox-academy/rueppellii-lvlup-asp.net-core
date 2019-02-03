@@ -31,11 +31,7 @@ namespace rueppellii_lvlup_asp.net_core
             {
                 app.UseDeveloperExceptionPage();
             }
-            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
-            {
-                var context = serviceScope.ServiceProvider.GetRequiredService<LvlUpDbContext>();
-                context.Database.Migrate();
-            }
+
             app.UseMvc();
         }
     }
