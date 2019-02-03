@@ -14,6 +14,7 @@ namespace rueppellii_lvlup_asp.net_core.Models
         [MaxLength(50)]
         public string Name { get; set; }
 
+        [NotMapped]
         public string TokenAuth { get; set; }
 
         public string Pic { get; set; }
