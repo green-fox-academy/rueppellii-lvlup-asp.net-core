@@ -23,7 +23,7 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.PitchesContro
         [Fact]
         public async Task Should_ReturnCreated()
         {
-            var request = new MockRequest(new PutPitchRequestMockBody().SetCorrectBody()).SetContentTypeJsonAndUsertokenauth();
+            var request = new MockRequestContent(new PutPitchRequestMockBody().SetCorrectBody()).SetContentTypeJsonAndUsertokenauth();
             var response = await _testContext.Client.PutAsync("/pitch", request);
             Assert.Equal(HttpStatusCode.Created, response.StatusCode);
             Assert.Equal("{\"message\":\"Success\"}", response.Content.ReadAsStringAsync().Result);
@@ -32,7 +32,7 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.PitchesContro
         [Fact]
         public async Task Should_ReturnUnsupportedMediaType()
         {
-            var request = new MockRequest(new PutPitchRequestMockBody().SetCorrectBody()).SetUsertokenauth();
+            var request = new MockRequestContent(new PutPitchRequestMockBody().SetCorrectBody()).SetUsertokenauth();
             var response = await _testContext.Client.PutAsync("/pitch", request);
             Assert.Equal(HttpStatusCode.UnsupportedMediaType, response.StatusCode);
 
@@ -43,7 +43,7 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.PitchesContro
         [Fact]
         public async Task Should_ReturnUnauthorised()
         {
-            var request = new MockRequest(new PutPitchRequestMockBody().SetCorrectBody()).SetContentTypeJson();
+            var request = new MockRequestContent(new PutPitchRequestMockBody().SetCorrectBody()).SetContentTypeJson();
             var response = await _testContext.Client.PutAsync("/pitch", request);
             Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
             Assert.Equal("{\"error\":\"Unauthorized\"}", response.Content.ReadAsStringAsync().Result);
@@ -56,12 +56,12 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.PitchesContro
         [Fact]
         public async Task Should_ReturnBadRequest()
         {
-            var request = new MockRequest(new PutPitchRequestMockBody().SetMissingBody()).SetContentTypeJsonAndUsertokenauth();
+            var request = new MockRequestContent(new PutPitchRequestMockBody().SetMissingBody()).SetContentTypeJsonAndUsertokenauth();
             var response = await _testContext.Client.PutAsync("/pitch", request);
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
             Assert.Equal("{\"error\":\"Please provide all fields\"}", response.Content.ReadAsStringAsync().Result);
 
-            request = new MockRequest(new PutPitchRequestMockBody().SetEmptyStringsBody()).SetContentTypeJsonAndUsertokenauth();
+            request = new MockRequestContent(new PutPitchRequestMockBody().SetEmptyStringsBody()).SetContentTypeJsonAndUsertokenauth();
             response = await _testContext.Client.PutAsync("/pitch", request);
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
             Assert.Equal("{\"error\":\"Please provide all fields\"}", response.Content.ReadAsStringAsync().Result);
