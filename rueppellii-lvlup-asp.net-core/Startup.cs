@@ -21,8 +21,13 @@ namespace rueppellii_lvlup_asp.net_core
         {
             services.AddDbContext<LvlUpDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddAuthentication().AddGoogle(options =>
+            {
+                options.ClientId = Configuration["google:clientID"];
+                options.ClientSecret = Configuration["google:clientSecret"];
+            });
 
-          services.AddMvc();
+            services.AddMvc();
         }
             // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
