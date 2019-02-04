@@ -1,4 +1,5 @@
 ﻿using rueppellii_lvlup_asp.net_core.Models;
+using System.Collections.Generic;
 
 namespace rueppellii_lvlup_asp.net_core.Data
 {
@@ -6,12 +7,12 @@ namespace rueppellii_lvlup_asp.net_core.Data
     {
         public static void AddSeededData (this LvlUpDbContext context)
         {
-            context.Add(new Badges
+            context.Badges.Add(new Badges
             {
                 Version = "v2.1",
                 Name = "Process improve/initator",
                 Tag = "general",
-                Levels =
+                Levels = new List<Levels>
                 {
                     new Levels
                     {
@@ -45,12 +46,12 @@ namespace rueppellii_lvlup_asp.net_core.Data
                     }
                 }
             });
-            context.Add(new Badges
+            context.Badges.Add(new Badges
             {
                 Version = "v1.1",
                 Name = "Feedback giver",
                 Tag = "marketing",
-                Levels =
+                Levels = new List<Levels>
                 {
                     new Levels
                     {
