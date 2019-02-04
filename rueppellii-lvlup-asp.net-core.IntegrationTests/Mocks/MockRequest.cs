@@ -9,37 +9,37 @@ using System.Threading.Tasks;
 
 namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Mocks
 {
-    public class AddAdminPostRequestMock : StringContent
+    public class MockRequest : StringContent
     {
-        public AddAdminPostRequestMock(string content) : base(content)
+        public MockRequest(string content) : base(content)
         {
         }
-        public AddAdminPostRequestMock SetCorrectHeaders()
+        public MockRequest SetContentTypeJsonAndUsertokenauth()
         {
             this.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             this.Headers.Add("usertokenauth", "<generated UUID>");
             return this;
         }
-        public AddAdminPostRequestMock SetMissingContentType()
+        public MockRequest SetUsertokenauth()
         {
             this.Headers.Add("usertokenauth", "<generated UUID>");
             return this;
         }
-        public AddAdminPostRequestMock SetXmlContentType()
+        public MockRequest SetContentTypeXmlAndUsertokenauth()
         {
             this.Headers.ContentType = new MediaTypeHeaderValue("application/xml");
             this.Headers.Add("usertokenauth", "<generated UUID>");
             return this;
         }
-        public AddAdminPostRequestMock SetMissingUsertokenauth()
+        public MockRequest SetContentTypeJson()
         {
             this.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             return this;
         }
-        public AddAdminPostRequestMock SetEmptyUsertokenauth()
+        public MockRequest SetContentTypeJsonAndEmptyUsertokenauth()
         {
             this.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            this.Headers.Add("usertokenauth", "");
+            this.Headers.Add("usertokenauth", string.Empty);
             return this;
         }
     }

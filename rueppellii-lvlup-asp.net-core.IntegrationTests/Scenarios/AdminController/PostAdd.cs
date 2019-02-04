@@ -7,11 +7,11 @@ using Xunit;
 namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.AdminController
 {
     [Collection("TestCollection")]
-    public class AddAdmin
+    public class PostAdd
     {
         private readonly TestContext _testContext;
 
-        public AddAdmin(TestContext testContext)
+        public PostAdd(TestContext testContext)
         {
             this._testContext = testContext;
         }
@@ -19,7 +19,7 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.AdminControll
         [Fact]
         public async Task Should_ReturnCreated()
         {
-            var request = new AddAdminPostRequestMock(new AddAdminPostRequestMockBody().SetCorrectBody()).SetCorrectHeaders();
+            var request = new MockRequest(new AddAdminPostRequestMockBody().SetCorrectBody()).SetContentTypeJsonAndUsertokenauth();
             var response = await _testContext.Client.PostAsync("/admin/add", request);
             Assert.Equal(HttpStatusCode.Created, response.StatusCode);
             Assert.Equal("{\"message\":\"Success\"}", response.Content.ReadAsStringAsync().Result);
@@ -28,23 +28,23 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.AdminControll
         [Fact]
         public async Task Should_ReturnUnsupportedMediaType()
         {
-            var request = new AddAdminPostRequestMock(new AddAdminPostRequestMockBody().SetCorrectBody()).SetMissingContentType();
+            var request = new MockRequest(new AddAdminPostRequestMockBody().SetCorrectBody()).SetUsertokenauth();
             var response = await _testContext.Client.PostAsync("/admin/add", request);
             Assert.Equal(HttpStatusCode.UnsupportedMediaType, response.StatusCode);
 
-            response = await _testContext.Client.PostAsync("/admin/add", request.SetXmlContentType());
+            response = await _testContext.Client.PostAsync("/admin/add", request.SetContentTypeXmlAndUsertokenauth());
             Assert.Equal(HttpStatusCode.UnsupportedMediaType, response.StatusCode);
         }
 
         [Fact]
         public async Task Should_ReturnUnauthorised()
         {
-            var request = new AddAdminPostRequestMock(new AddAdminPostRequestMockBody().SetCorrectBody()).SetMissingUsertokenauth();
+            var request = new MockRequest(new AddAdminPostRequestMockBody().SetCorrectBody()).SetContentTypeJson();
             var response = await _testContext.Client.PostAsync("/admin/add", request);
             Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
             Assert.Equal("{\"error\":\"Unauthorized\"}", response.Content.ReadAsStringAsync().Result);
 
-            response = await _testContext.Client.PostAsync("/admin/add", request.SetEmptyUsertokenauth());
+            response = await _testContext.Client.PostAsync("/admin/add", request.SetContentTypeJsonAndEmptyUsertokenauth());
             Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
             Assert.Equal("{\"error\":\"Unauthorized\"}", response.Content.ReadAsStringAsync().Result);
         }
@@ -52,12 +52,12 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.AdminControll
         [Fact]
         public async Task Should_ReturnBadRequest()
         {
-            var request = new AddAdminPostRequestMock(new AddAdminPostRequestMockBody().SetMissingBody()).SetCorrectHeaders();
+            var request = new MockRequest(new AddAdminPostRequestMockBody().SetMissingBody()).SetContentTypeJsonAndUsertokenauth();
             var response = await _testContext.Client.PostAsync("/admin/add", request);
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
             Assert.Equal("{\"error\":\"Please provide all fields\"}", response.Content.ReadAsStringAsync().Result);
 
-            request = new AddAdminPostRequestMock(new AddAdminPostRequestMockBody().SetEmptyStringsBody()).SetCorrectHeaders();
+            request = new MockRequest(new AddAdminPostRequestMockBody().SetEmptyStringsBody()).SetContentTypeJsonAndUsertokenauth();
             response = await _testContext.Client.PostAsync("/admin/add", request);
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
             Assert.Equal("{\"error\":\"Please provide all fields\"}", response.Content.ReadAsStringAsync().Result);
