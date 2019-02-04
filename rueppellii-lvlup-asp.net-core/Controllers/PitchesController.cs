@@ -32,6 +32,7 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
             }
             return Ok(DummyJsonResponseDTO.json);
         }
+
         [HttpPut("pitch")]
         [Consumes("application/json")]
         public IActionResult Put(PutPitchDto putPitchDto)
