@@ -24,7 +24,7 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.PitchesContro
             Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
             Assert.Equal("{\"error\":\"Unauthorized\"}", response.Content.ReadAsStringAsync().Result);
 
-            request = new MockGetRequest("/pitches").SetEmptyUsertokenauth();
+            request.SetEmptyUsertokenauth();
             Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
             Assert.Equal("{\"error\":\"Unauthorized\"}", response.Content.ReadAsStringAsync().Result);
         }
