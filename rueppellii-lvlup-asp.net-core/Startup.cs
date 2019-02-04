@@ -37,6 +37,7 @@ namespace rueppellii_lvlup_asp.net_core
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseAuthentication();
             app.UseMvc();
         }
     }
