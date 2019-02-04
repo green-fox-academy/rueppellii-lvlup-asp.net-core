@@ -11,7 +11,7 @@ namespace rueppellii_lvlup_asp.net_core.Models
         public long Id { get; set; }
 
         [Required]
-        public int Level { get; set; }
+        public int BadgeLevel { get; set; }
 
         [Required]
         [MaxLength(500)]
