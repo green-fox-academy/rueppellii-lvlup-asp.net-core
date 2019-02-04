@@ -15,5 +15,7 @@ namespace rueppellii_lvlup_asp.net_core.Models
         public string Message { get; set; }
 
         public bool PitchStatus { get; set; }
+
+        public Pitch Pitch { get; set; }
     }
 }

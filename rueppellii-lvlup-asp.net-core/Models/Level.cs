@@ -17,6 +17,7 @@ namespace rueppellii_lvlup_asp.net_core.Models
         [MaxLength(500)]
         public string Description { get; set; }
 
+        public Badge Badge { get; set; }
         public List<User> Holders { get; set; }
     }
 }
