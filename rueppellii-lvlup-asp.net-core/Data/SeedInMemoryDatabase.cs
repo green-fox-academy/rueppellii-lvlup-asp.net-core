@@ -7,6 +7,7 @@ namespace rueppellii_lvlup_asp.net_core.Data
     {
         public static void AddSeededData (this LvlUpDbContext context)
         {
+
             context.Badges.Add(new Badges
             {
                 Version = "v2.1",

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using rueppellii_lvlup_asp.net_core.Data;
-using rueppellii_lvlup_asp.net_core.Environments;
+using rueppellii_lvlup_asp.net_core.Configurations;
 
 namespace rueppellii_lvlup_asp.net_core
 {
@@ -42,7 +42,7 @@ namespace rueppellii_lvlup_asp.net_core
         public void ConfigureProductionServices(IServiceCollection services)
         {
             services.AddDbContext<LvlUpDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            options.UseSqlServer(Configuration["LvlUpConnection"]));
 
             services.AddMvc();
         }

@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 
-namespace rueppellii_lvlup_asp.net_core.Environments
+namespace rueppellii_lvlup_asp.net_core.Configurations
 {
-    public static class TestingEnvironment
+    public static class Environments
     {
         public const string Testing = "Testing";
 
