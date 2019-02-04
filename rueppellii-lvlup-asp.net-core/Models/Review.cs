@@ -3,13 +3,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace rueppellii_lvlup_asp.net_core.Models
 {
-    public class Reviews
+    public class Review
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public Users User { get; set; }
+        public User User { get; set; }
 
         [MaxLength(500)]
         public string Message { get; set; }

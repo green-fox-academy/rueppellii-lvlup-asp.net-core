@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace rueppellii_lvlup_asp.net_core.Models
 {
-    public class Users
+    public class Archetype
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -14,11 +14,6 @@ namespace rueppellii_lvlup_asp.net_core.Models
         [MaxLength(50)]
         public string Name { get; set; }
 
-        [NotMapped]
-        public string TokenAuth { get; set; }
-
-        public string Pic { get; set; }
-
-        public List<Badges> Badges { get; set; }
+        public List<Badge> Badges { get; set; }
     }
 }
