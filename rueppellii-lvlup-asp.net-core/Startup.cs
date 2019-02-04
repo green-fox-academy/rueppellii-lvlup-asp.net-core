@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using rueppellii_lvlup_asp.net_core.Data;
+using rueppellii_lvlup_asp.net_core.Environments;
 
 namespace rueppellii_lvlup_asp.net_core
 {
@@ -15,21 +16,41 @@ namespace rueppellii_lvlup_asp.net_core
         {
             Configuration = configuration;
         }
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
-        public void ConfigureServices(IServiceCollection services)
+
+        public void ConfigureDevelopmentServices(IServiceCollection services)
+        {
+            services.AddDbContext<LvlUpDbContext>(options =>
+            options.UseInMemoryDatabase("development"));
+
+            services.AddMvc();
+        }
+
+        public void ConfigureTestingServices(IServiceCollection services)
+        {
+            services.AddDbContext<LvlUpDbContext>(options =>
+            options.UseInMemoryDatabase("testing"));
+
+            services.AddMvc();
+        }
+
+        public void ConfigureProductionServices(IServiceCollection services)
         {
             services.AddDbContext<LvlUpDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-          services.AddMvc();
+            services.AddMvc();
         }
-            // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, LvlUpDbContext context)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+            }
+
+            if (env.IsDevelopment() || env.IsTesting())
+            {
+                context.AddSeededData();
             }
 
             app.UseMvc();
