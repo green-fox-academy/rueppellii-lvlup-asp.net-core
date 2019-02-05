@@ -29,7 +29,9 @@ namespace rueppellii_lvlup_asp.net_core
                 {
                     options.ClientId = Configuration["google:clientID"];
                     options.ClientSecret = Configuration["google:clientSecret"];
-                    options.UserInformationEndpoint = "https://openidconnect.googleapis.com/v1/userinfo";
+                    options.AuthorizationEndpoint = "https://accounts.google.com/o/oauth2/v2/auth";
+                    options.TokenEndpoint = "https://oauth2.googleapis.com/token";
+                    options.UserInformationEndpoint = "https://www.googleapis.com/oauth2/v2/userinfo";
                     options.ClaimActions.Clear();
                     options.ClaimActions.MapJsonKey(ClaimTypes.NameIdentifier, "sub");
                     options.ClaimActions.MapJsonKey(ClaimTypes.Name, "name");
