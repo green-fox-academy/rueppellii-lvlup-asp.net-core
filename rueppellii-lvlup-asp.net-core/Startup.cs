@@ -10,7 +10,7 @@ namespace rueppellii_lvlup_asp.net_core
 {
     public class Startup
     {
-        public IConfiguration Configuration { get; }
+6+        public IConfiguration Configuration { get; }
 
         public Startup(IHostingEnvironment env)
         {
