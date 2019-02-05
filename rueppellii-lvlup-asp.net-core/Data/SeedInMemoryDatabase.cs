@@ -153,7 +153,43 @@ namespace rueppellii_lvlup_asp.net_core.Data
                 BadgeId = 4
             });
 
-        context.SaveChanges();
+            context.Users.Add(new Users
+            {
+                Name = "test.admin",
+                TokenAuth = "testadmin:token",
+                Pic = "base64://dwabi24632gdkje8549632...",
+                Badges = null
+            });
+            context.Users.Add(new Users
+            {
+                Name = "test.admin",
+                TokenAuth = "testadmin:token",
+                Pic = "base64://dwabi24632gdkje8549632...",
+                Badges = null
+            });
+            context.Users.Add(new Users
+            {
+                Name = "balazs.barna",
+                TokenAuth = "verysecuretokendjawuidguowa76795432",
+                Pic = "base64://dwabi24632gdkje8549632...",
+                Badges = null
+            });
+            context.Users.Add(new Users
+            {
+                Name = "sandor.vass",
+                TokenAuth = "sandor542ghd237tiguk3",
+                Pic = "base64://dwabi24632gdkje8549632...",
+                Badges = null
+            });
+            context.Users.Add(new Users
+            {
+                Name = "alajos.katona",
+                TokenAuth = "verysecuretokendnj32t7853t2iugkjds",
+                Pic = "base64://dwabi24632gdkje8549632...",
+                Badges = null
+            });
+
+            context.SaveChanges();
         }
 }
 }
