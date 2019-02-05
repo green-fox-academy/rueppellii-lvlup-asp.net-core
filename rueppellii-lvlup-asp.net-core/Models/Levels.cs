@@ -16,7 +16,5 @@ namespace rueppellii_lvlup_asp.net_core.Models
         [Required]
         [MaxLength(500)]
         public string Description { get; set; }
-
-        public List<Users> Holders { get; set; }
     }
 }
