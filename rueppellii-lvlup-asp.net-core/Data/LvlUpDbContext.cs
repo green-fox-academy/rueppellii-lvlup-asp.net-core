@@ -15,5 +15,30 @@ namespace rueppellii_lvlup_asp.net_core.Data
         public LvlUpDbContext(DbContextOptions<LvlUpDbContext> options) : base(options)
         {
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<UserLevel>()
+                .HasKey(k => new { k.UserId, k.LevelId });
+            modelBuilder.Entity<UserLevel>()
+                .HasOne(ul => ul.User)
+                .WithMany(u => u.UserLevels)
+                .HasForeignKey(ul => ul.UserId);
+            modelBuilder.Entity<UserLevel>()
+                .HasOne(ul => ul.Level)
+                .WithMany(l => l.UserLevels)
+                .HasForeignKey(ul => ul.LevelId);
+
+            modelBuilder.Entity<ArchetypeLevel>()
+                .HasKey(k => new { k.ArchetypeId, k.LevelId });
+            modelBuilder.Entity<ArchetypeLevel>()
+                .HasOne(al => al.Archetype)
+                .WithMany(a => a.ArchetypeLevels)
+                .HasForeignKey(al => al.ArchetypeId);
+            modelBuilder.Entity<ArchetypeLevel>()
+                .HasOne(al => al.Level)
+                .WithMany(l => l.archetypeLevels)
+                .HasForeignKey(al => al.LevelId);
+        }
     }
 }

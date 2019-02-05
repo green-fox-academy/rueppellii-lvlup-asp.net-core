@@ -14,6 +14,6 @@ namespace rueppellii_lvlup_asp.net_core.Models
         [MaxLength(50)]
         public string Name { get; set; }
 
-        public List<Badge> Badges { get; set; }
+        public List<ArchetypeLevel> ArchetypeLevels { get; set; }
     }
 }

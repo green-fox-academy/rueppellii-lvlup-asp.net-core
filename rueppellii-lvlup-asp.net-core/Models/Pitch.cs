@@ -26,6 +26,7 @@ namespace rueppellii_lvlup_asp.net_core.Models
         public List<Review> Reviewers { get; set; }
         public User User { get; set; }
         public Badge Badges { get; set; }
+        public Level Level { get; set; }
 
     }
 }
