@@ -5,9 +5,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace rueppellii_lvlup_asp.net_core.Models
 {
-    /// <summary>
-    /// DTO field restructure 
-    /// </summary>
     public class Pitch
     {
         [Key]
