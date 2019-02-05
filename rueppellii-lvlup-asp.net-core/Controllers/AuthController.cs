@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,13 +9,13 @@ using System.Threading.Tasks;
 namespace rueppellii_lvlup_asp.net_core.Controllers
 {
     [Route("/auth")]
-    [Authorize]
+    [Authorize(AuthenticationSchemes = GoogleDefaults.AuthenticationScheme)]
     public class AuthController : Controller
     {
         [HttpGet]
         public IActionResult Auth()
         {
-            return Ok();
+            return Ok("success");
         }
     }
 }
