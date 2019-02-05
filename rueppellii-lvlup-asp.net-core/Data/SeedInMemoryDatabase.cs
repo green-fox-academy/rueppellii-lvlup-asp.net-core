@@ -1,4 +1,5 @@
 ﻿using rueppellii_lvlup_asp.net_core.Models;
+using System;
 using System.Collections.Generic;
 
 namespace rueppellii_lvlup_asp.net_core.Data
@@ -155,6 +156,7 @@ namespace rueppellii_lvlup_asp.net_core.Data
 
             context.Users.Add(new Users
             {
+                Id = 1,
                 Name = "test.admin",
                 TokenAuth = "testadmin:token",
                 Pic = "base64://dwabi24632gdkje8549632...",
@@ -162,13 +164,7 @@ namespace rueppellii_lvlup_asp.net_core.Data
             });
             context.Users.Add(new Users
             {
-                Name = "test.admin",
-                TokenAuth = "testadmin:token",
-                Pic = "base64://dwabi24632gdkje8549632...",
-                Badges = null
-            });
-            context.Users.Add(new Users
-            {
+                Id = 2,
                 Name = "balazs.barna",
                 TokenAuth = "verysecuretokendjawuidguowa76795432",
                 Pic = "base64://dwabi24632gdkje8549632...",
@@ -176,6 +172,7 @@ namespace rueppellii_lvlup_asp.net_core.Data
             });
             context.Users.Add(new Users
             {
+                Id = 3,
                 Name = "sandor.vass",
                 TokenAuth = "sandor542ghd237tiguk3",
                 Pic = "base64://dwabi24632gdkje8549632...",
@@ -183,6 +180,7 @@ namespace rueppellii_lvlup_asp.net_core.Data
             });
             context.Users.Add(new Users
             {
+                Id = 4,
                 Name = "alajos.katona",
                 TokenAuth = "verysecuretokendnj32t7853t2iugkjds",
                 Pic = "base64://dwabi24632gdkje8549632...",
@@ -191,18 +189,82 @@ namespace rueppellii_lvlup_asp.net_core.Data
 
             context.Archetypes.Add(new Archetypes
             {
+                Id = 1,
                 Name = "Junior Mentor",
                 Badges = null
             });
             context.Archetypes.Add(new Archetypes
             {
+                Id = 2,
                 Name = "Medior Mentor",
                 Badges = null
             });
             context.Archetypes.Add(new Archetypes
             {
+                Id = 3,
                 Name = "Senior Mentor",
                 Badges = null
+            });
+
+            context.Pitches.Add(new Pitches
+            {
+                Id = 1,
+                Timestamp = DateTime.UtcNow,
+                PitchedLevel = 3,
+                PitchMessage = "I was working abroad for six years, so I can speak english very well.Pls improve my badge level to 3.",
+                UserId = 4,
+                BadgeId = 3,
+                LevelId = 3
+            });
+            context.Pitches.Add(new Pitches
+            {
+                Id = 2,
+                Timestamp = DateTime.UtcNow.AddHours(-12),
+                PitchedLevel = 3,
+                PitchMessage = "I was working abroad for six years, so I can speak english very well.Pls improve my badge level to 3.",
+                UserId = 2,
+                BadgeId = 2,
+                LevelId = 3
+            });
+            context.Pitches.Add(new Pitches
+            {
+                Id = 3,
+                Timestamp = DateTime.UtcNow.AddDays(-4),
+                PitchedLevel = 3,
+                PitchMessage = "I was working abroad for six years, so I can speak english very well.Pls improve my badge level to 3.",
+                UserId = 3,
+                BadgeId = 4,
+                LevelId = 3
+            });
+            context.Pitches.Add(new Pitches
+            {
+                Id = 4,
+                Timestamp = DateTime.UtcNow.AddMinutes(-52),
+                PitchedLevel = 3,
+                PitchMessage = "I was working abroad for six years, so I can speak english very well.Pls improve my badge level to 3.",
+                UserId = 2,
+                BadgeId = 4,
+                LevelId = 3
+            });
+            context.Pitches.Add(new Pitches
+            {
+                Id = 5,
+                Timestamp = DateTime.UtcNow.AddMonths(-3),
+                PitchedLevel = 3,
+                PitchMessage = "I was working abroad for six years, so I can speak english very well.Pls improve my badge level to 3.",
+                UserId = 4,
+                BadgeId = 1,
+                LevelId = 3
+            });
+            context.Pitches.Add(new Pitches
+            {
+                Id = 6,
+                Timestamp = DateTime.UtcNow,
+                PitchedLevel = 3,
+                PitchMessage = "I was working abroad for six years, so I can speak english very well.Pls improve my badge level to 3.",
+                UserId = 1,
+                BadgeId = 2,
+                LevelId = 4
             });
 
             context.SaveChanges();
