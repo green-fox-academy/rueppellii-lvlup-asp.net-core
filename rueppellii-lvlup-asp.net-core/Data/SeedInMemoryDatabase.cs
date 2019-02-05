@@ -189,6 +189,22 @@ namespace rueppellii_lvlup_asp.net_core.Data
                 Badges = null
             });
 
+            context.Archetypes.Add(new Archetypes
+            {
+                Name = "Junior Mentor",
+                Badges = null
+            });
+            context.Archetypes.Add(new Archetypes
+            {
+                Name = "Medior Mentor",
+                Badges = null
+            });
+            context.Archetypes.Add(new Archetypes
+            {
+                Name = "Senior Mentor",
+                Badges = null
+            });
+
             context.SaveChanges();
         }
 }
