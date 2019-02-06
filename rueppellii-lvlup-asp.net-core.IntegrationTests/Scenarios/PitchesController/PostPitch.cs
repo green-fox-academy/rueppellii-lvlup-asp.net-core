@@ -23,8 +23,8 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.PitchesContro
             validDto = new PitchDto()
             {
                 BadgeName = "English speaker",
-                OldLvl = 2,
-                PitchedLvl = 3,
+                OldLevel = 2,
+                PitchedLevel = 3,
                 PitchMessage = "Hello World! My English is bloody gorgeous.",
                 Holders = new[] { "balazs.jozsef", "benedek.vamosi", "balazs.barna" }
             };
