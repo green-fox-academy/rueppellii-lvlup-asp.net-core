@@ -1,8 +1,7 @@
 ﻿using Newtonsoft.Json;
 using rueppellii_lvlup_asp.net_core.Dtos;
-using System;
+using rueppellii_lvlup_asp.net_core.Models;
 using System.Collections.Generic;
-using System.Text;
 
 namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Mocks
 {
@@ -13,19 +12,26 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Mocks
             this.Version = 2.3;
             this.Name = "Badge inserter";
             this.Tag = "general";
-            this.Levels = new[]{ 2, 7, 89, 1515 };
+            this.Levels = new List<Level>() { new Level
+                {
+                    Id = 1,
+                    BadgeLevel = 1,
+                    Description = "abc",
+                }};
             return JsonConvert.SerializeObject(this);
         }
+
         public string SetMissingBody()
         {
             return JsonConvert.SerializeObject(this);
         }
+
         public string SetEmptyStringsBody()
         {
             this.Version = 2.3;
             this.Name = string.Empty;
             this.Tag = string.Empty;
-            this.Levels = new int[0];
+            this.Levels = null;
             return JsonConvert.SerializeObject(this);
         }
     }

@@ -16,7 +16,7 @@ namespace rueppellii_lvlup_asp.net_core.Models
 
         [Required]
         [MaxLength(50)]
-        public string BadgeName { get; set; }
+        public string Name { get; set; }
 
         [Required]
         [MaxLength(50)]

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using rueppellii_lvlup_asp.net_core.Models;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,6 @@ namespace rueppellii_lvlup_asp.net_core.Dtos
         public double Version { get; set; }
         public string Name { get; set; }
         public string Tag { get; set; }
-        public int[] Levels { get; set; }
+        public List<Level> Levels { get; set; }
     }
 }
