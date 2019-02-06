@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace rueppellii_lvlup_asp.net_core.Dtos
+﻿namespace rueppellii_lvlup_asp.net_core.Dtos
 {
-    public static class DummyJsonResponseDTO
+    public static class DummyJsonResponseDto
     {
         public static string getPitches = "{\"myPitches\":" +
             "[{\"timeStamp\": \"2018-11-29 17:10:47\"," +
