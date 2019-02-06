@@ -12,7 +12,7 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Mocks
         {
             this.PitcherName = "placeholder";
             this.BadgeName = "placeholder";
-            this.NewStatus = "placeholder";
+            this.NewStatus = 1;
             this.NewMessage = "placeholder";
             return JsonConvert.SerializeObject(this);
         }
@@ -20,7 +20,7 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Mocks
         {
             this.PitcherName = string.Empty;
             this.BadgeName = string.Empty;
-            this.NewStatus = string.Empty;
+            this.NewStatus = null;
             this.NewMessage = string.Empty;
             return JsonConvert.SerializeObject(this);
         }
