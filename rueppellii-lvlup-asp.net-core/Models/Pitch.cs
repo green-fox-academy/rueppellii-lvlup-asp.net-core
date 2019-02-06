@@ -1,33 +1,29 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace rueppellii_lvlup_asp.net_core.Models
 {
-    public class Pitches
+    public class Pitch
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         [Timestamp]
-        public byte[] Timestamp { get; set; }
-
-        public string Username { get; set; }
-
-        public string BadgeName { get; set; }
+        public DateTime Timestamp { get; set; }
 
         public int OldLevel { get; set; }
-
         public int PitchedLevel { get; set; }
 
         [MaxLength(200)]
         public string PitchMessage { get; set; }
 
-        public List<Reviews> Reviewers { get; set; }
-
-        public Users User { get; set; }
-        public Badges Badges { get; set; }
+        public List<Review> Reviewers { get; set; }
+        public User User { get; set; }
+        public Badge Badge { get; set; }
+        public Level Level { get; set; }
 
     }
 }

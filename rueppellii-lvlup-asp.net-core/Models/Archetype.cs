@@ -4,19 +4,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace rueppellii_lvlup_asp.net_core.Models
 {
-    public class Levels
+    public class Archetype
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         [Required]
-        public int Level { get; set; }
+        [MaxLength(50)]
+        public string Name { get; set; }
 
-        [Required]
-        [MaxLength(500)]
-        public string Description { get; set; }
-
-        public List<Users> Holders { get; set; }
+        public List<ArchetypeLevel> ArchetypeLevels { get; set; }
     }
 }
