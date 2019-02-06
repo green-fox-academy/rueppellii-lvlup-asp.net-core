@@ -31,7 +31,8 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
             {
                 return StatusCode(400, new ErrorMessage("One or more fields are empty."));
             }
-            return StatusCode(201, new ResponseMessage("Success"));
+            return StatusCode(201, pitchModel);
+            // new ResponseMessage("Success")
         }
 
         [HttpGet("pitches")]

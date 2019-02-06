@@ -12,6 +12,8 @@ namespace rueppellii_lvlup_asp.net_core.Utility
         public ApplicationProfile()
         {
             CreateMap<Pitch, PitchDto>()
+                .ForMember(dto => dto.PitchedLVL, opt => opt.MapFrom(src => src.PitchedLevel))
+                .ForMember(dto => dto.OldLVL, opt => opt.MapFrom(src => src.OldLevel))
                 .ReverseMap();
             CreateMap<Pitch, PutPitchDto>()
                 .ForMember(dto => dto.PitcherName, opt => opt.MapFrom(src => src.User.Name))
