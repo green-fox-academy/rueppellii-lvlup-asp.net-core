@@ -9,7 +9,8 @@ namespace rueppellii_lvlup_asp.net_core.Utility
     {
         public ApplicationProfile()
         {
-
+            /*CreateMap<Object, DTO>()
+                .ReverseMap();*/
         }
     }
 }
