@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using rueppellii_lvlup_asp.net_core.Utility;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,13 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
     [ApiController]
     public class HeartbeatController : Controller
     {
+        public readonly IMapper mapper;
+
+        public HeartbeatController(IMapper mapper)
+        {
+            this.mapper = mapper;
+        }
+
         [HttpGet("heartbeat")]
         public IActionResult Heartbeat()
         {
