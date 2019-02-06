@@ -2,7 +2,7 @@
 {
     public static class DummyJsonResponseDto
     {
-        public static string getPitches = "{\"myPitches\":" +
+        public readonly static string getPitches = "{\"myPitches\":" +
             "[{\"timeStamp\": \"2018-11-29 17:10:47\"," +
             "\"userName\": \"balazs.barna\"," +
             "\"badgeName\": \"Programming\"," +
