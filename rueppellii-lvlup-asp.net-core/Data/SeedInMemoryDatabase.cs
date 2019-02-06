@@ -1,7 +1,5 @@
 ﻿using rueppellii_lvlup_asp.net_core.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace rueppellii_lvlup_asp.net_core.Data
 {
@@ -232,9 +230,9 @@ namespace rueppellii_lvlup_asp.net_core.Data
                 PitchedLevel = 3,
                 PitchMessage = "I was working abroad for six years, so I can speak english very well. Pls improve my badge level to 3.",
                 Reviews = null,
-                User = context.Users.Find((long) 3),
+                User = context.Users.Find((long) 4),
                 Badge = context.Badges.Find((long) 2),
-                Level = null
+                Level = context.Levels.Find((long) 8)
             });
             context.Pitches.Add(new Pitch
             {
@@ -244,9 +242,9 @@ namespace rueppellii_lvlup_asp.net_core.Data
                 PitchedLevel = 5,
                 PitchMessage = "I can see through processes and propose relevant and doable ideas for improvement. I can create improved definition / accountibility / documentation and communicate it to the team",
                 Reviews = null,
-                User = null,
-                Badge = null,
-                Level = null
+                User = context.Users.Find((long) 4),
+                Badge = context.Badges.Find((long) 1),
+                Level = context.Levels.Find((long) 5)
             });
             context.Pitches.Add(new Pitch
             {
@@ -256,9 +254,9 @@ namespace rueppellii_lvlup_asp.net_core.Data
                 PitchedLevel = 3,
                 PitchMessage = "I proactively seek feedback on projects or my general work and choose how to integrate it.",
                 Reviews = null,
-                User = null,
-                Badge = null,
-                Level = null
+                User = context.Users.Find((long) 2),
+                Badge = context.Badges.Find((long) 3),
+                Level = context.Levels.Find((long) 12)
             });
             context.Pitches.Add(new Pitch
             {
@@ -268,9 +266,9 @@ namespace rueppellii_lvlup_asp.net_core.Data
                 PitchedLevel = 5,
                 PitchMessage = "When I have a problem, I usually let you know by expressing it clearly instead of keeping to myself",
                 Reviews = null,
-                User = null,
-                Badge = null,
-                Level = null
+                User = context.Users.Find((long) 3),
+                Badge = context.Badges.Find((long) 4),
+                Level = context.Levels.Find((long) 18)
             });
             context.Pitches.Add(new Pitch
             {
@@ -280,21 +278,21 @@ namespace rueppellii_lvlup_asp.net_core.Data
                 PitchedLevel = 3,
                 PitchMessage = "I improved in React, Redux, basic JS, NodeJS, Express and in LowDB, pls give me more money",
                 Reviews = null,
-                User = null,
-                Badge = null,
-                Level = null
+                User = context.Users.Find((long) 3),
+                Badge = context.Badges.Find((long) 2),
+                Level = context.Levels.Find((long) 8)
             });
             context.Pitches.Add(new Pitch
             {
                 Id = 6,
                 Timestamp = DateTime.UtcNow,
-                OldLevel = 4,
-                PitchedLevel = 5,
+                OldLevel = 3,
+                PitchedLevel = 4,
                 PitchMessage = "I am confident in describing my feelings and needs considering the feedback receivers feelings and suggest a constructive solution",
                 Reviews = null,
-                User = null,
-                Badge = null,
-                Level = null
+                User = context.Users.Find((long) 1),
+                Badge = context.Badges.Find((long) 2),
+                Level = context.Levels.Find((long) 9)
             });
 
             context.SaveChanges();
