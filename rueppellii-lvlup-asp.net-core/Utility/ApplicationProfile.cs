@@ -23,6 +23,8 @@ namespace rueppellii_lvlup_asp.net_core.Utility
                 .ReverseMap();
             CreateMap<Badge, AddAdminDto>()
                 .ReverseMap();
+            CreateMap<Badge, BadgeDto>()
+                .ReverseMap();
         }
     }
 }
