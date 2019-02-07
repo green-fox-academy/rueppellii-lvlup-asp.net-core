@@ -1,9 +1,5 @@
 ﻿using rueppellii_lvlup_asp.net_core.Dtos;
 using rueppellii_lvlup_asp.net_core.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace rueppellii_lvlup_asp.net_core.Utility
 {
@@ -23,7 +19,9 @@ namespace rueppellii_lvlup_asp.net_core.Utility
                 .ReverseMap();
             CreateMap<Badge, AddAdminDto>()
                 .ReverseMap();
-            CreateMap<Badge, BadgeDto>()
+            CreateMap<Level, LevelDto>()
+                .ForMember(dto => dto.Level, opt => opt.MapFrom(src => src.BadgeLevel))
+                .ForMember(dto => dto.Name, opt => opt.MapFrom(src => src.Badge.Name))
                 .ReverseMap();
         }
     }
