@@ -42,9 +42,9 @@ namespace rueppellii_lvlup_asp.net_core
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["jwt:secretKey"])),
                     ValidateIssuer = true,
-                    ValidIssuer = "auth",
+                    ValidIssuer = "google",
                     ValidateAudience = true,
-                    ValidAudience = "resource",
+                    ValidAudience = "greenfox",
                     ValidateLifetime = true
                 };
             })

@@ -12,18 +12,33 @@ namespace rueppellii_lvlup_asp.net_core.Services
 {
     public class AuthService : IAuthService
     {
+        private readonly IConfiguration _configuration;
+
+        public AuthService(IConfiguration configuration)
+        {
+            this._configuration = configuration;
+        }
+
         public string GetToken(IEnumerable<Claim> claims)
         {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("0ai1PVAHyX5IHUQCgk8wcVXj1PwsSHHd"));
-            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
             var token = new JwtSecurityToken(
-                issuer: "auth",
-                audience: "resource",
+                signingCredentials: this.GetSigningCredentials(this.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256Signature),
+                issuer: "google",
+                audience: "greenfox",
                 claims: claims,
-                expires: DateTime.UtcNow.AddDays(1),
-                notBefore: DateTime.UtcNow,
-                signingCredentials: credentials);
+                expires: DateTime.UtcNow.AddMinutes(5),
+                notBefore: DateTime.UtcNow);
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        private SymmetricSecurityKey GetSymmetricSecurityKey()
+        {
+            return new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["jwt:secretKey"]));
+        }
+
+        private SigningCredentials GetSigningCredentials(SecurityKey key, string algorithm)
+        {
+            return new SigningCredentials(key, algorithm);
         }
     }
 }
