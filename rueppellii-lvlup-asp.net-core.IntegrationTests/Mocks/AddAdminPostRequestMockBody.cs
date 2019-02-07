@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using rueppellii_lvlup_asp.net_core.Dtos;
+using rueppellii_lvlup_asp.net_core.DTOs;
 using rueppellii_lvlup_asp.net_core.Models;
 using System.Collections.Generic;
 
@@ -28,7 +28,7 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Mocks
 
         public string SetEmptyStringsBody()
         {
-            this.Version = 2.3;
+            this.Version = "2.3";
             this.Name = string.Empty;
             this.Tag = string.Empty;
             this.Levels = null;

@@ -1,4 +1,4 @@
-﻿using rueppellii_lvlup_asp.net_core.Dtos;
+﻿using rueppellii_lvlup_asp.net_core.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;

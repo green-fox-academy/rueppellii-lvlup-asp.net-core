@@ -1,8 +1,5 @@
 ﻿using Newtonsoft.Json;
-using rueppellii_lvlup_asp.net_core.Dtos;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using rueppellii_lvlup_asp.net_core.DTOs;
 
 namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Mocks
 {
