@@ -240,31 +240,23 @@ namespace rueppellii_lvlup_asp.net_core.Data
                 {
                     new ArchetypeLevel
                     {
-                        ArchetypeId = 2,
-                        Archetype = context.Archetypes.Find((long) 2),
-                        LevelId = 2,
-                        Level = context.Levels.Find((long) 2)
+                        Archetype = context.Archetypes.Find((long)2),
+                        Level = context.Levels.Find((long)2)
                     },
                     new ArchetypeLevel
                     {
-                        ArchetypeId = 2,
-                        Archetype = context.Archetypes.Find((long) 2),
-                        LevelId = 7,
-                        Level = context.Levels.Find((long) 7)
+                        Archetype = context.Archetypes.Find((long)2),
+                        Level = context.Levels.Find((long)7)
                     },
                     new ArchetypeLevel
                     {
-                        ArchetypeId = 2,
-                        Archetype = context.Archetypes.Find((long) 2),
-                        LevelId = 11,
-                        Level = context.Levels.Find((long) 11)
+                        Archetype = context.Archetypes.Find((long)2),
+                        Level = context.Levels.Find((long)11)
                     },
                     new ArchetypeLevel
                     {
-                        ArchetypeId = 2,
-                        Archetype = context.Archetypes.Find((long) 2),
-                        LevelId = 17,
-                        Level = context.Levels.Find((long) 17)
+                        Archetype = context.Archetypes.Find((long)2),
+                        Level = context.Levels.Find((long)17)
                     }
                 }
             });
@@ -277,30 +269,30 @@ namespace rueppellii_lvlup_asp.net_core.Data
                     new ArchetypeLevel
                     {
                         ArchetypeId = 3,
-                        Archetype = context.Archetypes.Find((long) 3),
+                        Archetype = context.Archetypes.Find((long)3),
                         LevelId = 3,
-                        Level = context.Levels.Find((long) 3)
+                        Level = context.Levels.Find((long)3)
                     },
                     new ArchetypeLevel
                     {
                         ArchetypeId = 3,
-                        Archetype = context.Archetypes.Find((long) 3),
+                        Archetype = context.Archetypes.Find((long)3),
                         LevelId = 8,
-                        Level = context.Levels.Find((long) 8)
+                        Level = context.Levels.Find((long)8)
                     },
                     new ArchetypeLevel
                     {
                         ArchetypeId = 3,
-                        Archetype = context.Archetypes.Find((long) 3),
+                        Archetype = context.Archetypes.Find((long)3),
                         LevelId = 12,
-                        Level = context.Levels.Find((long) 12)
+                        Level = context.Levels.Find((long)12)
                     },
                     new ArchetypeLevel
                     {
                         ArchetypeId = 3,
                         Archetype = context.Archetypes.Find((long) 3),
                         LevelId = 18,
-                        Level = context.Levels.Find((long) 18)
+                        Level = context.Levels.Find((long)18)
                     }
                 }
             });
