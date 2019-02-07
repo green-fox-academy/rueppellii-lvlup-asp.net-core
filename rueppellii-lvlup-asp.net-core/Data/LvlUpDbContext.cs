@@ -11,6 +11,9 @@ namespace rueppellii_lvlup_asp.net_core.Data
         public DbSet<Pitch> Pitches { get; set; }
         public DbSet<Level> Levels { get; set; }
         public DbSet<Review> Reviews { get; set; }
+        public DbSet<ArchetypeLevel> ArchetypeLevels { get; set; }
+        public DbSet<UserLevel> UserLevels { get; set; }
+
 
         public LvlUpDbContext(DbContextOptions<LvlUpDbContext> options) : base(options)
         {
@@ -37,7 +40,7 @@ namespace rueppellii_lvlup_asp.net_core.Data
                 .HasForeignKey(al => al.ArchetypeId);
             modelBuilder.Entity<ArchetypeLevel>()
                 .HasOne(al => al.Level)
-                .WithMany(l => l.ArchetypeLevels)
+                .WithMany(l => l.archetypeLevels)
                 .HasForeignKey(al => al.LevelId);
         }
     }

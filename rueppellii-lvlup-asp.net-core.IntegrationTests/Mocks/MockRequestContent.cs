@@ -1,45 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Mocks
 {
-    public class AddAdminPostRequestMock : StringContent
+    public class MockRequestContent : StringContent
     {
-        public AddAdminPostRequestMock(string content) : base(content)
+        public MockRequestContent(string content) : base(content)
         {
         }
-        public AddAdminPostRequestMock SetCorrectHeaders()
+        public MockRequestContent SetContentTypeJsonAndUsertokenauth()
         {
             this.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             this.Headers.Add("usertokenauth", "<generated UUID>");
             return this;
         }
-        public AddAdminPostRequestMock SetMissingContentType()
+        public MockRequestContent SetUsertokenauth()
         {
             this.Headers.Add("usertokenauth", "<generated UUID>");
             return this;
         }
-        public AddAdminPostRequestMock SetXmlContentType()
+        public MockRequestContent SetContentTypeXmlAndUsertokenauth()
         {
             this.Headers.ContentType = new MediaTypeHeaderValue("application/xml");
             this.Headers.Add("usertokenauth", "<generated UUID>");
             return this;
         }
-        public AddAdminPostRequestMock SetMissingUsertokenauth()
+        public MockRequestContent SetContentTypeJson()
         {
             this.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             return this;
         }
-        public AddAdminPostRequestMock SetEmptyUsertokenauth()
+        public MockRequestContent SetContentTypeJsonAndEmptyUsertokenauth()
         {
             this.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            this.Headers.Add("usertokenauth", "");
+            this.Headers.Add("usertokenauth", string.Empty);
             return this;
         }
     }
