@@ -5,11 +5,11 @@ using System.Collections.Generic;
 
 namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Mocks
 {
-    public class AddAdminPostRequestMockBody : AddAdminDto
+    public class AddAdminPostRequestMockBody : BadgeDto
     {
         public string SetCorrectBody()
         {
-            this.Version = 2.3;
+            this.Version = "2.3";
             this.Name = "Badge inserter";
             this.Tag = "general";
             this.Levels = new List<Level>() { new Level

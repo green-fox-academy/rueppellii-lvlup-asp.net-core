@@ -13,14 +13,14 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.PitchesContro
     public class PostPitch
     {
         private readonly TestContext testContext;
-        private readonly PitchDto emptyDto;
-        private readonly PitchDto validDto;
+        private readonly PostPitchDto emptyDto;
+        private readonly PostPitchDto validDto;
 
         public PostPitch(TestContext testContext)
         {
             this.testContext = testContext;
-            emptyDto = new PitchDto();
-            validDto = new PitchDto()
+            emptyDto = new PostPitchDto();
+            validDto = new PostPitchDto()
             {
                 BadgeName = "English speaker",
                 OldLVL = 2,

@@ -19,15 +19,15 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
 
         [HttpPost("pitch")]
         [Consumes("application/json")]
-        public IActionResult Post(PitchDto pitchDto)
+        public IActionResult Post(PostPitchDto postPitchDto)
         {
-            var pitchModel = mapper.Map<Pitch>(pitchDto);
+            var pitchModel = mapper.Map<Pitch>(postPitchDto);
 
             if (string.IsNullOrEmpty(Request.Headers["usertokenauth"]))
             {
                 return StatusCode(401, new ErrorMessage("Unauthorized"));
             }
-            if (pitchDto.IsAnyPropertyNull() || pitchDto.IsAnyStringPropertyEmpty())
+            if (postPitchDto.IsAnyPropertyNull() || postPitchDto.IsAnyStringPropertyEmpty())
             {
                 return StatusCode(400, new ErrorMessage("One or more fields are empty."));
             }

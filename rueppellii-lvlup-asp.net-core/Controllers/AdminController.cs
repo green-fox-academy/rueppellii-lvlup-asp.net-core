@@ -20,15 +20,15 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
 
         [HttpPost("add")]
         [Consumes("application/json")]
-        public IActionResult Add(AddAdminDto addAdminDto)
+        public IActionResult Add(BadgeDto badgeDto)
         {
-            var badgeModel = mapper.Map<Badge>(addAdminDto);
+            var badgeModel = mapper.Map<Badge>(badgeDto);
 
             if (string.IsNullOrEmpty(Request.Headers["usertokenauth"]))
             {
                 return StatusCode(401, new ErrorMessage("Unauthorized"));
             }
-            if (addAdminDto.IsAnyPropertyNull() || addAdminDto.IsAnyStringPropertyEmpty())
+            if (badgeDto.IsAnyPropertyNull() || badgeDto.IsAnyStringPropertyEmpty())
             {
                 return StatusCode(400, new ErrorMessage("Please provide all fields"));
             }
