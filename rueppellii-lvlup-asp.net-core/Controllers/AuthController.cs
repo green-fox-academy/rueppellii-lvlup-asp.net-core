@@ -10,16 +10,12 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
     {
         private readonly IAuthService _authService;
 
-        public AuthController(IAuthService authService)
-        {
-            this._authService = authService;
-        }
+        public AuthController(IAuthService authService) => this._authService = authService;
 
         [HttpGet("/auth")]
         public IActionResult Auth()
         {
-            var token = _authService.GetToken(User.Claims);
-            return Ok(token);
+            return Ok(_authService.GetToken(User.Claims));
         }
     }
 }

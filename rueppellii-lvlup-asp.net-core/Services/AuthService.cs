@@ -14,10 +14,7 @@ namespace rueppellii_lvlup_asp.net_core.Services
     {
         private readonly IConfiguration _configuration;
 
-        public AuthService(IConfiguration configuration)
-        {
-            this._configuration = configuration;
-        }
+        public AuthService(IConfiguration configuration) => this._configuration = configuration;
 
         public string GetToken(IEnumerable<Claim> claims)
         {
@@ -31,14 +28,10 @@ namespace rueppellii_lvlup_asp.net_core.Services
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-        private SymmetricSecurityKey GetSymmetricSecurityKey()
-        {
-            return new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["jwt:secretKey"]));
-        }
+        private SymmetricSecurityKey GetSymmetricSecurityKey() => 
+            new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["jwt:secretKey"]));
 
-        private SigningCredentials GetSigningCredentials(SecurityKey key, string algorithm)
-        {
-            return new SigningCredentials(key, algorithm);
-        }
+        private SigningCredentials GetSigningCredentials(SecurityKey key, string algorithm) => 
+            new SigningCredentials(key, algorithm);
     }
 }
