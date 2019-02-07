@@ -1,20 +1,16 @@
 ﻿using Microsoft.AspNetCore.Authentication.Google;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using rueppellii_lvlup_asp.net_core.Services;
 
 namespace rueppellii_lvlup_asp.net_core.Controllers
 {
     [Authorize(AuthenticationSchemes = GoogleDefaults.AuthenticationScheme)]
     public class AuthController : Controller
     {
-        private readonly AuthService _authService;
+        private readonly IAuthService _authService;
 
-        public AuthController(AuthService authService)
+        public AuthController(IAuthService authService)
         {
             this._authService = authService;
         }
@@ -23,7 +19,7 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
         public IActionResult Auth()
         {
             var token = _authService.GetToken(User.Claims);
-            return Ok("success");
+            return Ok(token);
         }
     }
 }

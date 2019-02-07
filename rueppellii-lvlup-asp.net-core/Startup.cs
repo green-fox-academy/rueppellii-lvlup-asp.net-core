@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using rueppellii_lvlup_asp.net_core.Data;
+using rueppellii_lvlup_asp.net_core.Services;
 using System.Security.Claims;
 using System.Text;
 
@@ -27,6 +28,7 @@ namespace rueppellii_lvlup_asp.net_core
         {
             services.AddDbContext<LvlUpDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<IAuthService, AuthService>();
             services.AddIdentity<IdentityUser, IdentityRole>();
             services.AddAuthentication(options =>
             {
@@ -51,15 +53,15 @@ namespace rueppellii_lvlup_asp.net_core
                 options.ClientId = Configuration["google:clientID"];
                 options.ClientSecret = Configuration["google:clientSecret"];
 
-                //Uncommenting these lines allows retrival of google user info not using the soon to be disabled google+ API.
+                //Uncommenting these lines allows retrival of google user info without using the soon to be disabled google+API.
                 //options.AuthorizationEndpoint = "https://accounts.google.com/o/oauth2/v2/auth";
                 //options.TokenEndpoint = "https://oauth2.googleapis.com/token";
                 //options.UserInformationEndpoint = "https://www.googleapis.com/oauth2/v2/userinfo";
                 //options.ClaimActions.Clear();
                 //options.ClaimActions.MapJsonKey(ClaimTypes.NameIdentifier, "sub");
                 //options.ClaimActions.MapJsonKey(ClaimTypes.Name, "name");
-                //options.ClaimActions.MapJsonKey(ClaimTypes.GivenName, "given_Name");
-                //options.ClaimActions.MapJsonKey(ClaimTypes.Surname, "family_Name");
+                //options.ClaimActions.MapJsonKey(ClaimTypes.GivenName, "given_name");
+                //options.ClaimActions.MapJsonKey(ClaimTypes.Surname, "family_name");
                 //options.ClaimActions.MapJsonKey("urn:google:profile", "profile");
                 //options.ClaimActions.MapJsonKey(ClaimTypes.Email, "email");
                 //options.ClaimActions.MapJsonKey("urn:google:image", "picture");
