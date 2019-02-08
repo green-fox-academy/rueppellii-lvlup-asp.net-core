@@ -97,7 +97,7 @@ namespace rueppellii_lvlup_asp.net_core.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long?>("BadgesId");
+                    b.Property<long?>("BadgeId");
 
                     b.Property<long?>("LevelId");
 
@@ -116,7 +116,7 @@ namespace rueppellii_lvlup_asp.net_core.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BadgesId");
+                    b.HasIndex("BadgeId");
 
                     b.HasIndex("LevelId");
 
@@ -201,9 +201,9 @@ namespace rueppellii_lvlup_asp.net_core.Migrations
 
             modelBuilder.Entity("rueppellii_lvlup_asp.net_core.Models.Pitch", b =>
                 {
-                    b.HasOne("rueppellii_lvlup_asp.net_core.Models.Badge", "Badges")
+                    b.HasOne("rueppellii_lvlup_asp.net_core.Models.Badge", "Badge")
                         .WithMany("Pitches")
-                        .HasForeignKey("BadgesId");
+                        .HasForeignKey("BadgeId");
 
                     b.HasOne("rueppellii_lvlup_asp.net_core.Models.Level", "Level")
                         .WithMany("Pitches")
