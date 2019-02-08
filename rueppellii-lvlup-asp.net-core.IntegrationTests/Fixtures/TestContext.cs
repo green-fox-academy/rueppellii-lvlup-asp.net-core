@@ -11,8 +11,7 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Fixtures
     {
         private TestServer server;
         public HttpClient Client { get; set; }
-        public object Context { get; internal set; }
-        public AuthService AuthService { get; set; }
+        public AuthService AuthService { get; internal set; }
 
         public TestContext()
         {
@@ -21,8 +20,8 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Fixtures
             .UseStartup<Startup>();
 
             server = new TestServer(builder);
-            AuthService = server.Host.Services.GetService<AuthService>();
             Client = server.CreateClient();
+            AuthService = server.Host.Services.GetService<AuthService>();
         }
 
         public void Dispose()
