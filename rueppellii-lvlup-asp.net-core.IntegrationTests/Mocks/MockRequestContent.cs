@@ -1,28 +1,23 @@
-﻿using System.Net.Http;
+﻿using rueppellii_lvlup_asp.net_core.Services;
+using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Security.Claims;
 
 namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Mocks
 {
     public class MockRequestContent : StringContent
     {
+        public IAuthService AuthService { get; }
+
         public MockRequestContent(string content) : base(content)
         {
         }
-        public MockRequestContent SetContentTypeJsonAndUsertokenauth()
+        public MockRequestContent SetJwt()
         {
-            this.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            this.Headers.Add("usertokenauth", "<generated UUID>");
-            return this;
-        }
-        public MockRequestContent SetUsertokenauth()
-        {
-            this.Headers.Add("usertokenauth", "<generated UUID>");
-            return this;
-        }
-        public MockRequestContent SetContentTypeXmlAndUsertokenauth()
-        {
-            this.Headers.ContentType = new MediaTypeHeaderValue("application/xml");
-            this.Headers.Add("usertokenauth", "<generated UUID>");
+            this.Headers.Add("Authorization", "Bearer " + AuthService.GetToken(new[]
+                            {
+                    new Claim("test", "test")
+            }));
             return this;
         }
         public MockRequestContent SetContentTypeJson()
@@ -30,10 +25,14 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Mocks
             this.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             return this;
         }
-        public MockRequestContent SetContentTypeJsonAndEmptyUsertokenauth()
+        public MockRequestContent SetEmptyJwt()
         {
-            this.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            this.Headers.Add("usertokenauth", string.Empty);
+            this.Headers.Add("Authorization", "Bearer ");
+            return this;
+        }
+        public MockRequestContent SetContentTypeXml()
+        {
+            this.Headers.ContentType = new MediaTypeHeaderValue("application/xml");
             return this;
         }
     }
