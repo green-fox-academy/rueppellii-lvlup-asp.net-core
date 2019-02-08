@@ -208,56 +208,16 @@ namespace rueppellii_lvlup_asp.net_core.Data
             {
                 Id = 1,
                 Name = "Junior Mentor",
-                ArchetypeLevels = new List<ArchetypeLevel>()
-                {
-                    new ArchetypeLevel
-                    {
-                        ArchetypeId = 1,
-                        LevelId = 1,
-                    },
-                    new ArchetypeLevel
-                    {
-                        ArchetypeId = 1,
-                        LevelId = 6,
-                    },
-                    new ArchetypeLevel
-                    {
-                        ArchetypeId = 1,
-                        LevelId = 10,
-                    },
-                    new ArchetypeLevel
-                    {
-                        ArchetypeId = 1,
-                        LevelId = 16,
-                    }
-                }
+                ArchetypeLevels = null
             });
+
             context.Archetypes.Add(new Archetype
             {
                 Id = 2,
                 Name = "Medior Mentor",
                 ArchetypeLevels = new List<ArchetypeLevel>()
                 {
-                    new ArchetypeLevel
-                    {
-                        Archetype = context.Archetypes.Find((long)2),
-                        Level = context.Levels.Find((long)2)
-                    },
-                    new ArchetypeLevel
-                    {
-                        Archetype = context.Archetypes.Find((long)2),
-                        Level = context.Levels.Find((long)7)
-                    },
-                    new ArchetypeLevel
-                    {
-                        Archetype = context.Archetypes.Find((long)2),
-                        Level = context.Levels.Find((long)11)
-                    },
-                    new ArchetypeLevel
-                    {
-                        Archetype = context.Archetypes.Find((long)2),
-                        Level = context.Levels.Find((long)17)
-                    }
+
                 }
             });
             context.Archetypes.Add(new Archetype
@@ -266,36 +226,75 @@ namespace rueppellii_lvlup_asp.net_core.Data
                 Name = "Senior Mentor",
                 ArchetypeLevels = new List<ArchetypeLevel>()
                 {
-                    new ArchetypeLevel
-                    {
-                        ArchetypeId = 3,
-                        Archetype = context.Archetypes.Find((long)3),
-                        LevelId = 3,
-                        Level = context.Levels.Find((long)3)
-                    },
-                    new ArchetypeLevel
-                    {
-                        ArchetypeId = 3,
-                        Archetype = context.Archetypes.Find((long)3),
-                        LevelId = 8,
-                        Level = context.Levels.Find((long)8)
-                    },
-                    new ArchetypeLevel
-                    {
-                        ArchetypeId = 3,
-                        Archetype = context.Archetypes.Find((long)3),
-                        LevelId = 12,
-                        Level = context.Levels.Find((long)12)
-                    },
-                    new ArchetypeLevel
-                    {
-                        ArchetypeId = 3,
-                        Archetype = context.Archetypes.Find((long) 3),
-                        LevelId = 18,
-                        Level = context.Levels.Find((long)18)
-                    }
+
                 }
             });
+
+            IList<ArchetypeLevel> archetypeLevels = new List<ArchetypeLevel>()
+            {
+
+                new ArchetypeLevel
+                {
+                    Archetype = context.Archetypes.Find((long)1),
+                    Level = context.Levels.Find((long)1)
+                },
+                new ArchetypeLevel
+                {
+                    Archetype = context.Archetypes.Find((long)1),
+                    Level = context.Levels.Find((long)6)
+                },
+                new ArchetypeLevel
+                {
+                    Archetype = context.Archetypes.Find((long)1),
+                    Level = context.Levels.Find((long)10)
+                },
+                new ArchetypeLevel
+                {
+                    Archetype = context.Archetypes.Find((long)1),
+                    Level = context.Levels.Find((long)16)
+                },
+                new ArchetypeLevel
+                {
+                    Archetype = context.Archetypes.Find((long)2),
+                    Level = context.Levels.Find((long)2)
+                },
+                new ArchetypeLevel
+                {
+                    Archetype = context.Archetypes.Find((long)2),
+                    Level = context.Levels.Find((long)7)
+                },
+                new ArchetypeLevel
+                {
+                    Archetype = context.Archetypes.Find((long)2),
+                    Level = context.Levels.Find((long)11)
+                },
+                new ArchetypeLevel
+                {
+                    Archetype = context.Archetypes.Find((long)2),
+                    Level = context.Levels.Find((long)17)
+                },
+                new ArchetypeLevel
+                {
+                    Archetype = context.Archetypes.Find((long)3),
+                    Level = context.Levels.Find((long)3)
+                },
+                new ArchetypeLevel
+                {
+                    Archetype = context.Archetypes.Find((long)3),
+                    Level = context.Levels.Find((long)8)
+                },
+                new ArchetypeLevel
+                {
+                    Archetype = context.Archetypes.Find((long)3),
+                    Level = context.Levels.Find((long)12)
+                },
+                new ArchetypeLevel
+                {
+                    Archetype = context.Archetypes.Find((long) 3),
+                    Level = context.Levels.Find((long)18)
+                }
+            };
+            context.ArchetypeLevels.AddRange(archetypeLevels);
 
             context.Pitches.Add(new Pitch
             {

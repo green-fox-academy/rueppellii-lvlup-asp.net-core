@@ -21,7 +21,7 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
         public IActionResult List()
         {
             List<Object> returned = new List<Object>();
-            returned.Add(ctx.Users.ToList());
+            //returned.Add(ctx.Users.ToList());
             returned.Add("--------------");
             returned.Add(ctx.Badges.ToList());
             returned.Add("--------------");
@@ -29,12 +29,14 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
             returned.Add("--------------");
             returned.Add(ctx.Archetypes.ToList());
             returned.Add("--------------");
-            returned.Add(ctx.Pitches.ToList());
+            //returned.Add(ctx.Pitches.ToList());
+            returned.Add("--------------");
+            returned.Add(ctx.ArchetypeLevels.ToList());
             string json = JsonConvert.SerializeObject(returned, Formatting.Indented, new JsonSerializerSettings
             {
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             });
-            return StatusCode(200, json);
+            return StatusCode(418, json);
         }
     }
 }

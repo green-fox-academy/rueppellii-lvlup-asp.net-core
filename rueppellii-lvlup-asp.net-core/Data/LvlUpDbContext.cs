@@ -14,7 +14,6 @@ namespace rueppellii_lvlup_asp.net_core.Data
         public DbSet<ArchetypeLevel> ArchetypeLevels { get; set; }
         public DbSet<UserLevel> UserLevels { get; set; }
 
-
         public LvlUpDbContext(DbContextOptions<LvlUpDbContext> options) : base(options)
         {
         }
