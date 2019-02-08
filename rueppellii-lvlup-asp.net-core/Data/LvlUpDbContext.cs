@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using rueppellii_lvlup_asp.net_core.Models;
+using System;
 
 namespace rueppellii_lvlup_asp.net_core.Data
 {
@@ -41,6 +42,10 @@ namespace rueppellii_lvlup_asp.net_core.Data
                 .HasOne(al => al.Level)
                 .WithMany(l => l.archetypeLevels)
                 .HasForeignKey(al => al.LevelId);
+
+            modelBuilder.Entity<Pitch>()
+                .Property(p => p.Timestamp)
+                .HasDefaultValue(DateTime.Now);
         }
     }
 }
