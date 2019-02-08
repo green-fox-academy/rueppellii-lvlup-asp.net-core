@@ -1,4 +1,6 @@
-﻿namespace rueppellii_lvlup_asp.net_core.DTOs
+﻿using System.Collections.Generic;
+
+namespace rueppellii_lvlup_asp.net_core.DTOs
 {
     public class PostPitchDto
     {
@@ -6,6 +8,6 @@
         public int? OldLVL { get; set; }
         public int? PitchedLVL { get; set; }
         public string PitchMessage { get; set; }
-        public string[] Holders { get; set; }
+        public List<ReviewerDto> Holders { get; set; }
     }
 }

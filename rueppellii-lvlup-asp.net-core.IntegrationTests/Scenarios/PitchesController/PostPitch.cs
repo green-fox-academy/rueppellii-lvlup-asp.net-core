@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using rueppellii_lvlup_asp.net_core.DTOs;
 using rueppellii_lvlup_asp.net_core.IntegrationTests.Fixtures;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Text;
@@ -26,7 +27,13 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.PitchesContro
                 OldLVL = 2,
                 PitchedLVL = 3,
                 PitchMessage = "Hello World! My English is bloody gorgeous.",
-                Holders = new[] { "balazs.jozsef", "benedek.vamosi", "balazs.barna" }
+                Holders = new List<ReviewerDto>()
+                {
+                    new ReviewerDto
+                    {
+                        Name = "test reviewer",
+                    }
+                }
             };
         }
 

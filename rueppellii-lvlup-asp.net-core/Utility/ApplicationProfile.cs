@@ -32,6 +32,8 @@ namespace rueppellii_lvlup_asp.net_core.Utility
             CreateMap<Review, ReviewDto>()
                 .ForMember(dto => dto.Name, opt => opt.MapFrom(src => src.User.Name))
                 .ReverseMap();
+            CreateMap<Review, ReviewerDto>()
+                .ForMember(dto => dto.Name, opt => opt.MapFrom(src => src.User.Name));
         }
     }
 }
