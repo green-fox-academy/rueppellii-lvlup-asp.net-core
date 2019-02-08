@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Mocks
+﻿namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Mocks
 {
     public static class MockJsonResponse
     {

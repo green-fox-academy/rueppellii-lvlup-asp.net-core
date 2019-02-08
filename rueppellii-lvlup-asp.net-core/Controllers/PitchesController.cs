@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Authorization;
+using AutoMapper;
+using rueppellii_lvlup_asp.net_core.DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using rueppellii_lvlup_asp.net_core.Dtos;
 using rueppellii_lvlup_asp.net_core.Extensions;
+using rueppellii_lvlup_asp.net_core.Models;
 using rueppellii_lvlup_asp.net_core.Utility;
 
 namespace rueppellii_lvlup_asp.net_core.Controllers
@@ -10,15 +12,24 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
     [Authorize]
     public class PitchesController : Controller
     {
+        private readonly IMapper mapper;
+
+        public PitchesController(IMapper mapper)
+        {
+            this.mapper = mapper;
+        }
+
         [HttpPost("pitch")]
         [Consumes("application/json")]
-        public IActionResult Post(PitchDto pitchDto)
+        public IActionResult Post(PostPitchDto postPitchDto)
         {
+            var pitchModel = mapper.Map<Pitch>(postPitchDto);
+
             if (string.IsNullOrEmpty(Request.Headers["usertokenauth"]))
             {
                 return StatusCode(401, new ErrorMessage("Unauthorized"));
             }
-            if (pitchDto.IsAnyPropertyNull() || pitchDto.IsAnyStringPropertyEmpty())
+            if (postPitchDto.IsAnyPropertyNull() || postPitchDto.IsAnyStringPropertyEmpty())
             {
                 return StatusCode(400, new ErrorMessage("One or more fields are empty."));
             }
@@ -32,13 +43,15 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
             {
                 return StatusCode(401, new ErrorMessage("Unauthorized"));
             }
-            return Ok(DummyJsonResponseDTO.getPitches);
+            return Ok(DummyJsonResponseDto.getPitches);
         }
 
         [HttpPut("pitch")]
         [Consumes("application/json")]
         public IActionResult Put(PutPitchDto putPitchDto)
         {
+            var pitchModel = mapper.Map<Pitch>(putPitchDto);
+
             if (string.IsNullOrEmpty(Request.Headers["usertokenauth"]))
             {
                 return StatusCode(401, new ErrorMessage("Unauthorized"));

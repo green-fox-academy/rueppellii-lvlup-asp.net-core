@@ -1,11 +1,8 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using rueppellii_lvlup_asp.net_core.Utility;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace rueppellii_lvlup_asp.net_core.Controllers
 {
@@ -13,6 +10,13 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
     [Authorize]
     public class HeartbeatController : Controller
     {
+        public readonly IMapper mapper;
+
+        public HeartbeatController(IMapper mapper)
+        {
+            this.mapper = mapper;
+        }
+
         [HttpGet("heartbeat")]
         public IActionResult Heartbeat()
         {

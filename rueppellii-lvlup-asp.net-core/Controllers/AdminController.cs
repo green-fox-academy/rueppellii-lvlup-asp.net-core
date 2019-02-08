@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using AutoMapper;
+using rueppellii_lvlup_asp.net_core.DTOs;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using rueppellii_lvlup_asp.net_core.Dtos;
 using rueppellii_lvlup_asp.net_core.Extensions;
+using rueppellii_lvlup_asp.net_core.Models;
 using rueppellii_lvlup_asp.net_core.Utility;
 
 namespace rueppellii_lvlup_asp.net_core.Controllers
@@ -12,15 +14,24 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
     [Route("admin")]
     public class AdminController : Controller
     {
+        private readonly IMapper mapper;
+
+        public AdminController(IMapper mapper)
+        {
+            this.mapper = mapper;
+        }
+
         [HttpPost("add")]
         [Consumes("application/json")]
-        public IActionResult Add(AddAdminDto addAdminDto)
+        public IActionResult Add(BadgeDto badgeDto)
         {
+            var badgeModel = mapper.Map<Badge>(badgeDto);
+
             if (string.IsNullOrEmpty(Request.Headers["usertokenauth"]))
             {
                 return StatusCode(401, new ErrorMessage("Unauthorized"));
             }
-            if (addAdminDto.IsAnyPropertyNull() || addAdminDto.IsAnyStringPropertyEmpty())
+            if (badgeDto.IsAnyPropertyNull() || badgeDto.IsAnyStringPropertyEmpty())
             {
                 return StatusCode(400, new ErrorMessage("Please provide all fields"));
             }

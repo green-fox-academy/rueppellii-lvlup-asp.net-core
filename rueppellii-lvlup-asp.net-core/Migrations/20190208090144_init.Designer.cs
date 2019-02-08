@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using rueppellii_lvlup_asp.net_core.Data;
 
 namespace rueppellii_lvlup_asp.net_core.Migrations
 {
     [DbContext(typeof(LvlUpDbContext))]
-    partial class LvlUpDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190208090144_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
