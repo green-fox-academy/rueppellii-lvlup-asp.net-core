@@ -19,10 +19,8 @@ namespace rueppellii_lvlup_asp.net_core.Models
         public string Description { get; set; }
 
         public Badge Badge { get; set; }
-        [JsonIgnore]
         public List<Pitch> Pitches { get; set; }
         public List<UserLevel> UserLevels { get; set; }
-        [JsonIgnore]
         public List<ArchetypeLevel> ArchetypeLevels { get; set; }
     }
 }
