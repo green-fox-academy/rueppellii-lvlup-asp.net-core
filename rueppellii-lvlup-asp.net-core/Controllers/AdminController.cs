@@ -1,6 +1,8 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
+using AutoMapper;
 using rueppellii_lvlup_asp.net_core.DTOs;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using rueppellii_lvlup_asp.net_core.Extensions;
 using rueppellii_lvlup_asp.net_core.Models;
 using rueppellii_lvlup_asp.net_core.Utility;
@@ -8,6 +10,7 @@ using rueppellii_lvlup_asp.net_core.Utility;
 namespace rueppellii_lvlup_asp.net_core.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("admin")]
     public class AdminController : Controller
     {
