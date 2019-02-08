@@ -29,9 +29,13 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
             returned.Add("--------------");
             returned.Add(ctx.Archetypes.ToList());
             returned.Add("--------------");
-            //returned.Add(ctx.Pitches.ToList());
+            returned.Add(ctx.Pitches.ToList());
+            returned.Add("--------------");
+            returned.Add(ctx.Reviews.ToList());
             returned.Add("--------------");
             returned.Add(ctx.ArchetypeLevels.ToList());
+            returned.Add("--------------");
+            returned.Add(ctx.UserLevels.ToList());
             string json = JsonConvert.SerializeObject(returned, Formatting.Indented, new JsonSerializerSettings
             {
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore

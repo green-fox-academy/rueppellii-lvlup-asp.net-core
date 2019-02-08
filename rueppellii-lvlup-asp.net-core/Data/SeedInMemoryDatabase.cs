@@ -379,6 +379,80 @@ namespace rueppellii_lvlup_asp.net_core.Data
             };
             context.Pitches.AddRange(pitches);
 
+            IList<UserLevel> userLevels = new List<UserLevel>()
+            {
+            };
+            context.UserLevels.AddRange(userLevels);
+
+            IList<Review> reviews = new List<Review>()
+            {
+                new Review
+                {
+                    Id = 1,
+                    Message = "Yes you improved a lot.",
+                    PitchStatus = true,
+                    User = context.Users.Find((long) 1),
+                    Pitch = context.Pitches.Find((long) 1)
+                },
+                new Review
+                {
+                    Id = 2,
+                    Message = "Agreed",
+                    PitchStatus = true,
+                    User = context.Users.Find((long) 3),
+                    Pitch = context.Pitches.Find((long) 1)
+                },
+                new Review
+                {
+                    Id = 3,
+                    Message = "Nah, this change is not justified.",
+                    PitchStatus = false,
+                    User = context.Users.Find((long) 2),
+                    Pitch = context.Pitches.Find((long) 2)
+                },
+                new Review
+                {
+                    Id = 4,
+                    Message = "Agreed",
+                    PitchStatus = true,
+                    User = context.Users.Find((long) 3),
+                    Pitch = context.Pitches.Find((long) 2)
+                },
+                new Review
+                {
+                    Id = 5,
+                    Message = null,
+                    PitchStatus = true,
+                    User = context.Users.Find((long) 1),
+                    Pitch = context.Pitches.Find((long) 3)
+                },
+                new Review
+                {
+                    Id = 6,
+                    Message = "Oh, I don't think so...",
+                    PitchStatus = false,
+                    User = context.Users.Find((long) 2),
+                    Pitch = context.Pitches.Find((long) 4)
+                },
+                new Review
+                {
+                    Id = 7,
+                    Message = "General Kenobi!",
+                    PitchStatus = false,
+                    User = context.Users.Find((long) 1),
+                    Pitch = context.Pitches.Find((long) 4)
+                },
+                new Review
+                {
+                    Id = 8,
+                    Message = "Yes, I agree with this pitch",
+                    PitchStatus = true,
+                    User = context.Users.Find((long) 1),
+                    Pitch = context.Pitches.Find((long) 5)
+                }
+            };
+            context.Reviews.AddRange(reviews);
+
             context.SaveChanges();
         }
     }
