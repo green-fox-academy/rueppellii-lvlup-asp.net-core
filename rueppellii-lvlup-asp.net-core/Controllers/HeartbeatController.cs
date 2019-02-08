@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using rueppellii_lvlup_asp.net_core.Utility;
 using System;
 using System.Collections.Generic;
@@ -8,6 +10,7 @@ using System.Threading.Tasks;
 namespace rueppellii_lvlup_asp.net_core.Controllers
 {
     [ApiController]
+    [Authorize]
     public class HeartbeatController : Controller
     {
         [HttpGet("heartbeat")]
