@@ -2,29 +2,33 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using System.Net.Http;
+using rueppellii_lvlup_asp.net_core.Services;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Fixtures
 {
-  public class TestContext : IDisposable
-  {
-    private TestServer server;
-    public HttpClient Client { get; set; }
-    public object Context { get; internal set; }
-
-    public TestContext()
+    public class TestContext : IDisposable
     {
-      var builder = new WebHostBuilder()
-      .UseEnvironment("Testing")
-      .UseStartup<Startup>();
+        private TestServer server;
+        public HttpClient Client { get; set; }
+        public object Context { get; internal set; }
+        public AuthService AuthService { get; set; }
 
-      server = new TestServer(builder);
-      Client = server.CreateClient();
-    }
+        public TestContext()
+        {
+            var builder = new WebHostBuilder()
+            .UseEnvironment("Testing")
+            .UseStartup<Startup>();
 
-    public void Dispose()
-    {
-      server.Dispose();
-      Client.Dispose();
+            server = new TestServer(builder);
+            AuthService = server.Host.Services.GetService<AuthService>();
+            Client = server.CreateClient();
+        }
+
+        public void Dispose()
+        {
+            server.Dispose();
+            Client.Dispose();
+        }
     }
-  }
 }
