@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using rueppellii_lvlup_asp.net_core.Configurations;
 using rueppellii_lvlup_asp.net_core.Data;
 
 namespace rueppellii_lvlup_asp.net_core
@@ -19,12 +20,13 @@ namespace rueppellii_lvlup_asp.net_core
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
+            services.AddAuth(Configuration);
+            services.AddServices();
             services.AddDbContext<LvlUpDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
-          services.AddMvc();
         }
-            // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -32,6 +34,7 @@ namespace rueppellii_lvlup_asp.net_core
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseAuthentication();
             app.UseMvc();
         }
     }
