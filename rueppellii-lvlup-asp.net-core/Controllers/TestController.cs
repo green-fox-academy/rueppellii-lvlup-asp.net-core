@@ -21,7 +21,7 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
         public IActionResult List()
         {
             List<Object> returned = new List<Object>();
-            //returned.Add(ctx.Users.ToList());
+            returned.Add(ctx.Users.ToList());
             returned.Add("--------------");
             returned.Add(ctx.Badges.ToList());
             returned.Add("--------------");
