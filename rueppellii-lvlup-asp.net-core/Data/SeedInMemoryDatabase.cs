@@ -381,6 +381,51 @@ namespace rueppellii_lvlup_asp.net_core.Data
 
             IList<UserLevel> userLevels = new List<UserLevel>()
             {
+                new UserLevel
+                {
+                    User = context.Users.Find((long)1),
+                    Level = context.Levels.Find((long)5)
+                },
+                new UserLevel
+                {
+                    User = context.Users.Find((long)1),
+                    Level = context.Levels.Find((long)8)
+                },
+                new UserLevel
+                {
+                    User = context.Users.Find((long)1),
+                    Level = context.Levels.Find((long)15)
+                },
+                new UserLevel
+                {
+                    User = context.Users.Find((long)1),
+                    Level = context.Levels.Find((long)18)
+                },
+                new UserLevel
+                {
+                    User = context.Users.Find((long)2),
+                    Level = context.Levels.Find((long)1)
+                },
+                new UserLevel
+                {
+                    User = context.Users.Find((long)2),
+                    Level = context.Levels.Find((long)7)
+                },
+                new UserLevel
+                {
+                    User = context.Users.Find((long)3),
+                    Level = context.Levels.Find((long)2)
+                },
+                new UserLevel
+                {
+                    User = context.Users.Find((long)4),
+                    Level = context.Levels.Find((long)7)
+                },
+                new UserLevel
+                {
+                    User = context.Users.Find((long)4),
+                    Level = context.Levels.Find((long)10)
+                }
             };
             context.UserLevels.AddRange(userLevels);
 
