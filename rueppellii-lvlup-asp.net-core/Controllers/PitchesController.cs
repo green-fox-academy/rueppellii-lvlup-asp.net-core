@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using rueppellii_lvlup_asp.net_core.Dtos;
+using Microsoft.AspNetCore.Authorization;
 using rueppellii_lvlup_asp.net_core.Extensions;
 using rueppellii_lvlup_asp.net_core.Models;
 using rueppellii_lvlup_asp.net_core.Utility;
@@ -8,6 +9,7 @@ using rueppellii_lvlup_asp.net_core.Utility;
 namespace rueppellii_lvlup_asp.net_core.Controllers
 {
     [ApiController]
+    [Authorize]
     public class PitchesController : Controller
     {
         private readonly IMapper mapper;

@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using rueppellii_lvlup_asp.net_core.Dtos;
 using rueppellii_lvlup_asp.net_core.Extensions;
@@ -8,6 +9,7 @@ using rueppellii_lvlup_asp.net_core.Utility;
 namespace rueppellii_lvlup_asp.net_core.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("admin")]
     public class AdminController : Controller
     {
