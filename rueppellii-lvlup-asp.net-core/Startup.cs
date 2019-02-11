@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using rueppellii_lvlup_asp.net_core.Configurations;
 using rueppellii_lvlup_asp.net_core.Data;
 using rueppellii_lvlup_asp.net_core.Configurations;
 
@@ -41,6 +42,9 @@ namespace rueppellii_lvlup_asp.net_core
 
         public void ConfigureProductionServices(IServiceCollection services)
         {
+            services.AddMvc();
+            services.AddAuth(Configuration);
+            services.AddServices();
             services.AddDbContext<LvlUpDbContext>(options =>
                 options.UseSqlServer(Configuration["LvlUpConnection"]));
 
@@ -59,6 +63,7 @@ namespace rueppellii_lvlup_asp.net_core
                 context.AddSeededData();
             }
 
+            app.UseAuthentication();
             app.UseMvc();
         }
     }
