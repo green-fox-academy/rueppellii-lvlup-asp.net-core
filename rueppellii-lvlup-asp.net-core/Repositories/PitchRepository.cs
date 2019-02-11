@@ -36,9 +36,10 @@ namespace rueppellii_lvlup_asp.net_core.Repositories
             throw new NotImplementedException();
         }
 
-        public void Update(Pitch entity)
+        public void Update(Pitch pitch)
         {
-            throw new NotImplementedException();
+            context.Pitches.Update(pitch);
+            context.SaveChanges();
         }
     }
 }
