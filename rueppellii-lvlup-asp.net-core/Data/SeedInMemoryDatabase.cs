@@ -49,7 +49,6 @@ namespace rueppellii_lvlup_asp.net_core.Data
             {
                 new Badge
                 {
-                    Id = 1,
                     Version = "v2.1",
                     Name = "Process improve/initator",
                     Tag = "general",
@@ -57,7 +56,6 @@ namespace rueppellii_lvlup_asp.net_core.Data
                 },
                 new Badge
                 {
-                    Id = 2,
                     Version = "v1.1",
                     Name = "English speaker",
                     Tag = "mentor",
@@ -65,7 +63,6 @@ namespace rueppellii_lvlup_asp.net_core.Data
                 },
                 new Badge
                 {
-                    Id = 3,
                     Version = "v1.1",
                     Name = "Feedback receiver",
                     Tag = "general",
@@ -73,7 +70,6 @@ namespace rueppellii_lvlup_asp.net_core.Data
                 },
                 new Badge
                 {
-                    Id = 4,
                     Version = "v1.1",
                     Name = "Feedback giver",
                     Tag = "marketing",

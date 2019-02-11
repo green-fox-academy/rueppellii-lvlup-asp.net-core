@@ -38,8 +38,8 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
                 return StatusCode(400, new ErrorMessage("Please provide all fields"));
             }
             repository.Save(badgeModel);
-            return StatusCode(201, new ResponseMessage("Success"));
-            //return StatusCode(201, repository.GetAll());
+            //return StatusCode(201, new ResponseMessage("Success"));
+            return StatusCode(201, repository.GetAll());
         }
     }
 }
