@@ -38,9 +38,8 @@ namespace rueppellii_lvlup_asp.net_core.Configurations
                 options.ClientSecret = Configuration["google:clientSecret"];
                 options.Events.OnCreatingTicket = context =>
                 {
-                    var identity = (ClaimsIdentity)context.Principal.Identity;
-                    var profileImg = context.User["image"].Value<string>("url");
-                    identity.AddClaim(new Claim("profileImg", profileImg));
+                    var profilePic = context.User.SelectToken("image.url").ToString();
+                    context.Identity.AddClaim(new Claim("profilePic", profilePic));
                     return Task.CompletedTask;
                 };
             });
