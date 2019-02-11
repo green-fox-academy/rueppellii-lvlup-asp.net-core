@@ -23,7 +23,7 @@ namespace rueppellii_lvlup_asp.net_core.Repositories
 
         public IEnumerable<Badge> GetAll()
         {
-            throw new NotImplementedException();
+            return context.Badges.ToList();
         }
 
         public Badge GetById(long id)

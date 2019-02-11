@@ -10,14 +10,14 @@ using rueppellii_lvlup_asp.net_core.Utility;
 namespace rueppellii_lvlup_asp.net_core.Controllers
 {
     [ApiController]
-    [Authorize]
+    //[Authorize]
     [Route("admin")]
     public class AdminController : Controller
     {
         private readonly IMapper mapper;
-        private readonly BadgeRepository repository;
+        private readonly ICrudRepository<Badge> repository;
 
-        public AdminController(IMapper mapper, BadgeRepository repository)
+        public AdminController(IMapper mapper, ICrudRepository<Badge> repository)
         {
             this.mapper = mapper;
             this.repository = repository;
@@ -39,6 +39,7 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
             }
             repository.Save(badgeModel);
             return StatusCode(201, new ResponseMessage("Success"));
+            //return StatusCode(201, repository.GetAll());
         }
     }
 }

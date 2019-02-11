@@ -5,6 +5,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using rueppellii_lvlup_asp.net_core.Configurations;
 using rueppellii_lvlup_asp.net_core.Data;
+using rueppellii_lvlup_asp.net_core.Models;
+using rueppellii_lvlup_asp.net_core.Repositories;
 using rueppellii_lvlup_asp.net_core.Utility;
 
 namespace rueppellii_lvlup_asp.net_core
@@ -26,20 +28,22 @@ namespace rueppellii_lvlup_asp.net_core
 
         public void ConfigureDevelopmentServices(IServiceCollection services)
         {
-            services.AddAuth(Configuration);
+            services.AddMvc();
             services.AddServices();
+            services.AddScoped<ICrudRepository<Badge>, BadgeRepository>();
             services.AddDbContext<LvlUpDbContext>(options =>
                 options.UseInMemoryDatabase("development"));
 
             var configuredMapper = new AutoMapper.MapperConfiguration(c => c.AddProfile(new ApplicationProfile())).CreateMapper();
             services.AddSingleton(configuredMapper);
 
-            services.AddMvc();
+            //services.AddAuth(Configuration);
         }
 
         public void ConfigureTestingServices(IServiceCollection services)
         {
             services.AddAuth(Configuration);
+            services.AddScoped<ICrudRepository<Badge>, BadgeRepository>();
             services.AddServices();
             services.AddDbContext<LvlUpDbContext>(options =>
                 options.UseInMemoryDatabase("testing"));
@@ -53,6 +57,7 @@ namespace rueppellii_lvlup_asp.net_core
         public void ConfigureProductionServices(IServiceCollection services)
         {
             services.AddAuth(Configuration);
+            services.AddScoped<ICrudRepository<Badge>, BadgeRepository>();
             services.AddServices();
             services.AddDbContext<LvlUpDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
@@ -75,7 +80,7 @@ namespace rueppellii_lvlup_asp.net_core
                 context.AddSeededData();
             }
 
-            app.UseAuthentication();
+            //app.UseAuthentication();
             app.UseMvc();
         }
     }

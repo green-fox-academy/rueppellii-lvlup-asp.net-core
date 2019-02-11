@@ -9,7 +9,7 @@ using rueppellii_lvlup_asp.net_core.Utility;
 namespace rueppellii_lvlup_asp.net_core.Controllers
 {
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class PitchesController : Controller
     {
         private readonly IMapper mapper;
