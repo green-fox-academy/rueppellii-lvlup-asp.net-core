@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using rueppellii_lvlup_asp.net_core.Dtos;
 using rueppellii_lvlup_asp.net_core.Extensions;
 using rueppellii_lvlup_asp.net_core.Models;
+using rueppellii_lvlup_asp.net_core.Repositories;
 using rueppellii_lvlup_asp.net_core.Utility;
 
 namespace rueppellii_lvlup_asp.net_core.Controllers
@@ -14,10 +15,12 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
     public class AdminController : Controller
     {
         private readonly IMapper mapper;
+        private readonly BadgeRepository repository;
 
-        public AdminController(IMapper mapper)
+        public AdminController(IMapper mapper, BadgeRepository repository)
         {
             this.mapper = mapper;
+            this.repository = repository;
         }
 
         [HttpPost("add")]
@@ -34,6 +37,7 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
             {
                 return StatusCode(400, new ErrorMessage("Please provide all fields"));
             }
+            repository.Save(badgeModel);
             return StatusCode(201, new ResponseMessage("Success"));
         }
     }
