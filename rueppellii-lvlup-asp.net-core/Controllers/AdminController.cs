@@ -27,10 +27,6 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
         {
             var badgeModel = mapper.Map<Badge>(badgeDto);
 
-            if (string.IsNullOrEmpty(Request.Headers["usertokenauth"]))
-            {
-                return StatusCode(401, new ErrorMessage("Unauthorized"));
-            }
             if (badgeDto.IsAnyPropertyNull() || badgeDto.IsAnyStringPropertyEmpty())
             {
                 return StatusCode(400, new ErrorMessage("Please provide all fields"));

@@ -19,8 +19,8 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.AdminControll
         [Fact]
         public async Task Should_ReturnCreated()
         {
-            var content = new MockRequestContent(new AddAdminPostRequestMockBody().SetCorrectBody())
-                .SetContentTypeJson().SetJwt();
+            var content = new MockRequestContent(_testContext.AuthService,
+                new BadgeDtoMock().SetCorrectBody()).SetContentTypeJson().SetJwt();
             var response = await _testContext.Client.PostAsync("/admin/add", content);
             Assert.Equal(HttpStatusCode.Created, response.StatusCode);
             Assert.Equal("{\"message\":\"Success\"}", response.Content.ReadAsStringAsync().Result);
@@ -29,37 +29,39 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.AdminControll
         [Fact]
         public async Task Should_ReturnUnsupportedMediaType()
         {
-            var request = new MockRequestContent(new AddAdminPostRequestMockBody().SetCorrectBody()).SetJwt();
-            var response = await _testContext.Client.PostAsync("/admin/add", request);
+            var content = new MockRequestContent(_testContext.AuthService,
+                new BadgeDtoMock().SetCorrectBody()).SetJwt();
+            var response = await _testContext.Client.PostAsync("/admin/add", content);
             Assert.Equal(HttpStatusCode.UnsupportedMediaType, response.StatusCode);
 
-            response = await _testContext.Client.PostAsync("/admin/add", request.SetContentTypeXml());
+            response = await _testContext.Client.PostAsync("/admin/add", content.SetContentTypeXml());
             Assert.Equal(HttpStatusCode.UnsupportedMediaType, response.StatusCode);
         }
 
         [Fact]
         public async Task Should_ReturnUnauthorised()
         {
-            var request = new MockRequestContent(new AddAdminPostRequestMockBody().SetCorrectBody()).SetContentTypeJson();
-            var response = await _testContext.Client.PostAsync("/admin/add", request);
+            var content = new MockRequestContent(_testContext.AuthService,
+                new BadgeDtoMock().SetCorrectBody()).SetContentTypeJson();
+            var response = await _testContext.Client.PostAsync("/admin/add", content);
             Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
-            Assert.Equal("{\"error\":\"Unauthorized\"}", response.Content.ReadAsStringAsync().Result);
 
-            response = await _testContext.Client.PostAsync("/admin/add", request.SetEmptyJwt());
+            response = await _testContext.Client.PostAsync("/admin/add", content.SetEmptyJwt());
             Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
-            Assert.Equal("{\"error\":\"Unauthorized\"}", response.Content.ReadAsStringAsync().Result);
         }
 
         [Fact]
         public async Task Should_ReturnBadRequest()
         {
-            var request = new MockRequestContent(new AddAdminPostRequestMockBody().SetMissingBody()).SetContentTypeJson();
-            var response = await _testContext.Client.PostAsync("/admin/add", request);
+            var content = new MockRequestContent(_testContext.AuthService,
+                new BadgeDtoMock().SetMissingBody()).SetContentTypeJson().SetJwt();
+            var response = await _testContext.Client.PostAsync("/admin/add", content);
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
             Assert.Equal("{\"error\":\"Please provide all fields\"}", response.Content.ReadAsStringAsync().Result);
 
-            request = new MockRequestContent(new AddAdminPostRequestMockBody().SetEmptyStringsBody()).SetContentTypeJson();
-            response = await _testContext.Client.PostAsync("/admin/add", request);
+            content = new MockRequestContent(_testContext.AuthService,
+                new BadgeDtoMock().SetEmptyStringsBody()).SetContentTypeJson().SetJwt();
+            response = await _testContext.Client.PostAsync("/admin/add", content);
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
             Assert.Equal("{\"error\":\"Please provide all fields\"}", response.Content.ReadAsStringAsync().Result);
         }

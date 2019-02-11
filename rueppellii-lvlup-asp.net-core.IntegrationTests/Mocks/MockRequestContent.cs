@@ -9,8 +9,9 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Mocks
     {
         public IAuthService AuthService { get; }
 
-        public MockRequestContent(string content) : base(content)
+        public MockRequestContent(IAuthService authService, string content) : base(content)
         {
+            this.AuthService = authService;
         }
         public MockRequestContent SetJwt()
         {

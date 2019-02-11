@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Mocks
 {
-    public class AddAdminPostRequestMockBody : BadgeDto
+    public class BadgeDtoMock : BadgeDto
     {
         public string SetCorrectBody()
         {
@@ -28,7 +28,7 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Mocks
 
         public string SetEmptyStringsBody()
         {
-            this.Version = "2.3";
+            this.Version = string.Empty;
             this.Name = string.Empty;
             this.Tag = string.Empty;
             this.Levels = null;
