@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -20,6 +21,6 @@ namespace rueppellii_lvlup_asp.net_core.Models
         public Badge Badge { get; set; }
         public List<Pitch> Pitches { get; set; }
         public List<UserLevel> UserLevels { get; set; }
-        public List<ArchetypeLevel> archetypeLevels { get; set; }
+        public List<ArchetypeLevel> ArchetypeLevels { get; set; }
     }
 }
