@@ -10,7 +10,7 @@ namespace rueppellii_lvlup_asp.net_core.Utility
             CreateMap<Pitch, PitchDto>()
                 .ForMember(dto => dto.Username, opt => opt.MapFrom(src => src.User.Name))
                 .ForMember(dto => dto.BadgeName, opt => opt.MapFrom(src => src.Badge.Name))
-                .ForMember(dto => dto.Holders, opt => opt.MapFrom(src => src.Reviewers))
+                .ForMember(dto => dto.Holders, opt => opt.MapFrom(src => src.Reviews))
                 .ReverseMap();
             CreateMap<Pitch, PostPitchDto>()
                 .ForMember(dto => dto.PitchedLVL, opt => opt.MapFrom(src => src.PitchedLevel))

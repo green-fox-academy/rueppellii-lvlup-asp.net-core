@@ -26,8 +26,9 @@ namespace rueppellii_lvlup_asp.net_core
 
         public void ConfigureDevelopmentServices(IServiceCollection services)
         {
-            services.AddAuth(Configuration);
+            //services.AddAuth(Configuration);
             services.AddServices();
+            services.AddRepositories();
             services.AddDbContext<LvlUpDbContext>(options =>
                 options.UseInMemoryDatabase("development"));
 
@@ -41,6 +42,7 @@ namespace rueppellii_lvlup_asp.net_core
         {
             services.AddAuth(Configuration);
             services.AddServices();
+            services.AddRepositories();
             services.AddDbContext<LvlUpDbContext>(options =>
                 options.UseInMemoryDatabase("testing"));
 
@@ -54,6 +56,7 @@ namespace rueppellii_lvlup_asp.net_core
         {
             services.AddAuth(Configuration);
             services.AddServices();
+            services.AddRepositories();
             services.AddDbContext<LvlUpDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
