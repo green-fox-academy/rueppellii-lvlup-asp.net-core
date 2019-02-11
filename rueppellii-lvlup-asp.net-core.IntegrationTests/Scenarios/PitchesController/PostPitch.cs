@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using rueppellii_lvlup_asp.net_core.DTOs;
+using rueppellii_lvlup_asp.net_core.Dtos;
 using rueppellii_lvlup_asp.net_core.IntegrationTests.Fixtures;
 using System.Collections.Generic;
 using System.Net;

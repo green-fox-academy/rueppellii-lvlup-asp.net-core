@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using rueppellii_lvlup_asp.net_core.Containers;
-using rueppellii_lvlup_asp.net_core.DTOs;
+using rueppellii_lvlup_asp.net_core.Dtos;
 using rueppellii_lvlup_asp.net_core.IntegrationTests.Fixtures;
 using System.Net;
 using System.Net.Http;

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace rueppellii_lvlup_asp.net_core.DTOs
+﻿namespace rueppellii_lvlup_asp.net_core.Dtos
 {
     public class ReviewerDto
     {
