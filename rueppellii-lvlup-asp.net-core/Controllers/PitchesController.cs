@@ -13,9 +13,9 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
     [Authorize]
     public class PitchesController : Controller
     {
-        private readonly PostPitchService service;
+        private readonly ICrudService<PostPitchDto, Pitch> service;
 
-        public PitchesController(PostPitchService service)
+        public PitchesController(ICrudService<PostPitchDto, Pitch> service)
         {
             this.service = service;
         }

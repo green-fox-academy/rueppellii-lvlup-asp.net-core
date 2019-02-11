@@ -9,10 +9,10 @@ namespace rueppellii_lvlup_asp.net_core.Services
 {
     public class PostPitchService : ICrudService<PostPitchDto, Pitch>
     {
-        private readonly PitchRepository repository;
+        private readonly ICrudRepository<Pitch> repository;
         private readonly IMapper mapper;
 
-        public PostPitchService(PitchRepository repository, IMapper mapper)
+        public PostPitchService(ICrudRepository<Pitch> repository, IMapper mapper)
         {
             this.repository = repository;
             this.mapper = mapper;
