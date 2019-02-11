@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -20,10 +21,11 @@ namespace rueppellii_lvlup_asp.net_core.Models
         [MaxLength(200)]
         public string PitchMessage { get; set; }
 
-        public List<Review> Reviewers { get; set; }
+        public List<Review> Reviews { get; set; }
         public User User { get; set; }
         public Badge Badge { get; set; }
         public Level Level { get; set; }
 
     }
 }
+
