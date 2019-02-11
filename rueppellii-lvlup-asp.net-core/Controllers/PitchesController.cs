@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using rueppellii_lvlup_asp.net_core.Extensions;
 using rueppellii_lvlup_asp.net_core.Models;
 using rueppellii_lvlup_asp.net_core.Utility;
+using rueppellii_lvlup_asp.net_core.Services;
 
 namespace rueppellii_lvlup_asp.net_core.Controllers
 {
@@ -12,18 +13,17 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
     [Authorize]
     public class PitchesController : Controller
     {
-        private readonly IMapper mapper;
+        private readonly PostPitchService service;
 
-        public PitchesController(IMapper mapper)
+        public PitchesController(PostPitchService service)
         {
-            this.mapper = mapper;
+            this.service = service;
         }
 
         [HttpPost("pitch")]
         [Consumes("application/json")]
         public IActionResult Post(PostPitchDto postPitchDto)
         {
-            var pitchModel = mapper.Map<Pitch>(postPitchDto);
 
             if (string.IsNullOrEmpty(Request.Headers["usertokenauth"]))
             {
@@ -33,6 +33,7 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
             {
                 return StatusCode(400, new ErrorMessage("One or more fields are empty."));
             }
+            service.Save(postPitchDto);
             return StatusCode(201, new ResponseMessage("Success"));
         }
 

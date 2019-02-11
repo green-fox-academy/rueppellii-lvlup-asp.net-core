@@ -23,5 +23,10 @@ namespace rueppellii_lvlup_asp.net_core.Services
 
             return mapper.Map<IEnumerable<BadgeDto>>(badgeList);
         }
+
+        public void Save(BadgeDto dto)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
