@@ -238,7 +238,6 @@ namespace rueppellii_lvlup_asp.net_core.Data
 
             IList<ArchetypeLevel> archetypeLevels = new List<ArchetypeLevel>()
             {
-
                 new ArchetypeLevel
                 {
                     Archetype = context.Archetypes.Find((long)1),

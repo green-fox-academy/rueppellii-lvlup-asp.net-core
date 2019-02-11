@@ -26,7 +26,7 @@ namespace rueppellii_lvlup_asp.net_core
         public void ConfigureDevelopmentServices(IServiceCollection services)
         {
             services.AddDbContext<LvlUpDbContext>(options =>
-            options.UseInMemoryDatabase("development"));
+                options.UseInMemoryDatabase("development"));
 
             services.AddMvc();
         }
@@ -34,7 +34,7 @@ namespace rueppellii_lvlup_asp.net_core
         public void ConfigureTestingServices(IServiceCollection services)
         {
             services.AddDbContext<LvlUpDbContext>(options =>
-            options.UseInMemoryDatabase("testing"));
+                options.UseInMemoryDatabase("testing"));
 
             services.AddMvc();
         }
@@ -42,7 +42,7 @@ namespace rueppellii_lvlup_asp.net_core
         public void ConfigureProductionServices(IServiceCollection services)
         {
             services.AddDbContext<LvlUpDbContext>(options =>
-            options.UseSqlServer(Configuration["LvlUpConnection"]));
+                options.UseSqlServer(Configuration["LvlUpConnection"]));
 
             services.AddMvc();
         }
