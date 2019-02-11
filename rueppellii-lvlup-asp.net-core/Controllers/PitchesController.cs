@@ -51,8 +51,6 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
         [Consumes("application/json")]
         public IActionResult Put(PutPitchDto putPitchDto)
         {
-            var pitchModel = mapper.Map<Pitch>(putPitchDto);
-
             if (string.IsNullOrEmpty(Request.Headers["usertokenauth"]))
             {
                 return StatusCode(401, new ErrorMessage("Unauthorized"));
