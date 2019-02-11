@@ -33,7 +33,8 @@ namespace rueppellii_lvlup_asp.net_core.Repositories
 
         public void Save(Pitch entity)
         {
-            throw new NotImplementedException();
+            context.Add(entity);
+            context.SaveChanges();
         }
 
         public void Update(Pitch entity)
