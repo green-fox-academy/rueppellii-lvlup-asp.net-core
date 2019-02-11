@@ -4,7 +4,7 @@
     {
         public string PitcherName { get; set; }
         public string BadgeName { get; set; }
-        public string NewStatus { get; set; }
+        public int? NewStatus { get; set; }
         public string NewMessage { get; set; }
     }
 }

@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using rueppellii_lvlup_asp.net_core.Configurations;
 using rueppellii_lvlup_asp.net_core.Data;
-using rueppellii_lvlup_asp.net_core.Configurations;
+using rueppellii_lvlup_asp.net_core.Utility;
 
 namespace rueppellii_lvlup_asp.net_core
 {
@@ -26,27 +26,39 @@ namespace rueppellii_lvlup_asp.net_core
 
         public void ConfigureDevelopmentServices(IServiceCollection services)
         {
+            services.AddAuth(Configuration);
+            services.AddServices();
             services.AddDbContext<LvlUpDbContext>(options =>
                 options.UseInMemoryDatabase("development"));
+
+            var configuredMapper = new AutoMapper.MapperConfiguration(c => c.AddProfile(new ApplicationProfile())).CreateMapper();
+            services.AddSingleton(configuredMapper);
 
             services.AddMvc();
         }
 
         public void ConfigureTestingServices(IServiceCollection services)
         {
+            services.AddAuth(Configuration);
+            services.AddServices();
             services.AddDbContext<LvlUpDbContext>(options =>
                 options.UseInMemoryDatabase("testing"));
+
+            var configuredMapper = new AutoMapper.MapperConfiguration(c => c.AddProfile(new ApplicationProfile())).CreateMapper();
+            services.AddSingleton(configuredMapper);
 
             services.AddMvc();
         }
 
         public void ConfigureProductionServices(IServiceCollection services)
         {
-            services.AddMvc();
             services.AddAuth(Configuration);
             services.AddServices();
             services.AddDbContext<LvlUpDbContext>(options =>
-                options.UseSqlServer(Configuration["LvlUpConnection"]));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            var configuredMapper = new AutoMapper.MapperConfiguration(c => c.AddProfile(new ApplicationProfile())).CreateMapper();
+            services.AddSingleton(configuredMapper);
 
             services.AddMvc();
         }

@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using rueppellii_lvlup_asp.net_core.Dtos;
 using rueppellii_lvlup_asp.net_core.IntegrationTests.Fixtures;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Text;
@@ -13,20 +14,26 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.PitchesContro
     public class PostPitch
     {
         private readonly TestContext testContext;
-        private readonly PitchDto emptyDto;
-        private readonly PitchDto validDto;
+        private readonly PostPitchDto emptyDto;
+        private readonly PostPitchDto validDto;
 
         public PostPitch(TestContext testContext)
         {
             this.testContext = testContext;
-            emptyDto = new PitchDto();
-            validDto = new PitchDto()
+            emptyDto = new PostPitchDto();
+            validDto = new PostPitchDto()
             {
                 BadgeName = "English speaker",
-                OldLvl = 2,
-                PitchedLvl = 3,
+                OldLVL = 2,
+                PitchedLVL = 3,
                 PitchMessage = "Hello World! My English is bloody gorgeous.",
-                Holders = new[] { "balazs.jozsef", "benedek.vamosi", "balazs.barna" }
+                Holders = new List<ReviewerDto>()
+                {
+                    new ReviewerDto
+                    {
+                        Name = "test reviewer",
+                    }
+                }
             };
         }
 
