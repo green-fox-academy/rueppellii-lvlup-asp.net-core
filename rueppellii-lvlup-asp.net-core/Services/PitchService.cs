@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using rueppellii_lvlup_asp.net_core.Dtos;
 using rueppellii_lvlup_asp.net_core.Models;
 using rueppellii_lvlup_asp.net_core.Repositories;
 using System;
@@ -17,6 +18,12 @@ namespace rueppellii_lvlup_asp.net_core.Services
         {
             this.pitchRepository = pitchRepository;
             this.mapper = mapper;
+        }
+
+        public void Update(PitchDto pitchDto)
+        {
+            var pitch = mapper.Map<Pitch>(pitchDto);
+            pitchRepository.Update(pitch);
         }
     }
 }
