@@ -5,6 +5,7 @@ using rueppellii_lvlup_asp.net_core.Repositories;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 
@@ -33,15 +34,22 @@ namespace rueppellii_lvlup_asp.net_core.Services
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-        private SymmetricSecurityKey GetSymmetricSecurityKey() => 
-            new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["jwt:secretKey"]));
+        private SymmetricSecurityKey GetSymmetricSecurityKey()
+        {
+            return new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["jwt:secretKey"]));
+        }
 
-        private SigningCredentials GetSigningCredentials(SecurityKey key, string algorithm) => 
-            new SigningCredentials(key, algorithm);
+        private SigningCredentials GetSigningCredentials(SecurityKey key, string algorithm)
+        {
+            return new SigningCredentials(key, algorithm);
+        }
 
         public void SaveUserIfNotExists(ClaimsPrincipal user)
         {
-            throw new NotImplementedException();
+            var userEmail = from claim in user.Claims
+                            where claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"
+                            select claim.Value.FirstOrDefault();
+            _repository.DoesEntityExistByProperty("Email", userEmail);
         }
     }
 }

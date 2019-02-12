@@ -4,6 +4,7 @@ using rueppellii_lvlup_asp.net_core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace rueppellii_lvlup_asp.net_core.Repositories
@@ -20,6 +21,18 @@ namespace rueppellii_lvlup_asp.net_core.Repositories
         {
             _context.Users.Remove(_context.Users.Find(id));
             _context.SaveChanges();
+        }
+
+        public bool DoesEntityExistByProperty(string property, object propertyValue)
+        {
+
+            if (_context.Users.GetType().GetGenericArguments()[0].GetProperty(property) != null &&
+                _context.Users.Any(user => user.GetType().GetProperty(property).GetValue(user) == propertyValue))
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public IEnumerable<User> GetAll()
@@ -42,15 +55,6 @@ namespace rueppellii_lvlup_asp.net_core.Repositories
         {
             _context.Entry<User>(entity).State = EntityState.Modified;
             _context.SaveChanges();
-        }
-
-        public bool DoesUserExist(string userEmail)
-        {
-            if (_context.Users.Any<User>(user => user.Email == userEmail))
-            {
-                return true;
-            }
-            return false;
         }
     }
 }

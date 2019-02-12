@@ -21,6 +21,11 @@ namespace rueppellii_lvlup_asp.net_core.Repositories
             throw new NotImplementedException();
         }
 
+        public bool DoesEntityExistByProperty(string property, object propertyValue)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Pitch> GetAll()
         {
             throw new NotImplementedException();
