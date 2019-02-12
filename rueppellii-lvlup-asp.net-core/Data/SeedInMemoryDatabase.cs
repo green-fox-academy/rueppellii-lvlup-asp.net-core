@@ -96,7 +96,6 @@ namespace rueppellii_lvlup_asp.net_core.Data
                 },
                 new Level
                 {
-                    Id = 4,
                     BadgeLevel = 4,
                     Description = "I can come up with brand new processes that have high impact on the company (i.e. Húli)",
                     Badge = context.Badges.Find((long)1)
