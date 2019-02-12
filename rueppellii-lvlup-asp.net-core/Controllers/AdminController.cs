@@ -1,10 +1,8 @@
-using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using rueppellii_lvlup_asp.net_core.Dtos;
 using rueppellii_lvlup_asp.net_core.Extensions;
 using rueppellii_lvlup_asp.net_core.Models;
-using rueppellii_lvlup_asp.net_core.Repositories;
 using rueppellii_lvlup_asp.net_core.Services;
 using rueppellii_lvlup_asp.net_core.Utility;
 
