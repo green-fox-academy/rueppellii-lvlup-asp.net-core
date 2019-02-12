@@ -51,7 +51,7 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
 
         [HttpPut("pitch/{id}")]
         [Consumes("application/json")]
-        public IActionResult Put(PutPitchDto putPitchDto, long id)
+        public IActionResult Put([FromBody]PutPitchDto putPitchDto, long id)
         {
             pitchService.Update(putPitchDto, id);
             if (putPitchDto.IsAnyPropertyNull() || putPitchDto.IsAnyStringPropertyEmpty())
