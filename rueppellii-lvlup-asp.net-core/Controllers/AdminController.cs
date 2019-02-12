@@ -5,41 +5,34 @@ using rueppellii_lvlup_asp.net_core.Dtos;
 using rueppellii_lvlup_asp.net_core.Extensions;
 using rueppellii_lvlup_asp.net_core.Models;
 using rueppellii_lvlup_asp.net_core.Repositories;
+using rueppellii_lvlup_asp.net_core.Services;
 using rueppellii_lvlup_asp.net_core.Utility;
 
 namespace rueppellii_lvlup_asp.net_core.Controllers
 {
     [ApiController]
-    //[Authorize]
+    [Authorize]
     [Route("admin")]
     public class AdminController : Controller
     {
-        private readonly IMapper mapper;
-        private readonly ICrudRepository<Badge> repository;
+        private readonly ICrudService<BadgeDto, Badge> service;
 
-        public AdminController(IMapper mapper, ICrudRepository<Badge> repository)
+        public AdminController(ICrudService<BadgeDto, Badge> service)
         {
-            this.mapper = mapper;
-            this.repository = repository;
+            this.service = service;
         }
 
         [HttpPost("add")]
         [Consumes("application/json")]
         public IActionResult Add(BadgeDto badgeDto)
         {
-            var badgeModel = mapper.Map<Badge>(badgeDto);
-
-            if (string.IsNullOrEmpty(Request.Headers["usertokenauth"]))
-            {
-                return StatusCode(401, new ErrorMessage("Unauthorized"));
-            }
             if (badgeDto.IsAnyPropertyNull() || badgeDto.IsAnyStringPropertyEmpty())
             {
                 return StatusCode(400, new ErrorMessage("Please provide all fields"));
             }
-            repository.Save(badgeModel);
+            service.Save(badgeDto);
             //return StatusCode(201, new ResponseMessage("Success"));
-            return StatusCode(201, repository.GetAll());
+            return StatusCode(201, service.GetAll());
         }
     }
 }

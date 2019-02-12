@@ -8,25 +8,26 @@ namespace rueppellii_lvlup_asp.net_core.Services
 {
     public class BadgeService : ICrudService<BadgeDto, Badge>
     {
-        private readonly ICrudRepository<Badge> respository;
+        private readonly ICrudRepository<Badge> repository;
         private readonly IMapper mapper;
 
-        public BadgeService(ICrudRepository<Badge> respository, IMapper mapper)
+        public BadgeService(ICrudRepository<Badge> repository, IMapper mapper)
         {
-            this.respository = respository;
+            this.repository = repository;
             this.mapper = mapper;
         }
 
         public IEnumerable<BadgeDto> GetAll()
         {
-            var badgeList = respository.GetAll();
+            var badgeList = repository.GetAll();
 
             return mapper.Map<IEnumerable<BadgeDto>>(badgeList);
         }
 
-        public void Save(BadgeDto dto)
+        public void Save(BadgeDto badgeDto)
         {
-            throw new System.NotImplementedException();
+            var badgeModel = mapper.Map<Badge>(badgeDto);
+            repository.Save(badgeModel);
         }
     }
 }
