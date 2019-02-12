@@ -13,24 +13,36 @@ namespace rueppellii_lvlup_asp.net_core.Data
                 new User
                 {
                     Name = "test.admin",
+                    GivenName ="test",
+                    Surname ="admin",
+                    Email ="test.admin@test.com",
                     Pic = "base64://dwabi24632gdkje8549632...",
                     UserLevels = null
                 },
                 new User
                 {
                     Name = "balazs.barna",
+                    GivenName ="balazs",
+                    Surname ="barna",
+                    Email ="balazs.barna@test.com",
                     Pic = "base64://dwabi24632gdkje8549632...",
                     UserLevels = null
                 },
                 new User
                 {
                     Name = "sandor.vass",
+                    GivenName ="sandor",
+                    Surname ="vass",
+                    Email ="sandor.vass@test.com",
                     Pic = "base64://dwabi24632gdkje8549632...",
                     UserLevels = null
                 },
                 new User
                 {
                     Name = "alajos.katona",
+                    GivenName ="alajos",
+                    Surname ="katona",
+                    Email ="alajos.katona@test.com",
                     Pic = "base64://dwabi24632gdkje8549632...",
                     UserLevels = null
                 }
