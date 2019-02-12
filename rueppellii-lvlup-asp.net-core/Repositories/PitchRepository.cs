@@ -1,4 +1,5 @@
-﻿using rueppellii_lvlup_asp.net_core.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using rueppellii_lvlup_asp.net_core.Data;
 using rueppellii_lvlup_asp.net_core.Models;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace rueppellii_lvlup_asp.net_core.Repositories
 
         public Pitch GetById(long id)
         {
-            throw new NotImplementedException();
+            return context.Pitches.Find(id);
         }
 
         public void Save(Pitch entity)
@@ -38,7 +39,7 @@ namespace rueppellii_lvlup_asp.net_core.Repositories
 
         public void Update(Pitch pitch)
         {
-            context.Pitches.Update(pitch);
+            context.Update(pitch);
             context.SaveChanges();
         }
     }

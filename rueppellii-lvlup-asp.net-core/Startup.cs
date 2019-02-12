@@ -28,6 +28,7 @@ namespace rueppellii_lvlup_asp.net_core
         {
             services.AddAuth(Configuration);
             services.AddServices();
+            services.AddRepositories();
             services.AddDbContext<LvlUpDbContext>(options =>
                 options.UseInMemoryDatabase("development"));
 

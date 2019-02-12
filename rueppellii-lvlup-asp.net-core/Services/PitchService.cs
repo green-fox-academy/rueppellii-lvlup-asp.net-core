@@ -20,11 +20,16 @@ namespace rueppellii_lvlup_asp.net_core.Services
             this.mapper = mapper;
         }
 
-        public void Update(PutPitchDto pitchDto, long id)
+        public void Update(PutPitchDto updatedPitchDto, long id)
         {
-            var pitch = mapper.Map<Pitch>(pitchDto);
-            pitch.Id = id;
-            pitchRepository.Update(pitch);
+            var pitchToUpdate = pitchRepository.GetById(id);
+            var updatedPitch = mapper.Map<PutPitchDto, Pitch>(updatedPitchDto, pitchToUpdate);
+            pitchRepository.Update(updatedPitch);
+        }
+
+        public Pitch GetById(long id)
+        {
+            return pitchRepository.GetById(id);
         }
     }
 }
