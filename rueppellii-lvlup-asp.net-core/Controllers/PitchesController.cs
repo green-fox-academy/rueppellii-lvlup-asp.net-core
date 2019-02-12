@@ -22,7 +22,7 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
             this.mapper = mapper;
         }
 
-        [HttpPost("pitch")]
+        [HttpPost("pitches")]
         [Consumes("application/json")]
         public IActionResult Post(PostPitchDto postPitchDto)
         {
@@ -49,7 +49,7 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
             return Ok(DummyJsonResponseDto.getPitches);
         }
 
-        [HttpPut("pitch/{id}")]
+        [HttpPut("pitches/{id}")]
         [Consumes("application/json")]
         public IActionResult Put([FromBody] PutPitchDto putPitchDto, long id)
         {
