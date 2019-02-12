@@ -5,8 +5,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using rueppellii_lvlup_asp.net_core.Configurations;
 using rueppellii_lvlup_asp.net_core.Data;
+using rueppellii_lvlup_asp.net_core.Dtos;
 using rueppellii_lvlup_asp.net_core.Models;
 using rueppellii_lvlup_asp.net_core.Repositories;
+using rueppellii_lvlup_asp.net_core.Services;
 using rueppellii_lvlup_asp.net_core.Utility;
 
 namespace rueppellii_lvlup_asp.net_core
@@ -31,41 +33,41 @@ namespace rueppellii_lvlup_asp.net_core
             services.AddMvc();
             services.AddServices();
             services.AddScoped<ICrudRepository<Badge>, BadgeRepository>();
+            services.AddScoped<ICrudService<BadgeDto, Badge>, BadgeService>();
             services.AddDbContext<LvlUpDbContext>(options =>
                 options.UseInMemoryDatabase("development"));
+            services.AddAuth(Configuration);
 
             var configuredMapper = new AutoMapper.MapperConfiguration(c => c.AddProfile(new ApplicationProfile())).CreateMapper();
             services.AddSingleton(configuredMapper);
-
-            //services.AddAuth(Configuration);
         }
 
         public void ConfigureTestingServices(IServiceCollection services)
         {
-            services.AddAuth(Configuration);
-            services.AddScoped<ICrudRepository<Badge>, BadgeRepository>();
+            services.AddMvc();
             services.AddServices();
+            services.AddScoped<ICrudRepository<Badge>, BadgeRepository>();
+            services.AddScoped<ICrudService<BadgeDto, Badge>, BadgeService>();
             services.AddDbContext<LvlUpDbContext>(options =>
                 options.UseInMemoryDatabase("testing"));
+            services.AddAuth(Configuration);
 
             var configuredMapper = new AutoMapper.MapperConfiguration(c => c.AddProfile(new ApplicationProfile())).CreateMapper();
             services.AddSingleton(configuredMapper);
-
-            services.AddMvc();
         }
 
         public void ConfigureProductionServices(IServiceCollection services)
         {
-            services.AddAuth(Configuration);
-            services.AddScoped<ICrudRepository<Badge>, BadgeRepository>();
+            services.AddMvc();
             services.AddServices();
+            services.AddScoped<ICrudRepository<Badge>, BadgeRepository>();
+            services.AddScoped<ICrudService<BadgeDto, Badge>, BadgeService>();
             services.AddDbContext<LvlUpDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration["LvlUpConnection"]));
+            services.AddAuth(Configuration);
 
             var configuredMapper = new AutoMapper.MapperConfiguration(c => c.AddProfile(new ApplicationProfile())).CreateMapper();
             services.AddSingleton(configuredMapper);
-
-            services.AddMvc();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, LvlUpDbContext context)
@@ -80,7 +82,7 @@ namespace rueppellii_lvlup_asp.net_core
                 context.AddSeededData();
             }
 
-            //app.UseAuthentication();
+            app.UseAuthentication();
             app.UseMvc();
         }
     }
