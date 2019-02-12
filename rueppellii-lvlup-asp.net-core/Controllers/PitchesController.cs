@@ -53,6 +53,7 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
         [Consumes("application/json")]
         public IActionResult Put(PutPitchDto putPitchDto, long id)
         {
+            pitchService.Update(putPitchDto, id);
             if (putPitchDto.IsAnyPropertyNull() || putPitchDto.IsAnyStringPropertyEmpty())
             {
                 return StatusCode(400, new ErrorMessage("Please provide all fields"));
