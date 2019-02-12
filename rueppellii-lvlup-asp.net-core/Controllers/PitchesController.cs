@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using rueppellii_lvlup_asp.net_core.Extensions;
 using rueppellii_lvlup_asp.net_core.Models;
 using rueppellii_lvlup_asp.net_core.Utility;
+using rueppellii_lvlup_asp.net_core.Services;
 
 namespace rueppellii_lvlup_asp.net_core.Controllers
 {
@@ -13,9 +14,11 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
     public class PitchesController : Controller
     {
         private readonly IMapper mapper;
+        private readonly PitchService pitchService;
 
-        public PitchesController(IMapper mapper)
+        public PitchesController(IMapper mapper, PitchService pitchService)
         {
+            this.pitchService = pitchService;
             this.mapper = mapper;
         }
 
@@ -46,17 +49,10 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
             return Ok(DummyJsonResponseDto.getPitches);
         }
 
-        [HttpPut("pitch")]
+        [HttpPut("pitch/{id}")]
         [Consumes("application/json")]
-        public IActionResult Put(PutPitchDto putPitchDto)
+        public IActionResult Put(PutPitchDto putPitchDto, long id)
         {
-            var pitchModel = mapper.Map<Pitch>(putPitchDto);
-
-            if (string.IsNullOrEmpty(Request.Headers["usertokenauth"]))
-            {
-                return StatusCode(401, new ErrorMessage("Unauthorized"));
-            }
-
             if (putPitchDto.IsAnyPropertyNull() || putPitchDto.IsAnyStringPropertyEmpty())
             {
                 return StatusCode(400, new ErrorMessage("Please provide all fields"));
