@@ -22,7 +22,7 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Fixtures
             .UseStartup<Startup>();
 
             Configuration = new ConfigurationBuilder()
-                .AddUserSecrets("1f0d2808455195f476302e8eb4ccf6ad")
+                .AddEnvironmentVariables()
                 .Build();
             server = new TestServer(builder);
             Client = server.CreateClient();
