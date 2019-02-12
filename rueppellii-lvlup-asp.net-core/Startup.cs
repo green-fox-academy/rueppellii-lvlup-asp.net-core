@@ -31,11 +31,8 @@ namespace rueppellii_lvlup_asp.net_core
         public void ConfigureDevelopmentServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddRepositories();
             services.AddServices();
-            services.AddScoped<ICrudRepository<Badge>, BadgeRepository>();
-            services.AddScoped<ICrudRepository<Pitch>, PitchRepository>();
-            services.AddScoped<ICrudService<BadgeDto, Badge>, BadgeService>();
-            services.AddScoped<ICrudService<PitchDto, Pitch>, GetPitchesService>();
             services.AddDbContext<LvlUpDbContext>(options =>
                 options.UseInMemoryDatabase("development"));
             services.AddAuth(Configuration);
@@ -47,11 +44,8 @@ namespace rueppellii_lvlup_asp.net_core
         public void ConfigureTestingServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddRepositories();
             services.AddServices();
-            services.AddScoped<ICrudRepository<Badge>, BadgeRepository>();
-            services.AddScoped<ICrudRepository<Pitch>, PitchRepository>();
-            services.AddScoped<ICrudService<BadgeDto, Badge>, BadgeService>();
-            services.AddScoped<ICrudService<PitchDto, Pitch>, GetPitchesService>();
             services.AddDbContext<LvlUpDbContext>(options =>
                 options.UseInMemoryDatabase("testing"));
             services.AddAuth(Configuration);
@@ -63,11 +57,8 @@ namespace rueppellii_lvlup_asp.net_core
         public void ConfigureProductionServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddRepositories();
             services.AddServices();
-            services.AddScoped<ICrudRepository<Badge>, BadgeRepository>();
-            services.AddScoped<ICrudRepository<Pitch>, PitchRepository>();
-            services.AddScoped<ICrudService<BadgeDto, Badge>, BadgeService>();
-            services.AddScoped<ICrudService<PitchDto, Pitch>, GetPitchesService>();
             services.AddDbContext<LvlUpDbContext>(options =>
                 options.UseSqlServer(Configuration["LvlUpConnection"]));
             services.AddAuth(Configuration);
