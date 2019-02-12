@@ -26,7 +26,7 @@ namespace rueppellii_lvlup_asp.net_core
 
         public void ConfigureDevelopmentServices(IServiceCollection services)
         {
-            //services.AddAuth(Configuration);
+            services.AddAuth(Configuration);
             services.AddServices();
             services.AddRepositories();
             services.AddDbContext<LvlUpDbContext>(options =>

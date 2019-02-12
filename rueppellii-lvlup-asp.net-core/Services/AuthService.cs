@@ -21,7 +21,7 @@ namespace rueppellii_lvlup_asp.net_core.Services
                 issuer: Configuration["jwt:issuer"],
                 audience: Configuration["jwt:audience"],
                 claims: claims,
-                expires: DateTime.UtcNow.AddMinutes(5),
+                expires: DateTime.UtcNow.AddDays(5),
                 notBefore: DateTime.UtcNow);
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
