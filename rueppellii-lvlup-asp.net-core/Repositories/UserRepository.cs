@@ -43,5 +43,14 @@ namespace rueppellii_lvlup_asp.net_core.Repositories
             _context.Entry<User>(entity).State = EntityState.Modified;
             _context.SaveChanges();
         }
+
+        public bool DoesUserExist(string userEmail)
+        {
+            if (_context.Users.Any<User>(user => user.Email == userEmail))
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

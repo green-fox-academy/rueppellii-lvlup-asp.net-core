@@ -38,5 +38,10 @@ namespace rueppellii_lvlup_asp.net_core.Services
 
         private SigningCredentials GetSigningCredentials(SecurityKey key, string algorithm) => 
             new SigningCredentials(key, algorithm);
+
+        public void SaveUserIfNotExists(ClaimsPrincipal user)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
