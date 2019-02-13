@@ -25,13 +25,17 @@ namespace rueppellii_lvlup_asp.net_core.Repositories
 
         public bool DoesEntityExistByProperty(string property, object propertyValue)
         {
-
-            if (_context.Users.GetType().GetGenericArguments()[0].GetProperty(property) != null &&
-                _context.Users.Any(user => user.GetType().GetProperty(property).GetValue(user) == propertyValue))
+            try
             {
-                return true;
+                if (_context.Users.Any(user => user.GetType().GetProperty(property).GetValue(user) == propertyValue))
+                {
+                    return true;
+                }
             }
-
+            catch (NullReferenceException e)
+            {
+                Console.WriteLine("Model User does not have a {0} property. " + e.Message, property);
+            }
             return false;
         }
 
