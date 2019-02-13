@@ -49,9 +49,16 @@ namespace rueppellii_lvlup_asp.net_core.Services
 
         public void SaveUserIfNotExists(ClaimsPrincipal user)
         {
-            if (!_repository.DoesEntityExistByProperty("Email", GetUserEmail(user)))
+            try
             {
-                _repository.Save(_mapper.Map<User>(user));
+                if (!_repository.DoesEntityExistByProperty("Email", GetUserEmail(user)))
+                {
+                    _repository.Save(_mapper.Map<User>(user));
+                }
+            }
+            catch (InvalidOperationException e)
+            {
+                Console.WriteLine("A required field for User entity is missing or invalid! " + e.Message);
             }
         }
 

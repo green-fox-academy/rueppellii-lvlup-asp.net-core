@@ -42,7 +42,7 @@ namespace rueppellii_lvlup_asp.net_core.Utility
                 .ForMember(user => user.Email, opt => opt.MapFrom(principal =>
                     principal.Claims.First(claim => claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")))
                 .ForMember(user => user.Pic, opt => opt.MapFrom(principal =>
-                    principal.Claims.First(claim => claim.Type == "profilePic")))
+                    principal.Claims.FirstOrDefault(claim => claim.Type == "profilePic")))
                 .ForMember(user => user.Surname, opt => opt.MapFrom(principal =>
                     principal.Claims.FirstOrDefault(claim => claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname")))
                 .ForMember(user => user.GivenName, opt => opt.MapFrom(principal =>
