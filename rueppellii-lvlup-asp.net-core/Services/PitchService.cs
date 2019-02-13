@@ -2,8 +2,6 @@
 using rueppellii_lvlup_asp.net_core.Dtos;
 using rueppellii_lvlup_asp.net_core.Models;
 using rueppellii_lvlup_asp.net_core.Repositories;
-using System;
-using System.Collections.Generic;
 
 namespace rueppellii_lvlup_asp.net_core.Services
 {
