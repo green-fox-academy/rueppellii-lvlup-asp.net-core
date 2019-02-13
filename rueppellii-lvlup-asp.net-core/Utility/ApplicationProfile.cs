@@ -38,15 +38,15 @@ namespace rueppellii_lvlup_asp.net_core.Utility
                 .ForMember(dto => dto.Name, opt => opt.MapFrom(src => src.User.Name));
             CreateMap<ClaimsPrincipal, User>()
                 .ForMember(user => user.Name, opt => opt.MapFrom(principal =>
-                    principal.Claims.First(claim => claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name")))
+                    principal.Claims.First(claim => claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name").Value))
                 .ForMember(user => user.Email, opt => opt.MapFrom(principal =>
-                    principal.Claims.First(claim => claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")))
+                    principal.Claims.First(claim => claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress").Value))
                 .ForMember(user => user.Pic, opt => opt.MapFrom(principal =>
-                    principal.Claims.FirstOrDefault(claim => claim.Type == "profilePic")))
+                    principal.Claims.FirstOrDefault(claim => claim.Type == "profilePic").Value))
                 .ForMember(user => user.Surname, opt => opt.MapFrom(principal =>
-                    principal.Claims.FirstOrDefault(claim => claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname")))
+                    principal.Claims.FirstOrDefault(claim => claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname").Value))
                 .ForMember(user => user.GivenName, opt => opt.MapFrom(principal =>
-                    principal.Claims.FirstOrDefault(claim => claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname")));
+                    principal.Claims.FirstOrDefault(claim => claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname").Value));
         }
     }
 }

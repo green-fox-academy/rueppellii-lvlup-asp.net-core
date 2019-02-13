@@ -67,10 +67,10 @@ namespace rueppellii_lvlup_asp.net_core.Services
             var userEmail = string.Empty;
             try
             {
-                var emailAddressClaim = from claim in user.Claims
+                var emailClaim = from claim in user.Claims
                                         where claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"
                                         select claim;
-                userEmail = emailAddressClaim.First().Value;
+                userEmail = emailClaim.First().Value;
             }
             catch (InvalidOperationException e)
             {
