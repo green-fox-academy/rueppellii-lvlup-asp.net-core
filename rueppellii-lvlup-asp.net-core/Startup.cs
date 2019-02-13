@@ -19,7 +19,6 @@ namespace rueppellii_lvlup_asp.net_core
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddUserSecrets("1f0d2808455195f476302e8eb4ccf6ad")
                 .AddEnvironmentVariables();
 
             Configuration = builder.Build();
