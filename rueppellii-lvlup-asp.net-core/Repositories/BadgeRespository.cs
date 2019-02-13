@@ -14,29 +14,15 @@ namespace rueppellii_lvlup_asp.net_core.Repositories
             this.context = context;
         }
 
-        public void Delete(long id)
-        {
-            throw new NotImplementedException();
-        }
-
         public IEnumerable<Badge> GetAll()
         {
             return context.Badges;
         }
 
-        public Badge GetById(long id)
-        {
-            throw new NotImplementedException();
-        }
-
         public void Save(Badge entity)
         {
-            throw new NotImplementedException();
-        }
-
-        public void Update(Badge entity)
-        {
-            throw new NotImplementedException();
+            context.Add(entity);
+            context.SaveChanges();
         }
     }
 }

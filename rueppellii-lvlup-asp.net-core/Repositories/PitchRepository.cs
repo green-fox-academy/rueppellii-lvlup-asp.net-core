@@ -16,30 +16,16 @@ namespace rueppellii_lvlup_asp.net_core.Repositories
             this.context = context;
         }
 
-        public void Delete(long id)
-        {
-            throw new NotImplementedException();
-        }
-
         public IEnumerable<Pitch> GetAll()
         {
-            throw new NotImplementedException();
+            return context.Pitches;
         }
 
-        public Pitch GetById(long id)
-        {
-            throw new NotImplementedException();
-        }
 
         public void Save(Pitch entity)
         {
             context.Add(entity);
             context.SaveChanges();
-        }
-
-        public void Update(Pitch entity)
-        {
-            throw new NotImplementedException();
         }
     }
 }
