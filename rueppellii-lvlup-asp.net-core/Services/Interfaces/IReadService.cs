@@ -8,6 +8,5 @@ namespace rueppellii_lvlup_asp.net_core.Services
     interface IReadService<U, T> where U : class where T : class
     {
         IEnumerable<U> GetAll(); //gets all the entities from the repo, returns a JSON list
-        U GetById(long id); //gets an entity from the repo by ID, returns its JSON format
     }
 }

@@ -6,7 +6,7 @@ using rueppellii_lvlup_asp.net_core.Repositories;
 
 namespace rueppellii_lvlup_asp.net_core.Services
 {
-    public class BadgeService : ICrudService<BadgeDto, Badge>
+    public class BadgeService : IReadService<BadgeDto, Badge>
     {
         private readonly ICrudRepository<Badge> respository;
         private readonly IMapper mapper;
@@ -22,11 +22,6 @@ namespace rueppellii_lvlup_asp.net_core.Services
             var badgeList = respository.GetAll();
 
             return mapper.Map<IEnumerable<BadgeDto>>(badgeList);
-        }
-
-        public void Save(BadgeDto dto)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }
