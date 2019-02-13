@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using AutoMapper;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using rueppellii_lvlup_asp.net_core.Models;
 using rueppellii_lvlup_asp.net_core.Repositories;
@@ -15,11 +16,13 @@ namespace rueppellii_lvlup_asp.net_core.Services
     {
         private readonly IConfiguration _configuration;
         private readonly ICrudRepository<User> _repository;
+        private readonly IMapper _mapper;
 
-        public AuthService(IConfiguration configuration, ICrudRepository<User> repository)
+        public AuthService(IConfiguration configuration, ICrudRepository<User> repository, IMapper mapper)
         {
             this._configuration = configuration;
             this._repository = repository;
+            this._mapper = mapper;
         }
 
         public string GetToken(IEnumerable<Claim> claims)
@@ -52,7 +55,7 @@ namespace rueppellii_lvlup_asp.net_core.Services
                 var emailAddressClaim = from claim in user.Claims
                                where claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"
                                select claim;
-                emailAddress = emailAddressClaim.First<Claim>().Value;
+                emailAddress = emailAddressClaim.First().Value;
             }
             catch (InvalidOperationException e)
             {
@@ -60,7 +63,7 @@ namespace rueppellii_lvlup_asp.net_core.Services
             }
             if (!_repository.DoesEntityExistByProperty("Email", emailAddress))
             {
-                _repository.Save();
+                _repository.Save(_mapper.Map<User>(user));
             }
 
         }
