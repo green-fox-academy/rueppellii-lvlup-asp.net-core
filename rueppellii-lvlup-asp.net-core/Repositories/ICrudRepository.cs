@@ -13,6 +13,6 @@ namespace rueppellii_lvlup_asp.net_core.Repositories
         void Save(T entity);
         void Update(T entity);
         void Delete(long id);
-        bool DoesEntityExistByProperty(string property, object propertyValue);
+        bool DoesEntityExistByProperty(string property, string propertyValue);
     }
 }

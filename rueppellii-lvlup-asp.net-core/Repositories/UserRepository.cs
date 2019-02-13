@@ -23,11 +23,11 @@ namespace rueppellii_lvlup_asp.net_core.Repositories
             _context.SaveChanges();
         }
 
-        public bool DoesEntityExistByProperty(string property, object propertyValue)
+        public bool DoesEntityExistByProperty(string property, string propertyValue)
         {
             try
             {
-                if (_context.Users.Any(user => user.GetType().GetProperty(property).GetValue(user) == propertyValue))
+                if (_context.Users.Any(user => (string)user.GetType().GetProperty(property).GetValue(user) == propertyValue))
                 {
                     return true;
                 }

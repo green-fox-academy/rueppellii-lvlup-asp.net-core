@@ -46,10 +46,23 @@ namespace rueppellii_lvlup_asp.net_core.Services
 
         public void SaveUserIfNotExists(ClaimsPrincipal user)
         {
-            var userEmail = from claim in user.Claims
-                            where claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"
-                            select claim.Value.FirstOrDefault();
-            _repository.DoesEntityExistByProperty("Email", userEmail);
+            var emailAddress = string.Empty;
+            try
+            {
+                var emailAddressClaim = from claim in user.Claims
+                               where claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"
+                               select claim;
+                emailAddress = emailAddressClaim.First<Claim>().Value;
+            }
+            catch (InvalidOperationException e)
+            {
+                Console.WriteLine("User claims do not include an email address! " + e.Message);
+            }
+            if (!_repository.DoesEntityExistByProperty("Email", emailAddress))
+            {
+                _repository.Save();
+            }
+
         }
     }
 }
