@@ -10,8 +10,8 @@ namespace rueppellii_lvlup_asp.net_core.Configurations
         public static void AddServices(this IServiceCollection services)
         {
             services.AddScoped<IAuthService, AuthService>();
-            services.AddScoped<ICrudService<BadgeDto, Badge>, BadgeService>();
-            services.AddScoped<ICrudService<PostPitchDto, Pitch>, PitchService>();
+            services.AddScoped<IReadService<BadgeDto, Badge>, BadgeService>();
+            services.AddScoped<ICreateService<PostPitchDto>, PitchService>();
         }
     }
 }
