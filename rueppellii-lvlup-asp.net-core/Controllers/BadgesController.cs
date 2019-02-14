@@ -11,7 +11,7 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
     [Authorize]
     public class BadgesController : Controller
     {
-        private readonly ICrudService<BadgeDto, Badge> service;
+        /* private readonly ICrudService<BadgeDto, Badge> service;
 
         public BadgesController(ICrudService<BadgeDto, Badge> service)
         {
@@ -25,7 +25,7 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
             {
                 return Ok(service.GetAll());
             }
-                return Unauthorized(new ErrorMessage("Unauthorized"));
-            }
-        }
+            return Unauthorized(new ErrorMessage("Unauthorized"));
+        } */
+    }
 }

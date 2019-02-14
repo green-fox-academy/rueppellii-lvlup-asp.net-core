@@ -1,11 +1,13 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using AutoMapper;
 using rueppellii_lvlup_asp.net_core.Dtos;
 using rueppellii_lvlup_asp.net_core.Models;
 using rueppellii_lvlup_asp.net_core.Repositories;
+using rueppellii_lvlup_asp.net_core.Services.Interfaces;
 
 namespace rueppellii_lvlup_asp.net_core.Services
 {
-    public class PitchService : ICreateService<PostPitchDto>
+    public class PitchService : ICrudService<BasePitchDto, Pitch>
     {
         private readonly ICrudRepository<Pitch> repository;
         private readonly IMapper mapper;
@@ -16,7 +18,18 @@ namespace rueppellii_lvlup_asp.net_core.Services
             this.mapper = mapper;
         }
 
+        public IEnumerable<BasePitchDto> GetAll()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public void Save(PostPitchDto dto)
+        {
+            var pitchModel = mapper.Map<Pitch>(dto);
+            repository.Save(pitchModel);
+        }
+
+        public void Save(BasePitchDto dto)
         {
             var pitchModel = mapper.Map<Pitch>(dto);
             repository.Save(pitchModel);

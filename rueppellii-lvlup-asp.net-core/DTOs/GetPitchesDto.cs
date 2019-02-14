@@ -2,7 +2,7 @@
 
 namespace rueppellii_lvlup_asp.net_core.Dtos
 {
-    public class GetPitchesDto
+    public class GetPitchesDto : BasePitchDto
     {
         public List<PitchDto> MyPitches { get; set; }
         public List<PitchDto> PitchesToReview { get; set; }
