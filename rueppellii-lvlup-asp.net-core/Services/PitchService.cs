@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace rueppellii_lvlup_asp.net_core.Services
 {
-    public class PitchService : ICrudService<BasePitchDto, Pitch>
+    public class PitchService : ICrudService<BasePitchDto>
     {
         private readonly ICrudRepository<Pitch> repository;
         private readonly IMapper mapper;
