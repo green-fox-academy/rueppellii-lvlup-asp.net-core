@@ -4,12 +4,10 @@ using rueppellii_lvlup_asp.net_core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
 
 namespace rueppellii_lvlup_asp.net_core.Repositories
 {
-    public class UserRepository : ICrudRepository<User>
+    public class UserRepository : IUserRepository
     {
         private readonly LvlUpDbContext _context;
 
@@ -17,6 +15,7 @@ namespace rueppellii_lvlup_asp.net_core.Repositories
         {
             this._context = context;
         }
+
         public void Delete(long id)
         {
             _context.Users.Remove(_context.Users.Find(id));
@@ -27,10 +26,7 @@ namespace rueppellii_lvlup_asp.net_core.Repositories
         {
             try
             {
-                if (_context.Users.Any(user => (string)user.GetType().GetProperty(property).GetValue(user) == propertyValue))
-                {
-                    return true;
-                }
+                return _context.Users.Any(user => (string)user.GetType().GetProperty(property).GetValue(user) == propertyValue);
             }
             catch (NullReferenceException e)
             {
@@ -41,7 +37,7 @@ namespace rueppellii_lvlup_asp.net_core.Repositories
 
         public IEnumerable<User> GetAll()
         {
-            return _context.Users.ToList<User>();
+            return _context.Users.ToList();
         }
 
         public User GetById(long id)
@@ -57,8 +53,8 @@ namespace rueppellii_lvlup_asp.net_core.Repositories
 
         public void Update(User entity)
         {
-            _context.Entry<User>(entity).State = EntityState.Modified;
+            _context.Entry(entity).State = EntityState.Modified;
             _context.SaveChanges();
         }
     }
-}
+} 

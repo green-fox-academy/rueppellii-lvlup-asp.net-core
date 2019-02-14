@@ -15,10 +15,10 @@ namespace rueppellii_lvlup_asp.net_core.Services
     public class AuthService : IAuthService
     {
         private readonly IConfiguration _configuration;
-        private readonly ICrudRepository<User> _repository;
+        private readonly IUserRepository _repository;
         private readonly IMapper _mapper;
 
-        public AuthService(IConfiguration configuration, ICrudRepository<User> repository, IMapper mapper)
+        public AuthService(IConfiguration configuration, IUserRepository repository, IMapper mapper)
         {
             this._configuration = configuration;
             this._repository = repository;
