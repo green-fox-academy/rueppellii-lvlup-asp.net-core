@@ -53,7 +53,7 @@ namespace rueppellii_lvlup_asp.net_core.Repositories
 
         public void Update(User entity)
         {
-            _context.Entry(entity).State = EntityState.Modified;
+            _context.Update(entity);
             _context.SaveChanges();
         }
     }
