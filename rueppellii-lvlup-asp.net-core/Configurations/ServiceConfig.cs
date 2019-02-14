@@ -13,6 +13,7 @@ namespace rueppellii_lvlup_asp.net_core.Configurations
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IReadService<BadgeDto, Badge>, BadgeService>();
             services.AddScoped<ICrudService<BasePitchDto, Pitch>, PitchService>();
+            services.AddScoped<ICrudService<BadgeDto, Badge>, BadgeService>();
         }
     }
 }
