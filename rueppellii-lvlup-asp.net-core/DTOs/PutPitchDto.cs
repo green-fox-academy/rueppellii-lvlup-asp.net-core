@@ -1,6 +1,8 @@
-﻿namespace rueppellii_lvlup_asp.net_core.Dtos
+﻿using rueppellii_lvlup_asp.net_core.DTOs.BaseDtos;
+
+namespace rueppellii_lvlup_asp.net_core.Dtos
 {
-    public class PutPitchDto
+    public class PutPitchDto : BasePitchDto
     {
         public string PitcherName { get; set; }
         public string BadgeName { get; set; }

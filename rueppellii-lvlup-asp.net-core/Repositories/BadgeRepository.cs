@@ -1,8 +1,6 @@
 ﻿using rueppellii_lvlup_asp.net_core.Data;
 using rueppellii_lvlup_asp.net_core.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace rueppellii_lvlup_asp.net_core.Repositories
 {
@@ -15,30 +13,15 @@ namespace rueppellii_lvlup_asp.net_core.Repositories
             this.context = context;
         }
 
-        public void Delete(long id)
-        {
-            throw new NotImplementedException();
-        }
-
         public IEnumerable<Badge> GetAll()
         {
-            return context.Badges.ToList();
-        }
-
-        public Badge GetById(long id)
-        {
-            throw new NotImplementedException();
+            return context.Badges;
         }
 
         public void Save(Badge entity)
         {
             context.Badges.Add(entity);
             context.SaveChanges();
-        }
-
-        public void Update(Badge entity)
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using rueppellii_lvlup_asp.net_core.DTOs.BaseDtos;
+using System.Collections.Generic;
 
 namespace rueppellii_lvlup_asp.net_core.Dtos
 {
-    public class PostPitchDto
+    public class PostPitchDto : BasePitchDto
     {
         public string BadgeName { get; set; }
         public int? OldLVL { get; set; }

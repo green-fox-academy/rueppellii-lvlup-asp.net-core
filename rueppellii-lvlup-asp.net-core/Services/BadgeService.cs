@@ -3,6 +3,7 @@ using AutoMapper;
 using rueppellii_lvlup_asp.net_core.Dtos;
 using rueppellii_lvlup_asp.net_core.Models;
 using rueppellii_lvlup_asp.net_core.Repositories;
+using rueppellii_lvlup_asp.net_core.Services.Interfaces;
 
 namespace rueppellii_lvlup_asp.net_core.Services
 {
@@ -20,7 +21,6 @@ namespace rueppellii_lvlup_asp.net_core.Services
         public IEnumerable<BadgeDto> GetAll()
         {
             var badgeList = repository.GetAll();
-
             return mapper.Map<IEnumerable<BadgeDto>>(badgeList);
         }
 
