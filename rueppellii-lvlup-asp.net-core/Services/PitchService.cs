@@ -20,13 +20,8 @@ namespace rueppellii_lvlup_asp.net_core.Services
 
         public IEnumerable<BasePitchDto> GetAll()
         {
-            throw new System.NotImplementedException();
-        }
-
-        public void Save(PostPitchDto dto)
-        {
-            var pitchModel = mapper.Map<Pitch>(dto);
-            repository.Save(pitchModel);
+            var pitchList = repository.GetAll();
+            return mapper.Map<IEnumerable<BasePitchDto>>(pitchList);
         }
 
         public void Save(BasePitchDto dto)
