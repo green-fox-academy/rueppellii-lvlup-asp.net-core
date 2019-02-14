@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace rueppellii_lvlup_asp.net_core.Services
+namespace rueppellii_lvlup_asp.net_core.Services.Interfaces
 {
     /// <summary>
     /// U = dto
