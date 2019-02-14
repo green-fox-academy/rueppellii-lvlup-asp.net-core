@@ -2,34 +2,44 @@
 using rueppellii_lvlup_asp.net_core.Dtos;
 using rueppellii_lvlup_asp.net_core.Models;
 using rueppellii_lvlup_asp.net_core.Repositories;
-using System;
+using rueppellii_lvlup_asp.net_core.Services.Interfaces;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace rueppellii_lvlup_asp.net_core.Services
 {
-    public class PitchService
+    public class PitchService : ICrudService<BasePitchDto>
     {
+        private readonly ICrudRepository<Pitch> repository;
         private readonly IMapper mapper;
-        private readonly ICrudRepository<Pitch> pitchRepository;
 
-        public PitchService(ICrudRepository<Pitch> pitchRepository, IMapper mapper)
+        public PitchService(ICrudRepository<Pitch> repository, IMapper mapper)
         {
-            this.pitchRepository = pitchRepository;
+            this.repository = repository;
             this.mapper = mapper;
         }
 
-        public void Update(PutPitchDto updatedPitchDto, long id)
+        public IEnumerable<BasePitchDto> GetAll()
         {
-            var pitchToUpdate = pitchRepository.GetById(id);
-            var updatedPitch = mapper.Map<PutPitchDto, Pitch>(updatedPitchDto, pitchToUpdate);
-            pitchRepository.Update(updatedPitch);
+            var pitchList = repository.GetAll();
+            return mapper.Map<IEnumerable<BasePitchDto>>(pitchList);
+        }
+
+        public void Save(BasePitchDto dto)
+        {
+            var pitchModel = mapper.Map<Pitch>(dto);
+            repository.Save(pitchModel);
+        }
+
+        public void Update(BasePitchDto updatedPitchDto, long id)
+        {
+            var pitchToUpdate = repository.GetById(id);
+            var updatedPitch = mapper.Map<PutPitchDto, Pitch>((PutPitchDto)updatedPitchDto, pitchToUpdate);
+            repository.Update(updatedPitch);
         }
 
         public Pitch GetById(long id)
         {
-            return pitchRepository.GetById(id);
+            return repository.GetById(id);
         }
     }
 }

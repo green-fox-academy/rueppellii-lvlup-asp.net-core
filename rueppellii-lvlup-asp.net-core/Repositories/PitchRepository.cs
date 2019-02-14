@@ -1,10 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using rueppellii_lvlup_asp.net_core.Data;
 using rueppellii_lvlup_asp.net_core.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace rueppellii_lvlup_asp.net_core.Repositories
 {
@@ -17,14 +14,9 @@ namespace rueppellii_lvlup_asp.net_core.Repositories
             this.context = context;
         }
 
-        public void Delete(long id)
-        {
-            throw new NotImplementedException();
-        }
-
         public IEnumerable<Pitch> GetAll()
         {
-            throw new NotImplementedException();
+            return context.Pitches;
         }
 
         public Pitch GetById(long id)
@@ -32,14 +24,15 @@ namespace rueppellii_lvlup_asp.net_core.Repositories
             return context.Pitches.Find(id);
         }
 
-        public void Save(Pitch entity)
-        {
-            throw new NotImplementedException();
-        }
-
         public void Update(Pitch pitch)
         {
             context.Update(pitch);
+            context.SaveChanges();
+        }
+
+        public void Save(Pitch entity)
+        {
+            context.Add(entity);
             context.SaveChanges();
         }
     }

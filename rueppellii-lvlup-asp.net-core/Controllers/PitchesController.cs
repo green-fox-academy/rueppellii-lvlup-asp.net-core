@@ -1,9 +1,9 @@
-﻿using AutoMapper;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using rueppellii_lvlup_asp.net_core.Dtos;
-using Microsoft.AspNetCore.Authorization;
 using rueppellii_lvlup_asp.net_core.Extensions;
 using rueppellii_lvlup_asp.net_core.Models;
+using rueppellii_lvlup_asp.net_core.Services.Interfaces;
 using rueppellii_lvlup_asp.net_core.Utility;
 using rueppellii_lvlup_asp.net_core.Services;
 
@@ -13,39 +13,30 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
     [Authorize]
     public class PitchesController : Controller
     {
-        private readonly IMapper mapper;
-        private readonly PitchService pitchService;
+        private readonly ICrudService<BasePitchDto> service;
 
-        public PitchesController(IMapper mapper, PitchService pitchService)
+        public PitchesController(ICrudService<BasePitchDto> service)
         {
-            this.pitchService = pitchService;
-            this.mapper = mapper;
+            this.service = service;
         }
 
         [HttpPost("pitches")]
         [Consumes("application/json")]
         public IActionResult Post(PostPitchDto postPitchDto)
         {
-            var pitchModel = mapper.Map<Pitch>(postPitchDto);
-
-            if (string.IsNullOrEmpty(Request.Headers["usertokenauth"]))
-            {
-                return StatusCode(401, new ErrorMessage("Unauthorized"));
-            }
             if (postPitchDto.IsAnyPropertyNull() || postPitchDto.IsAnyStringPropertyEmpty())
             {
                 return StatusCode(400, new ErrorMessage("One or more fields are empty."));
             }
+
+            service.Save(postPitchDto);
+
             return StatusCode(201, new ResponseMessage("Success"));
         }
 
         [HttpGet("pitches")]
         public IActionResult GetPitches()
         {
-            if (string.IsNullOrEmpty(Request.Headers["usertokenauth"]))
-            {
-                return StatusCode(401, new ErrorMessage("Unauthorized"));
-            }
             return Ok(DummyJsonResponseDto.getPitches);
         }
 
@@ -57,7 +48,7 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
             {
                 return StatusCode(400, new ErrorMessage("Please provide all fields"));
             }
-            pitchService.Update(putPitchDto, id);
+            service.Update(putPitchDto, id);
             return StatusCode(201, new ResponseMessage("Success"));
         }
     }
