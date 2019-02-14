@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using rueppellii_lvlup_asp.net_core.Dtos;
 using rueppellii_lvlup_asp.net_core.DTOs.BaseDtos;
 using rueppellii_lvlup_asp.net_core.Models;
 using rueppellii_lvlup_asp.net_core.Repositories;
@@ -21,7 +22,7 @@ namespace rueppellii_lvlup_asp.net_core.Services
         public IEnumerable<BasePitchDto> GetAll()
         {
             var pitchList = repository.GetAll();
-            return mapper.Map<IEnumerable<BasePitchDto>>(pitchList);
+            return mapper.Map<IEnumerable<PitchDto>>(pitchList);
         }
 
         public void Save(BasePitchDto dto)
