@@ -24,9 +24,9 @@ namespace rueppellii_lvlup_asp.net_core.Repositories
             return context.Pitches.Find(id);
         }
 
-        public void Update(Pitch pitch)
+        public void Update(Pitch entity)
         {
-            context.Update(pitch);
+            context.Update(entity);
             context.SaveChanges();
         }
 

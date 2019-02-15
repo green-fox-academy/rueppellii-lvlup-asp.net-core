@@ -20,7 +20,7 @@ namespace rueppellii_lvlup_asp.net_core.Repositories
 
         public Badge GetById(long id)
         {
-            throw new System.NotImplementedException();
+            return context.Badges.Find(id);
         }
 
         public void Save(Badge entity)
@@ -31,7 +31,8 @@ namespace rueppellii_lvlup_asp.net_core.Repositories
 
         public void Update(Badge entity)
         {
-            throw new System.NotImplementedException();
+            context.Badges.Update(entity);
+            context.SaveChanges();
         }
     }
 }

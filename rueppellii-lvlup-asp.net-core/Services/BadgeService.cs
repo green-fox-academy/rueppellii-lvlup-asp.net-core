@@ -25,15 +25,23 @@ namespace rueppellii_lvlup_asp.net_core.Services
             return mapper.Map<IEnumerable<BadgeDto>>(badgeList);
         }
 
+        public BadgeDto GetById(long id)
+        {
+            var badgeModel = repository.GetById(id);
+            return mapper.Map<BadgeDto>(badgeModel);
+        }
+
         public void Save(BadgeDto dto)
         {
             var badgeModel = mapper.Map<Badge>(dto);
             repository.Save(badgeModel);
         }
 
-        public void Update(BadgeDto dto, long id)
+        public void Update(BadgeDto updatedBadgeDto, long id)
         {
-            throw new System.NotImplementedException();
+            var badgeToUpdate = repository.GetById(id);
+            var updatedBadge= mapper.Map<BadgeDto, Badge>(updatedBadgeDto, badgeToUpdate);
+            repository.Update(updatedBadge);
         }
     }
 }

@@ -33,13 +33,15 @@ namespace rueppellii_lvlup_asp.net_core.Services
         public void Update(BasePitchDto updatedPitchDto, long id)
         {
             var pitchToUpdate = repository.GetById(id);
-            var updatedPitch = mapper.Map<PutPitchDto, Pitch>((PutPitchDto)updatedPitchDto, pitchToUpdate);
+            var updatedPitch = mapper.Map<BasePitchDto, Pitch>(updatedPitchDto, pitchToUpdate);
             repository.Update(updatedPitch);
         }
 
-        public Pitch GetById(long id)
+        public BasePitchDto GetById(long id)
         {
-            return repository.GetById(id);
+            var pitchModel = repository.GetById(id);
+            return mapper.Map<PitchDto>(pitchModel);
+
         }
     }
 }
