@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using rueppellii_lvlup_asp.net_core.Data;
+﻿using rueppellii_lvlup_asp.net_core.Data;
 using rueppellii_lvlup_asp.net_core.Models;
 using System.Collections.Generic;
 

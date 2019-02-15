@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using rueppellii_lvlup_asp.net_core.Dtos;
-using rueppellii_lvlup_asp.net_core.Models;
 using rueppellii_lvlup_asp.net_core.Services;
 using rueppellii_lvlup_asp.net_core.Services.Interfaces;
 
