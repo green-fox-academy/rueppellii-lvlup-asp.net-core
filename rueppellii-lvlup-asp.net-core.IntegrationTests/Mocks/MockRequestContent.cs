@@ -1,5 +1,4 @@
-﻿using rueppellii_lvlup_asp.net_core.Services;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Net.Http.Headers;
 
 namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Mocks
