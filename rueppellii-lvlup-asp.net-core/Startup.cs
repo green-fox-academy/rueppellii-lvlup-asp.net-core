@@ -31,6 +31,7 @@ namespace rueppellii_lvlup_asp.net_core
             services.AddRepositories();
             services.AddDbContext<LvlUpDbContext>(options =>
                 options.UseInMemoryDatabase("development"));
+            services.AddRepositories();
 
             var configuredMapper = new AutoMapper.MapperConfiguration(c => c.AddProfile(new ApplicationProfile())).CreateMapper();
             services.AddSingleton(configuredMapper);
@@ -45,6 +46,7 @@ namespace rueppellii_lvlup_asp.net_core
             services.AddRepositories();
             services.AddDbContext<LvlUpDbContext>(options =>
                 options.UseInMemoryDatabase("testing"));
+            services.AddRepositories();
 
             var configuredMapper = new AutoMapper.MapperConfiguration(c => c.AddProfile(new ApplicationProfile())).CreateMapper();
             services.AddSingleton(configuredMapper);
@@ -59,6 +61,7 @@ namespace rueppellii_lvlup_asp.net_core
             services.AddRepositories();
             services.AddDbContext<LvlUpDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddRepositories();
 
             var configuredMapper = new AutoMapper.MapperConfiguration(c => c.AddProfile(new ApplicationProfile())).CreateMapper();
             services.AddSingleton(configuredMapper);

@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace rueppellii_lvlup_asp.net_core.Configurations
 {
@@ -34,6 +36,12 @@ namespace rueppellii_lvlup_asp.net_core.Configurations
             {
                 options.ClientId = Configuration["google:clientID"];
                 options.ClientSecret = Configuration["google:clientSecret"];
+                options.Events.OnCreatingTicket = context =>
+                {
+                    var profilePic = context.User.SelectToken("image.url").ToString();
+                    context.Identity.AddClaim(new Claim("profilePic", profilePic));
+                    return Task.CompletedTask;
+                };
             });
         }
     }

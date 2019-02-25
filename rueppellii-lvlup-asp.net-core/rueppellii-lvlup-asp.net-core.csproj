@@ -4,7 +4,6 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     <RootNamespace>rueppellii_lvlup_asp.net_core</RootNamespace>
-    <UserSecretsId>1f0d2808455195f476302e8eb4ccf6ad</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
