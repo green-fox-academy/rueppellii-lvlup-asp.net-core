@@ -13,31 +13,72 @@ namespace rueppellii_lvlup_asp.net_core
     {
         public IConfiguration Configuration { get; }
 
-        public Startup(IConfiguration configuration)
+        public Startup(IHostingEnvironment env)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddEnvironmentVariables();
+
+            Configuration = builder.Build();
         }
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
-        public void ConfigureServices(IServiceCollection services)
+
+        public void ConfigureDevelopmentServices(IServiceCollection services)
         {
-            services.AddMvc();
             services.AddAuth(Configuration);
             services.AddServices();
+            services.AddRepositories();
             services.AddDbContext<LvlUpDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
-            services.AddMvc();
+                options.UseInMemoryDatabase("development"));
+            services.AddRepositories();
 
             var configuredMapper = new AutoMapper.MapperConfiguration(c => c.AddProfile(new ApplicationProfile())).CreateMapper();
             services.AddSingleton(configuredMapper);
+
+            services.AddMvc();
         }
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+
+        public void ConfigureTestingServices(IServiceCollection services)
+        {
+            services.AddAuth(Configuration);
+            services.AddServices();
+            services.AddRepositories();
+            services.AddDbContext<LvlUpDbContext>(options =>
+                options.UseInMemoryDatabase("testing"));
+            services.AddRepositories();
+
+            var configuredMapper = new AutoMapper.MapperConfiguration(c => c.AddProfile(new ApplicationProfile())).CreateMapper();
+            services.AddSingleton(configuredMapper);
+
+            services.AddMvc();
+        }
+
+        public void ConfigureProductionServices(IServiceCollection services)
+        {
+            services.AddAuth(Configuration);
+            services.AddServices();
+            services.AddRepositories();
+            services.AddDbContext<LvlUpDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddRepositories();
+
+            var configuredMapper = new AutoMapper.MapperConfiguration(c => c.AddProfile(new ApplicationProfile())).CreateMapper();
+            services.AddSingleton(configuredMapper);
+
+            services.AddMvc();
+        }
+
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, LvlUpDbContext context)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+            }
+
+            if (env.IsDevelopment() || env.IsTesting())
+            {
+                context.AddSeededData();
             }
 
             app.UseAuthentication();

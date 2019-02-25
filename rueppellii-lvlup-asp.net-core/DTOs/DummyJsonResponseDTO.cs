@@ -1,4 +1,4 @@
-﻿namespace rueppellii_lvlup_asp.net_core.DTOs
+﻿namespace rueppellii_lvlup_asp.net_core.Dtos
 {
     public static class DummyJsonResponseDto
     {

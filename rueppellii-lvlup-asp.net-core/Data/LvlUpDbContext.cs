@@ -40,7 +40,7 @@ namespace rueppellii_lvlup_asp.net_core.Data
                 .HasForeignKey(al => al.ArchetypeId);
             modelBuilder.Entity<ArchetypeLevel>()
                 .HasOne(al => al.Level)
-                .WithMany(l => l.archetypeLevels)
+                .WithMany(l => l.ArchetypeLevels)
                 .HasForeignKey(al => al.LevelId);
 
             modelBuilder.Entity<Pitch>()

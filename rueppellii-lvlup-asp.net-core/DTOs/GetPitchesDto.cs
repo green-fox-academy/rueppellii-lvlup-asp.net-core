@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace rueppellii_lvlup_asp.net_core.DTOs
+namespace rueppellii_lvlup_asp.net_core.Dtos
 {
-    public class GetPitchesDto
+    public class GetPitchesDto : BasePitchDto
     {
         public List<PitchDto> MyPitches { get; set; }
         public List<PitchDto> PitchesToReview { get; set; }

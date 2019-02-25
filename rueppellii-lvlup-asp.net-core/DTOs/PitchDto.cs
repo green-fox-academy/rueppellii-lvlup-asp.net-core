@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace rueppellii_lvlup_asp.net_core.DTOs
+namespace rueppellii_lvlup_asp.net_core.Dtos
 {
-    public class PitchDto
+    public class PitchDto : BasePitchDto
     {
         public DateTime Timestamp { get; set; }
         public string Username { get; set; }

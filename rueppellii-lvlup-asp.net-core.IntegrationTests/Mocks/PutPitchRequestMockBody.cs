@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using rueppellii_lvlup_asp.net_core.DTOs;
+using rueppellii_lvlup_asp.net_core.Dtos;
 
 namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Mocks
 {

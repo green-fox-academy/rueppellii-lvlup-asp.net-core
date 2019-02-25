@@ -1,8 +1,9 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using rueppellii_lvlup_asp.net_core.Containers;
-using rueppellii_lvlup_asp.net_core.DTOs;
+using rueppellii_lvlup_asp.net_core.Dtos;
 using rueppellii_lvlup_asp.net_core.IntegrationTests.Fixtures;
+using rueppellii_lvlup_asp.net_core.Models;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -16,7 +17,7 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.BadgesControl
     public class GetBadges
     {
         private readonly TestContext testContext;
-        private readonly ObjectContainer objectContainer;
+        private readonly BadgeDto[] list;
 
         public GetBadges(TestContext testContext)
         {
@@ -27,11 +28,13 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.BadgesControl
                     {
                         new Claim("test", "test")
                     }));
-
-            objectContainer = new ObjectContainer();
-            objectContainer.Badges[0] = new LevelDto() { Name = "Process Improver", Level = 2 };
-            objectContainer.Badges[1] = new LevelDto() { Name = "English Speaker", Level = 1 };
-            objectContainer.Badges[2] = new LevelDto() { Name = "Feedback Giver", Level = 1 };
+            list = new[] {
+                new BadgeDto() {Version = "v2.1", Name = "Process improve/initator", Tag = "general", Levels = new List<Level>()},
+                new BadgeDto() {Version = "v1.1", Name = "English speaker", Tag = "mentor", Levels = new List<Level>()},
+                new BadgeDto() {Version = "v1.1", Name = "Feedback receiver", Tag = "general", Levels = new List<Level>()},
+                new BadgeDto() {Version = "v1.1", Name = "Feedback giver", Tag = "marketing", Levels = new List<Level>()},
+                new BadgeDto() {Version = null, Name = "English speaker", Tag = null, Levels = new List<Level>()},
+            };
         }
 
         [Fact]
@@ -59,7 +62,7 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.BadgesControl
                 ContractResolver = new CamelCasePropertyNamesContractResolver()
             };
 
-            var json = JsonConvert.SerializeObject(objectContainer, serializerSettings);
+            var json = JsonConvert.SerializeObject(list, serializerSettings);
             var request = new HttpRequestMessage(HttpMethod.Get, "/badges");
             var response = await testContext.Client.SendAsync(request);
             Assert.Equal(json, response.Content.ReadAsStringAsync().Result);

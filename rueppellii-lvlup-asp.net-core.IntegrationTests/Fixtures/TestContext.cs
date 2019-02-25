@@ -1,6 +1,6 @@
-﻿using System;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
+using System;
 using System.Net.Http;
 using rueppellii_lvlup_asp.net_core.Services;
 using Microsoft.Extensions.DependencyInjection;

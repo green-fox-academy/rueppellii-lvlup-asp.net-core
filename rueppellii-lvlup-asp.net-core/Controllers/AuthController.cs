@@ -18,6 +18,7 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
         [HttpGet("/auth")]
         public IActionResult Auth()
         {
+            _authService.SaveUserIfNotExists(User);
             return Ok(_authService.GetToken(User.Claims));
         }
     }
