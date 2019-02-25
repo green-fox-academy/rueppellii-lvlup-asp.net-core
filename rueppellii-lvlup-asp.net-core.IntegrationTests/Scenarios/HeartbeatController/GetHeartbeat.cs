@@ -16,11 +16,12 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.HeartbeatCont
         public GetHeartbeat(TestContext testContext)
         {
             this.testContext = testContext;
-            testContext.Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", testContext.AuthService.GetToken(
-                new[]
-                {
-                    new Claim("test", "test")
-                }));
+            this.testContext.Client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", testContext.AuthService.GetToken(
+                    new[]
+                    {
+                        new Claim("test", "test")
+                    }));
         }
 
         [Fact]
@@ -36,7 +37,7 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.HeartbeatCont
         public async Task Should_ReturnError()
         {
             var request = new HttpRequestMessage(HttpMethod.Get, "/heartbeat");
-            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", null);
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", string.Empty);
             var response = await testContext.Client.SendAsync(request);
             Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
         }

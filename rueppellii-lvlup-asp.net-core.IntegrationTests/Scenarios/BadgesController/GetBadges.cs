@@ -54,8 +54,10 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.BadgesControl
         [Fact]
         public async Task Should_ReturnBadges()
         {
-            var serializerSettings = new JsonSerializerSettings();
-            serializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            var serializerSettings = new JsonSerializerSettings
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            };
 
             var json = JsonConvert.SerializeObject(objectContainer, serializerSettings);
             var request = new HttpRequestMessage(HttpMethod.Get, "/badges");

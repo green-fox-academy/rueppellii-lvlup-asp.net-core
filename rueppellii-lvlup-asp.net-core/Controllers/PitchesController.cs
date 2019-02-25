@@ -25,10 +25,6 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
         {
             var pitchModel = mapper.Map<Pitch>(postPitchDto);
 
-            if (string.IsNullOrEmpty(Request.Headers["usertokenauth"]))
-            {
-                return StatusCode(401, new ErrorMessage("Unauthorized"));
-            }
             if (postPitchDto.IsAnyPropertyNull() || postPitchDto.IsAnyStringPropertyEmpty())
             {
                 return StatusCode(400, new ErrorMessage("One or more fields are empty."));
@@ -39,10 +35,6 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
         [HttpGet("pitches")]
         public IActionResult GetPitches()
         {
-            if (string.IsNullOrEmpty(Request.Headers["usertokenauth"]))
-            {
-                return StatusCode(401, new ErrorMessage("Unauthorized"));
-            }
             return Ok(DummyJsonResponseDto.getPitches);
         }
 
@@ -51,11 +43,6 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
         public IActionResult Put(PutPitchDto putPitchDto)
         {
             var pitchModel = mapper.Map<Pitch>(putPitchDto);
-
-            if (string.IsNullOrEmpty(Request.Headers["usertokenauth"]))
-            {
-                return StatusCode(401, new ErrorMessage("Unauthorized"));
-            }
 
             if (putPitchDto.IsAnyPropertyNull() || putPitchDto.IsAnyStringPropertyEmpty())
             {
