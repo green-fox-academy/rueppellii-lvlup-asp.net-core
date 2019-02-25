@@ -1,6 +1,8 @@
 ﻿using rueppellii_lvlup_asp.net_core.IntegrationTests.Fixtures;
 using rueppellii_lvlup_asp.net_core.IntegrationTests.Mocks;
 using System.Net;
+using System.Net.Http.Headers;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -13,14 +15,18 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.AdminControll
 
         public PostAdd(TestContext testContext)
         {
-            this._testContext = testContext;
+            _testContext = testContext;
+            _testContext.Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _testContext.AuthService.GetToken(
+                new[]
+                {
+                    new Claim("test", "test")
+                }));
         }
-        
+
         [Fact]
         public async Task Should_ReturnCreated()
         {
-            var content = new MockRequestContent(_testContext.AuthService,
-                new BadgeDtoMock().SetCorrectBody()).SetContentTypeJson().SetJwt();
+            var content = new MockRequestContent(_testContext.AuthService, new BadgeDtoMock().SetCorrectBody()).SetContentTypeJson();
             var response = await _testContext.Client.PostAsync("/admin/add", content);
             Assert.Equal(HttpStatusCode.Created, response.StatusCode);
             Assert.Equal("{\"message\":\"Success\"}", response.Content.ReadAsStringAsync().Result);
@@ -29,8 +35,7 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.AdminControll
         [Fact]
         public async Task Should_ReturnUnsupportedMediaType()
         {
-            var content = new MockRequestContent(_testContext.AuthService,
-                new BadgeDtoMock().SetCorrectBody()).SetJwt();
+            var content = new MockRequestContent(_testContext.AuthService, new BadgeDtoMock().SetCorrectBody());
             var response = await _testContext.Client.PostAsync("/admin/add", content);
             Assert.Equal(HttpStatusCode.UnsupportedMediaType, response.StatusCode);
 
@@ -41,26 +46,25 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.AdminControll
         [Fact]
         public async Task Should_ReturnUnauthorised()
         {
-            var content = new MockRequestContent(_testContext.AuthService,
-                new BadgeDtoMock().SetCorrectBody()).SetContentTypeJson();
+            _testContext.Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "invalidJwt");
+            var content = new MockRequestContent(_testContext.AuthService, new BadgeDtoMock().SetCorrectBody()).SetContentTypeJson();
             var response = await _testContext.Client.PostAsync("/admin/add", content);
             Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
 
-            response = await _testContext.Client.PostAsync("/admin/add", content.SetEmptyJwt());
+            _testContext.Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", null);
+            response = await _testContext.Client.PostAsync("/admin/add", content);
             Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
         }
 
         [Fact]
         public async Task Should_ReturnBadRequest()
         {
-            var content = new MockRequestContent(_testContext.AuthService,
-                new BadgeDtoMock().SetMissingBody()).SetContentTypeJson().SetJwt();
+            var content = new MockRequestContent(_testContext.AuthService, new BadgeDtoMock().SetMissingBody()).SetContentTypeJson();
             var response = await _testContext.Client.PostAsync("/admin/add", content);
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
             Assert.Equal("{\"error\":\"Please provide all fields\"}", response.Content.ReadAsStringAsync().Result);
 
-            content = new MockRequestContent(_testContext.AuthService,
-                new BadgeDtoMock().SetEmptyStringsBody()).SetContentTypeJson().SetJwt();
+            content = new MockRequestContent(_testContext.AuthService, new BadgeDtoMock().SetEmptyStringsBody()).SetContentTypeJson();
             response = await _testContext.Client.PostAsync("/admin/add", content);
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
             Assert.Equal("{\"error\":\"Please provide all fields\"}", response.Content.ReadAsStringAsync().Result);

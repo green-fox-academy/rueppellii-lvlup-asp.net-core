@@ -17,13 +17,15 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Fixtures
 
         public TestContext()
         {
-            var builder = new WebHostBuilder()
-            .UseEnvironment("Testing")
-            .UseStartup<Startup>();
-
             Configuration = new ConfigurationBuilder()
                 .AddEnvironmentVariables()
                 .Build();
+
+            var builder = new WebHostBuilder()
+            .UseEnvironment("Testing")
+            .UseStartup<Startup>()
+            .UseConfiguration(Configuration);
+
             server = new TestServer(builder);
             Client = server.CreateClient();
             AuthService = server.Host.Services.GetService<IAuthService>();
