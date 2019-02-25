@@ -4,22 +4,21 @@ using System.Collections.Generic;
 
 namespace rueppellii_lvlup_asp.net_core.Repositories
 {
-    public class PitchRepository : ICrudRepository<Pitch>
+    public class BadgeRespository : ICrudRepository<Badge>
     {
         private readonly LvlUpDbContext context;
 
-        public PitchRepository(LvlUpDbContext context)
+        public BadgeRespository(LvlUpDbContext context)
         {
             this.context = context;
         }
 
-        public IEnumerable<Pitch> GetAll()
+        public IEnumerable<Badge> GetAll()
         {
-            return context.Pitches;
+            return context.Badges;
         }
 
-
-        public void Save(Pitch entity)
+        public void Save(Badge entity)
         {
             context.Add(entity);
             context.SaveChanges();
