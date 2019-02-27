@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using rueppellii_lvlup_asp.net_core.DTOs.BaseDtos;
+using System.Collections.Generic;
 
 namespace rueppellii_lvlup_asp.net_core.Dtos
 {

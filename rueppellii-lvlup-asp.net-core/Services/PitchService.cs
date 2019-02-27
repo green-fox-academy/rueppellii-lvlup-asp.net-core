@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using rueppellii_lvlup_asp.net_core.Dtos;
+using rueppellii_lvlup_asp.net_core.DTOs.BaseDtos;
 using rueppellii_lvlup_asp.net_core.Models;
 using rueppellii_lvlup_asp.net_core.Repositories;
 using rueppellii_lvlup_asp.net_core.Services.Interfaces;
