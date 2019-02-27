@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using rueppellii_lvlup_asp.net_core.Dtos;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using rueppellii_lvlup_asp.net_core.Dtos;
 using rueppellii_lvlup_asp.net_core.Extensions;
 using rueppellii_lvlup_asp.net_core.Models;
+using rueppellii_lvlup_asp.net_core.Services.Interfaces;
 using rueppellii_lvlup_asp.net_core.Utility;
 using rueppellii_lvlup_asp.net_core.DTOs.BaseDtos;
 using rueppellii_lvlup_asp.net_core.Services.Interfaces;
@@ -13,9 +14,9 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
     [Authorize]
     public class PitchesController : Controller
     {
-        private readonly ICrudService<BasePitchDto, Pitch> service;
+        private readonly ICrudService<BasePitchDto> service;
 
-        public PitchesController(ICrudService<BasePitchDto, Pitch> service)
+        public PitchesController(ICrudService<BasePitchDto> service)
         {
             this.service = service;
         }
@@ -28,6 +29,9 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
             {
                 return StatusCode(400, new ErrorMessage("One or more fields are empty."));
             }
+
+            service.Save(postPitchDto);
+
             return StatusCode(201, new ResponseMessage("Success"));
         }
 

@@ -24,6 +24,7 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
         [Consumes("application/json")]
         public IActionResult Add(BadgeDto badgeDto)
         {
+            var badgeModel = mapper.Map<Badge>(badgeDto);
             if (badgeDto.IsAnyPropertyNull() || badgeDto.IsAnyStringPropertyEmpty())
             {
                 return StatusCode(400, new ErrorMessage("Please provide all fields"));

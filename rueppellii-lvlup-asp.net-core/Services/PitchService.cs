@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace rueppellii_lvlup_asp.net_core.Services
 {
-    public class PitchService : ICrudService<BasePitchDto, Pitch>
+    public class PitchService : ICrudService<BasePitchDto>
     {
         private readonly ICrudRepository<Pitch> repository;
         private readonly IMapper mapper;
@@ -22,7 +22,7 @@ namespace rueppellii_lvlup_asp.net_core.Services
         public IEnumerable<BasePitchDto> GetAll()
         {
             var pitchList = repository.GetAll();
-            return mapper.Map<IEnumerable<PitchDto>>(pitchList);
+            return mapper.Map<IEnumerable<BasePitchDto>>(pitchList);
         }
 
         public void Save(BasePitchDto dto)

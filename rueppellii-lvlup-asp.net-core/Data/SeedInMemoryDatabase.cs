@@ -13,28 +13,36 @@ namespace rueppellii_lvlup_asp.net_core.Data
                 new User
                 {
                     Name = "test.admin",
-                    TokenAuth = "testadmin:token",
+                    GivenName ="test",
+                    Surname ="admin",
+                    Email ="test.admin@test.com",
                     Pic = "base64://dwabi24632gdkje8549632...",
                     UserLevels = null
                 },
                 new User
                 {
                     Name = "balazs.barna",
-                    TokenAuth = "verysecuretokendjawuidguowa76795432",
+                    GivenName ="balazs",
+                    Surname ="barna",
+                    Email ="balazs.barna@test.com",
                     Pic = "base64://dwabi24632gdkje8549632...",
                     UserLevels = null
                 },
                 new User
                 {
                     Name = "sandor.vass",
-                    TokenAuth = "sandor542ghd237tiguk3",
+                    GivenName ="sandor",
+                    Surname ="vass",
+                    Email ="sandor.vass@test.com",
                     Pic = "base64://dwabi24632gdkje8549632...",
                     UserLevels = null
                 },
                 new User
                 {
                     Name = "alajos.katona",
-                    TokenAuth = "verysecuretokendnj32t7853t2iugkjds",
+                    GivenName ="alajos",
+                    Surname ="katona",
+                    Email ="alajos.katona@test.com",
                     Pic = "base64://dwabi24632gdkje8549632...",
                     UserLevels = null
                 }

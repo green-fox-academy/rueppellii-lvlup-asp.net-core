@@ -7,7 +7,7 @@ using rueppellii_lvlup_asp.net_core.Services.Interfaces;
 
 namespace rueppellii_lvlup_asp.net_core.Services
 {
-    public class BadgeService : ICrudService<BadgeDto, Badge>
+    public class BadgeService : ICrudService<BadgeDto>
     {
         private readonly ICrudRepository<Badge> repository;
         private readonly IMapper mapper;
