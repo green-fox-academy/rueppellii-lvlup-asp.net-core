@@ -16,8 +16,8 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.PitchesContro
     public class PostPitch
     {
         private readonly TestContext testContext;
-        private readonly PostPitchDto emptyDto;
-        private readonly PostPitchDto validDto;
+        private readonly GetPitchDto emptyDto;
+        private readonly GetPitchDto validDto;
 
         public PostPitch(TestContext testContext)
         {
@@ -28,14 +28,14 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.PitchesContro
                     {
                         new Claim("test", "test")
                     }));
-            emptyDto = new PostPitchDto();
-            validDto = new PostPitchDto()
+            emptyDto = new GetPitchDto();
+            validDto = new GetPitchDto()
             {
                 BadgeName = "English speaker",
                 OldLVL = 2,
-                PitchedLVL = 3,
+                PitchedLevel = 3,
                 PitchMessage = "Hello World! My English is bloody gorgeous.",
-                Holders = new List<ReviewerDto>()
+                Reviewers = new List<ReviewerDto>()
                 {
                     new ReviewerDto
                     {

@@ -9,13 +9,13 @@ namespace rueppellii_lvlup_asp.net_core.Configurations
     {
         public ApplicationProfile()
         {
-            CreateMap<Pitch, PitchDto>()
+            CreateMap<Pitch, GetPitchDto>()
                 .ForMember(dto => dto.Username, opt => opt.MapFrom(src => src.User.Name))
                 .ForMember(dto => dto.BadgeName, opt => opt.MapFrom(src => src.Badge.Name))
                 .ForMember(dto => dto.Holders, opt => opt.MapFrom(src => src.Reviews))
                 .ReverseMap();
-            CreateMap<Pitch, PostPitchDto>()
-                .ForMember(dto => dto.PitchedLVL, opt => opt.MapFrom(src => src.PitchedLevel))
+            CreateMap<Pitch, GetPitchDto>()
+                .ForMember(dto => dto.PitchedLevel, opt => opt.MapFrom(src => src.PitchedLevel))
                 .ForMember(dto => dto.OldLVL, opt => opt.MapFrom(src => src.OldLevel))
                 .ForMember(dto => dto.BadgeName, opt => opt.MapFrom(src => src.Badge.Name))
                 .ReverseMap();

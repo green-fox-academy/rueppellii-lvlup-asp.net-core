@@ -2,11 +2,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using rueppellii_lvlup_asp.net_core.Dtos;
 using rueppellii_lvlup_asp.net_core.Extensions;
-using rueppellii_lvlup_asp.net_core.Models;
 using rueppellii_lvlup_asp.net_core.Services.Interfaces;
 using rueppellii_lvlup_asp.net_core.Utility;
 using rueppellii_lvlup_asp.net_core.DTOs.BaseDtos;
-using rueppellii_lvlup_asp.net_core.Services.Interfaces;
 
 namespace rueppellii_lvlup_asp.net_core.Controllers
 {
@@ -23,7 +21,7 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
 
         [HttpPost("pitch")]
         [Consumes("application/json")]
-        public IActionResult Post(PostPitchDto postPitchDto)
+        public IActionResult Post(GetPitchDto postPitchDto)
         {
             if (postPitchDto.IsAnyPropertyNull() || postPitchDto.IsAnyStringPropertyEmpty())
             {
