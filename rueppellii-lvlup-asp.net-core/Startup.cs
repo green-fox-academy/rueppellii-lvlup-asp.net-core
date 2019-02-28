@@ -5,11 +5,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using rueppellii_lvlup_asp.net_core.Configurations;
 using rueppellii_lvlup_asp.net_core.Data;
-using rueppellii_lvlup_asp.net_core.Dtos;
-using rueppellii_lvlup_asp.net_core.Models;
-using rueppellii_lvlup_asp.net_core.Repositories;
-using rueppellii_lvlup_asp.net_core.Services;
-using rueppellii_lvlup_asp.net_core.Utility;
 
 namespace rueppellii_lvlup_asp.net_core
 {
@@ -33,7 +28,6 @@ namespace rueppellii_lvlup_asp.net_core
             services.AddMvc();
             services.AddRepositories();
             services.AddServices();
-            services.AddRepositories();
             services.AddDbContext<LvlUpDbContext>(options =>
                 options.UseInMemoryDatabase("development"));
             services.AddAuth(Configuration);
@@ -47,7 +41,6 @@ namespace rueppellii_lvlup_asp.net_core
             services.AddMvc();
             services.AddRepositories();
             services.AddServices();
-            services.AddRepositories();
             services.AddDbContext<LvlUpDbContext>(options =>
                 options.UseInMemoryDatabase("testing"));
             services.AddAuth(Configuration);
@@ -61,7 +54,6 @@ namespace rueppellii_lvlup_asp.net_core
             services.AddMvc();
             services.AddRepositories();
             services.AddServices();
-            services.AddRepositories();
             services.AddDbContext<LvlUpDbContext>(options =>
                 options.UseSqlServer(Configuration["LvlUpConnection"]));
             services.AddAuth(Configuration);

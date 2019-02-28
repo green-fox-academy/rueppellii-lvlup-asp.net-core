@@ -3,7 +3,7 @@ using rueppellii_lvlup_asp.net_core.Models;
 using System.Linq;
 using System.Security.Claims;
 
-namespace rueppellii_lvlup_asp.net_core.Utility
+namespace rueppellii_lvlup_asp.net_core.Configurations
 {
     public class ApplicationProfile : AutoMapper.Profile
     {
