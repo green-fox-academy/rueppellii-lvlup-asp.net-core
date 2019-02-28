@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.TestHost;
 using System;
 using System.Net.Http;
-using rueppellii_lvlup_asp.net_core.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
+using rueppellii_lvlup_asp.net_core.Services.Interfaces;
 
 namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Fixtures
 {

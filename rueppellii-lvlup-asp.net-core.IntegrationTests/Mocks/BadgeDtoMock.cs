@@ -14,7 +14,6 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Mocks
             this.Tag = "general";
             this.Levels = new List<Level>() { new Level
                 {
-                    Id = 1,
                     BadgeLevel = 1,
                     Description = "abc",
                 }};

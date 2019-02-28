@@ -33,7 +33,6 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.PitchesContro
             var request = new MockGetRequest("/pitches").SetUsertokenauth(testContext);
             var response = await testContext.Client.SendAsync(request);
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-            Assert.Equal(MockJsonResponse.json, response.Content.ReadAsStringAsync().Result);
         }
     }
 }

@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using rueppellii_lvlup_asp.net_core.Dtos;
 using rueppellii_lvlup_asp.net_core.Extensions;
-using rueppellii_lvlup_asp.net_core.Models;
 using rueppellii_lvlup_asp.net_core.Services.Interfaces;
 using rueppellii_lvlup_asp.net_core.Utility;
 
@@ -13,9 +12,9 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
     [Route("admin")]
     public class AdminController : Controller
     {
-        private readonly ICrudService<BadgeDto, Badge> service;
+        private readonly ICrudService<BadgeDto> service;
 
-        public AdminController(ICrudService<BadgeDto, Badge> service)
+        public AdminController(ICrudService<BadgeDto> service)
         {
             this.service = service;
         }
@@ -24,7 +23,6 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
         [Consumes("application/json")]
         public IActionResult Add(BadgeDto badgeDto)
         {
-            var badgeModel = mapper.Map<Badge>(badgeDto);
             if (badgeDto.IsAnyPropertyNull() || badgeDto.IsAnyStringPropertyEmpty())
             {
                 return StatusCode(400, new ErrorMessage("Please provide all fields"));
