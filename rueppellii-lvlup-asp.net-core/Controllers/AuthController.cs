@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using rueppellii_lvlup_asp.net_core.Services;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
+using rueppellii_lvlup_asp.net_core.Services.Interfaces;
 
 namespace rueppellii_lvlup_asp.net_core.Controllers
 {
