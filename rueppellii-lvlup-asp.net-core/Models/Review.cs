@@ -12,7 +12,6 @@ namespace rueppellii_lvlup_asp.net_core.Models
 
         [MaxLength(500)]
         public string Message { get; set; }
-
         public bool PitchStatus { get; set; }
 
         public User User { get; set; }

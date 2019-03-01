@@ -21,14 +21,14 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
 
         [HttpPost("pitch")]
         [Consumes("application/json")]
-        public IActionResult Post(GetPitchDto postPitchDto)
+        public IActionResult Post(PitchDto pitchDto)
         {
-            if (postPitchDto.IsAnyPropertyNull() || postPitchDto.IsAnyStringPropertyEmpty())
+            if (pitchDto.IsAnyPropertyNull() || pitchDto.IsAnyStringPropertyEmpty())
             {
                 return StatusCode(400, new ErrorMessage("One or more fields are empty."));
             }
 
-            service.Save(postPitchDto);
+            service.Save(pitchDto);
 
             return StatusCode(201, new ResponseMessage("Success"));
         }
@@ -41,9 +41,9 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
 
         [HttpPut("pitch")]
         [Consumes("application/json")]
-        public IActionResult Put(PutPitchDto putPitchDto)
+        public IActionResult Put(PitchDto pitchDto)
         {
-            if (putPitchDto.IsAnyPropertyNull() || putPitchDto.IsAnyStringPropertyEmpty())
+            if (pitchDto.IsAnyPropertyNull() || pitchDto.IsAnyStringPropertyEmpty())
             {
                 return StatusCode(400, new ErrorMessage("Please provide all fields"));
             }
