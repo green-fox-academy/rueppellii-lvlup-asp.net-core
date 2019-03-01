@@ -1,5 +1,7 @@
-﻿using System;
+﻿using rueppellii_lvlup_asp.net_core.IntegrationTests.Fixtures;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Security.Claims;
 
 namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Mocks
 {
@@ -10,15 +12,19 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Mocks
         {
         }
 
-        public MockGetRequest SetUsertokenauth()
+        public MockGetRequest SetUsertokenauth(TestContext testContext)
         {
-            this.Headers.Add("usertokenauth", "<generated UUID>");
+            Headers.Authorization = new AuthenticationHeaderValue("Bearer", testContext.AuthService.GetToken(
+                new[]
+                {
+                    new Claim("test", "test")
+                }));
             return this;
         }
 
         public MockGetRequest SetEmptyUsertokenauth()
         {
-            this.Headers.Add("usertokenauth", String.Empty);
+            Headers.Authorization = new AuthenticationHeaderValue("Bearer", string.Empty);
             return this;
         }
 

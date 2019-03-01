@@ -13,29 +13,26 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.PitchesContro
 
         public GetPitches(TestContext testContext)
         {
-            this.testContext = testContext;                
+            this.testContext = testContext;
         }
-       
+
         [Fact]
         public async Task Should_ReturnUnauthorised()
         {
             var request = new MockGetRequest("/pitches").SetNoUsertokenauth();
             var response = await testContext.Client.SendAsync(request);
             Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
-            Assert.Equal("{\"error\":\"Unauthorized\"}", response.Content.ReadAsStringAsync().Result);
 
             request.SetEmptyUsertokenauth();
             Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
-            Assert.Equal("{\"error\":\"Unauthorized\"}", response.Content.ReadAsStringAsync().Result);
         }
 
         [Fact]
         public async Task Should_ReturnOK()
         {
-            var request = new MockGetRequest("/pitches").SetUsertokenauth();
+            var request = new MockGetRequest("/pitches").SetUsertokenauth(testContext);
             var response = await testContext.Client.SendAsync(request);
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-            Assert.Equal(Mocks.MockJsonResponse.json, response.Content.ReadAsStringAsync().Result);
         }
     }
 }

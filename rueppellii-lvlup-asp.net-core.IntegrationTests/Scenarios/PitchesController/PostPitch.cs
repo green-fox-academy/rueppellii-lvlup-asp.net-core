@@ -4,6 +4,8 @@ using rueppellii_lvlup_asp.net_core.IntegrationTests.Fixtures;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
@@ -20,6 +22,12 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.PitchesContro
         public PostPitch(TestContext testContext)
         {
             this.testContext = testContext;
+            this.testContext.Client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", testContext.AuthService.GetToken(
+                    new[]
+                    {
+                        new Claim("test", "test")
+                    }));
             emptyDto = new PostPitchDto();
             validDto = new PostPitchDto()
             {
@@ -43,7 +51,6 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.PitchesContro
             var httpContent = new StringContent("Random string text");
             var response = await testContext.Client.PostAsync("/pitch", httpContent);
             Assert.Equal(HttpStatusCode.UnsupportedMediaType, response.StatusCode);
-            Assert.Equal("", response.Content.ReadAsStringAsync().Result);
         }
 
         [Fact]
@@ -51,9 +58,9 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.PitchesContro
         {
             var json = JsonConvert.SerializeObject(emptyDto);
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+            testContext.Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", string.Empty);
             var response = await testContext.Client.PostAsync("/pitch", httpContent);
             Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
-            Assert.Equal("{\"error\":\"Unauthorized\"}", response.Content.ReadAsStringAsync().Result);
         }
 
         [Fact]
@@ -61,7 +68,6 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.PitchesContro
         {
             var json = JsonConvert.SerializeObject(emptyDto);
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
-            httpContent.Headers.Add("usertokenauth", "<generated UUID>");
             var response = await testContext.Client.PostAsync("/pitch", httpContent);
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
             Assert.Equal("{\"error\":\"One or more fields are empty.\"}", response.Content.ReadAsStringAsync().Result);
@@ -72,7 +78,6 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.PitchesContro
         {
             var json = JsonConvert.SerializeObject(validDto);
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
-            httpContent.Headers.Add("usertokenauth", "<generated UUID>");
             var response = await testContext.Client.PostAsync("/pitch", httpContent);
             Assert.Equal(HttpStatusCode.Created, response.StatusCode);
             Assert.Equal("{\"message\":\"Success\"}", response.Content.ReadAsStringAsync().Result);
