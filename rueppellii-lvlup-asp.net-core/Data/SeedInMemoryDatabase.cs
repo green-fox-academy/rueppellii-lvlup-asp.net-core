@@ -285,7 +285,6 @@ namespace rueppellii_lvlup_asp.net_core.Data
                 new Pitch
                 {
                     Timestamp = DateTime.UtcNow,
-                    OldLevel = 2,
                     PitchedLevel = 3,
                     PitchMessage = "I was working abroad for six years, so I can speak english very well. Pls improve my badge level to 3.",
                     Reviews = null,
@@ -296,7 +295,6 @@ namespace rueppellii_lvlup_asp.net_core.Data
                 new Pitch
                 {
                     Timestamp = DateTime.UtcNow.AddHours(-12),
-                    OldLevel = 1,
                     PitchedLevel = 5,
                     PitchMessage = "I can see through processes and propose relevant and doable ideas for improvement. I can create improved definition / accountibility / documentation and communicate it to the team",
                     Reviews = null,
@@ -307,7 +305,6 @@ namespace rueppellii_lvlup_asp.net_core.Data
                 new Pitch
                 {
                     Timestamp = DateTime.UtcNow.AddDays(-4),
-                    OldLevel = 1,
                     PitchedLevel = 3,
                     PitchMessage = "I proactively seek feedback on projects or my general work and choose how to integrate it.",
                     Reviews = null,
@@ -318,7 +315,6 @@ namespace rueppellii_lvlup_asp.net_core.Data
                 new Pitch
                 {
                     Timestamp = DateTime.UtcNow.AddMinutes(-52),
-                    OldLevel = 4,
                     PitchedLevel = 5,
                     PitchMessage = "When I have a problem, I usually let you know by expressing it clearly instead of keeping to myself",
                     Reviews = null,
@@ -329,7 +325,6 @@ namespace rueppellii_lvlup_asp.net_core.Data
                 new Pitch
                 {
                     Timestamp = DateTime.UtcNow.AddMonths(-3),
-                    OldLevel = 2,
                     PitchedLevel = 3,
                     PitchMessage = "I improved in React, Redux, basic JS, NodeJS, Express and in LowDB, pls give me more money",
                     Reviews = null,
@@ -340,7 +335,6 @@ namespace rueppellii_lvlup_asp.net_core.Data
                 new Pitch
                 {
                     Timestamp = DateTime.UtcNow,
-                    OldLevel = 3,
                     PitchedLevel = 4,
                     PitchMessage = "I am confident in describing my feelings and needs considering the feedback receivers feelings and suggest a constructive solution",
                     Reviews = null,

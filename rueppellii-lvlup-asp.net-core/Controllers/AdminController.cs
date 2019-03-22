@@ -12,9 +12,9 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
     [Route("admin")]
     public class AdminController : Controller
     {
-        private readonly ICrudService<BadgeDto> service;
+        private readonly IBadgeService service;
 
-        public AdminController(ICrudService<BadgeDto> service)
+        public AdminController(IBadgeService service)
         {
             this.service = service;
         }

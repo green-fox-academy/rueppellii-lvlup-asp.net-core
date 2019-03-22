@@ -3,8 +3,8 @@
 namespace rueppellii_lvlup_asp.net_core.Services.Interfaces
 
 {
-    public interface IReadService<U> where U : class
+    public interface IReadService<T> where T : class
     {
-        IEnumerable<U> GetAll();
+        IEnumerable<T> GetAll();
     }
 }

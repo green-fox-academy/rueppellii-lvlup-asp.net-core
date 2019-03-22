@@ -10,9 +10,9 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
     [Authorize]
     public class BadgesController : Controller
     {
-        private readonly ICrudService<BadgeDto> service;
+        private readonly IBadgeService service;
 
-        public BadgesController(ICrudService<BadgeDto> service)
+        public BadgesController(IBadgeService service)
         {
             this.service = service;
         }

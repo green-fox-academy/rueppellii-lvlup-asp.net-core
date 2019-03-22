@@ -1,8 +1,6 @@
-﻿using rueppellii_lvlup_asp.net_core.Dtos.BaseDtos;
-
-namespace rueppellii_lvlup_asp.net_core.Dtos
+﻿namespace rueppellii_lvlup_asp.net_core.Dtos
 {
-    public class LevelDto : BaseLevelDto
+    public class LevelDto
     {
         public string Name { get; set; }
         public int Level { get; set; }

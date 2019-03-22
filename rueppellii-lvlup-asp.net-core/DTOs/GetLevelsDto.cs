@@ -1,9 +1,8 @@
-﻿using rueppellii_lvlup_asp.net_core.Dtos.BaseDtos;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace rueppellii_lvlup_asp.net_core.Dtos
 {
-    public class GetLevelsDto : BaseLevelDto
+    public class GetLevelsDto
     {
         public List<LevelDto> Badges { get; set; }
     }

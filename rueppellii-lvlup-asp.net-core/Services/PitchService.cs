@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using rueppellii_lvlup_asp.net_core.Dtos;
-using rueppellii_lvlup_asp.net_core.DTOs.BaseDtos;
 using rueppellii_lvlup_asp.net_core.Models;
 using rueppellii_lvlup_asp.net_core.Repositories;
 using rueppellii_lvlup_asp.net_core.Services.Interfaces;
@@ -8,7 +7,7 @@ using System.Collections.Generic;
 
 namespace rueppellii_lvlup_asp.net_core.Services
 {
-    public class PitchService : ICrudService<BasePitchDto>
+    public class PitchService : IPitchService
     {
         private readonly ICrudRepository<Pitch> repository;
         private readonly IMapper mapper;
@@ -19,13 +18,13 @@ namespace rueppellii_lvlup_asp.net_core.Services
             this.mapper = mapper;
         }
 
-        public IEnumerable<BasePitchDto> GetAll()
+        public IEnumerable<GetPitchDto> GetAll()
         {
             var pitchList = repository.GetAll();
-            return mapper.Map<IEnumerable<BasePitchDto>>(pitchList);
+            return mapper.Map<IEnumerable<GetPitchDto>>(pitchList);
         }
 
-        public void Save(BasePitchDto dto)
+        public void Save(PitchDto dto)
         {
             var pitchModel = mapper.Map<Pitch>(dto);
             repository.Save(pitchModel);

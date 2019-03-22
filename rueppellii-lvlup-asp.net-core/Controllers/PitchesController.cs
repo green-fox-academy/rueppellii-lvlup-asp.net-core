@@ -4,7 +4,6 @@ using rueppellii_lvlup_asp.net_core.Dtos;
 using rueppellii_lvlup_asp.net_core.Extensions;
 using rueppellii_lvlup_asp.net_core.Services.Interfaces;
 using rueppellii_lvlup_asp.net_core.Utility;
-using rueppellii_lvlup_asp.net_core.DTOs.BaseDtos;
 
 namespace rueppellii_lvlup_asp.net_core.Controllers
 {
@@ -12,9 +11,9 @@ namespace rueppellii_lvlup_asp.net_core.Controllers
     [Authorize]
     public class PitchesController : Controller
     {
-        private readonly ICrudService<BasePitchDto> service;
+        private readonly IPitchService service;
 
-        public PitchesController(ICrudService<BasePitchDto> service)
+        public PitchesController(IPitchService service)
         {
             this.service = service;
         }

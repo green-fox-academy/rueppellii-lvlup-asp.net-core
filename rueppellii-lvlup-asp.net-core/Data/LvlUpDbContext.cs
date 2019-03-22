@@ -44,8 +44,11 @@ namespace rueppellii_lvlup_asp.net_core.Data
                 .HasForeignKey(al => al.LevelId);
 
             modelBuilder.Entity<Pitch>()
-                .Property(p => p.Timestamp)
-                .HasDefaultValue(DateTime.Now);
+                .HasOne(p => p.User)
+                .WithMany(u => u.Pitches)
+                //.Property(p => p.Timestamp)
+                //.HasDefaultValue(DateTime.Now)
+                ;
         }
     }
 }
