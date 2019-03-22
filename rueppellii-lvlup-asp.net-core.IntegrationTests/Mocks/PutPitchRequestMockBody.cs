@@ -3,22 +3,20 @@ using rueppellii_lvlup_asp.net_core.Dtos;
 
 namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Mocks
 {
-    class PutPitchRequestMockBody : PutPitchDto
+    class PutPitchRequestMockBody : PitchDto
     {
         public string SetCorrectBody()
         {
-            this.PitcherName = "placeholder";
             this.BadgeName = "placeholder";
-            this.NewStatus = 1;
-            this.NewMessage = "placeholder";
+            this.PitchedLevel = 1;
+            this.PitchMessage = "placeholder";
             return JsonConvert.SerializeObject(this);
         }
         public string SetEmptyStringsBody()
         {
-            this.PitcherName = string.Empty;
             this.BadgeName = string.Empty;
-            this.NewStatus = null;
-            this.NewMessage = string.Empty;
+            this.PitchedLevel = null;
+            this.PitchMessage = string.Empty;
             return JsonConvert.SerializeObject(this);
         }
         public string SetMissingBody()

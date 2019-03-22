@@ -32,16 +32,8 @@ namespace rueppellii_lvlup_asp.net_core.IntegrationTests.Scenarios.PitchesContro
             validDto = new GetPitchDto()
             {
                 BadgeName = "English speaker",
-                OldLVL = 2,
                 PitchedLevel = 3,
                 PitchMessage = "Hello World! My English is bloody gorgeous.",
-                Reviewers = new List<ReviewerDto>()
-                {
-                    new ReviewerDto
-                    {
-                        Name = "test reviewer",
-                    }
-                }
             };
         }
 
