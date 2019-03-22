@@ -18,10 +18,8 @@ namespace rueppellii_lvlup_asp.net_core.Models
         public string GivenName { get; set; }
         [MaxLength(25)]
         public string Surname { get; set; }
-
         [Required]
         public string Email { get; set; }
-
         public string Pic { get; set; }
 
         public List<Review> Reviews { get; set; }
